@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="DON6c0PN7gBQniIIUcoq" name="Page-1">
-        <mxGraphModel dx="672" dy="1468" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="12134" dy="6416" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -13,32 +13,32 @@
                 <mxCell id="6" value="Rejestracja" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e51400;fontColor=#130101;strokeColor=#B20000;fontStyle=1" parent="1" vertex="1">
                     <mxGeometry x="50" y="280" width="180" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="8" value="System posiada blackliste tymczasowych adresów email" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="40" y="660" width="190" height="150" as="geometry"/>
+                <mxCell id="8" value="System posiada blackliste tymczasowych adresów email" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="30" y="1440" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="10" value="Użytkownik może wyświetlić regulamin aplikacji" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="260" y="660" width="190" height="150" as="geometry"/>
+                <mxCell id="10" value="Użytkownik może wyświetlić regulamin aplikacji" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="260" y="1630" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="11" value="Użytkownik musi akceptować regulamin aplikacji" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="260" y="470" width="190" height="150" as="geometry"/>
+                <mxCell id="11" value="Użytkownik musi akceptować regulamin aplikacji" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="260" y="1440" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="12" value="Na email przychodzi potwierdzenie adresu email" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="480" y="470" width="190" height="150" as="geometry"/>
+                <mxCell id="12" value="Na email przychodzi potwierdzenie adresu email" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#6a00ff;fontColor=#ffffff;strokeColor=#3700CC;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="450" y="2270" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="13" value="Aby przejść do kolejnych kroków użytkownik musi potwierdzić adres email" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="480" y="660" width="190" height="150" as="geometry"/>
+                <mxCell id="13" value="Aby przejść do kolejnych kroków użytkownik musi potwierdzić adres email" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#6a00ff;fontColor=#ffffff;strokeColor=#3700CC;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="450" y="2460" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="14" value="Użytkownikowi wyświetla się ankieta KYC" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="700" y="470" width="190" height="150" as="geometry"/>
+                <mxCell id="14" value="Użytkownikowi wyświetla się ankieta KYC" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="725" y="2270" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="15" value="Użytkownik może podać swój zawód" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="690" y="660" width="190" height="150" as="geometry"/>
+                <mxCell id="15" value="Użytkownik może podać swój zawód" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="730" y="2460" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="16" value="Użytkownik może podać skąd dowiedział się o aplikacji" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="690" y="850" width="190" height="150" as="geometry"/>
+                <mxCell id="16" value="Użytkownik może podać skąd dowiedział się o aplikacji" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="730" y="2650" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="17" value="Użytkownik może pominąć anietę" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="685" y="1040" width="190" height="150" as="geometry"/>
+                <mxCell id="17" value="Użytkownik może pominąć anietę" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="725" y="2840" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="18" value="Logowanie" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e51400;fontColor=#130101;strokeColor=#B20000;fontStyle=1" parent="1" vertex="1">
                     <mxGeometry x="920" y="280" width="180" height="150" as="geometry"/>
@@ -46,17 +46,17 @@
                 <mxCell id="19" value="Użytkownik może się zalogować do systemu przez podanie adresu email i hasła" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
                     <mxGeometry x="920" y="470" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="20" value="Użytkownik może zresetować hasło przez podanie adresu email" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="1140" y="470" width="190" height="150" as="geometry"/>
+                <mxCell id="20" value="Użytkownik może zresetować hasło przez podanie adresu email" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="1130" y="1440" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="21" value="Na adres email przychodzi link do strony na której może zresetować hasło" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="1140" y="660" width="190" height="150" as="geometry"/>
+                <mxCell id="21" value="Na adres email przychodzi link do strony na której może zresetować hasło" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="1130" y="1630" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="22" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;Po zalogowaniu użytkownikowi wyświetla się popup z cytatami które mogą pomóc w zrozumieniu procesu User Story Mapping&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="1360" y="470" width="190" height="150" as="geometry"/>
+                <mxCell id="22" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;Po zalogowaniu użytkownikowi wyświetla się popup z cytatami które mogą pomóc w zrozumieniu procesu User Story Mapping (jeżeli literatura to przypis skąd)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="1350" y="1440" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="23" value="Użytkownik ma możliwość zrezygnowania z porad" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="1370" y="660" width="190" height="150" as="geometry"/>
+                <mxCell id="23" value="Użytkownik ma możliwość zrezygnowania z porad" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="1360" y="1630" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="26" value="Użytkownik może zobaczyć swoje ID" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
                     <mxGeometry x="1580" y="470" width="190" height="150" as="geometry"/>
@@ -70,11 +70,11 @@
                 <mxCell id="29" value="Możliwość zmiany nazwy użytkownika" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
                     <mxGeometry x="1800" y="660" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="30" value="Możliwość zmiany hasła" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="1800" y="850" width="190" height="150" as="geometry"/>
+                <mxCell id="30" value="Możliwość zmiany hasła" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="1800" y="1410" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="31" value="Możliwość zmiany adresu email" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="1800" y="1040" width="190" height="150" as="geometry"/>
+                <mxCell id="31" value="Możliwość zmiany adresu email" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="1800" y="1600" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="32" value="Użytkownik może wyświetlić zaproszenia do boardów" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
                     <mxGeometry x="2020" y="470" width="190" height="150" as="geometry"/>
@@ -82,11 +82,11 @@
                 <mxCell id="33" value="Użytkownik może akceptować bądź odrzucić zaproszenie do boardów" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
                     <mxGeometry x="2020" y="660" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="34" value="W preferencjach użytkownik ma możliwość włączenia i wyłączenia porad" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="2240" y="470" width="190" height="150" as="geometry"/>
+                <mxCell id="34" value="W preferencjach użytkownik ma możliwość włączenia i wyłączenia porad" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="2460" y="1410" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="35" value="Użytkownik ma możliwość usunięcia swojego konta" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="2460" y="470" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="2250" y="480" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="36" value="Lista boardów" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e51400;fontColor=#130101;strokeColor=#B20000;fontStyle=1" parent="1" vertex="1">
                     <mxGeometry x="2680" y="280" width="180" height="150" as="geometry"/>
@@ -100,242 +100,383 @@
                 <mxCell id="39" value="Użytkownik widzi jakie ma prawa na wskazanym boardzie" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
                     <mxGeometry x="2895" y="650" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="40" value="Nauczanie o User Story Mapping" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e51400;fontColor=#130101;strokeColor=#B20000;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="3345" y="280" width="185" height="150" as="geometry"/>
-                </mxCell>
-                <mxCell id="41" value="Użytkownik może porzeczytać informacje o User Story mapping" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="3340" y="470" width="190" height="150" as="geometry"/>
-                </mxCell>
-                <mxCell id="44" value="Sekcja o nauczaniu jest dostępna dla niezalogowanych użytkowników" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="3562" y="470" width="190" height="150" as="geometry"/>
-                </mxCell>
-                <mxCell id="45" value="Użytkownik może przeczytać o pułapkach w user story mapping" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="3782" y="470" width="190" height="150" as="geometry"/>
+                <mxCell id="45" value="Użytkownik może przeczytać o pułapkach w user story mapping" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="9762" y="2480" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="46" value="Lista boardów jest pierwszą widoczną stroną po zalogowaniu" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
                     <mxGeometry x="3118" y="470" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="47" value="Pułapka płaskiego rejestru" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="3782" y="650" width="190" height="150" as="geometry"/>
+                <mxCell id="47" value="Pułapka płaskiego rejestru" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="9762" y="2660" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="48" value="Użytkownik tworzy Board do sesji User Story Mapping" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e51400;fontColor=#130101;strokeColor=#B20000;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="4000" y="280" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="3380" y="280" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="49" value="Twórca boardu ma niezbywalne prawo moderatora" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="4000" y="470" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="3380" y="470" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="50" value="Twórca ma możliwość dodania informacji o boardzie" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="4220" y="470" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="3600" y="470" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="51" value="Tytuł boardu" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="4220" y="650" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="3600" y="650" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="52" value="Opis sesji" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="4220" y="830" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="3600" y="830" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="53" value="Planowane kamienie milowe" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="4220" y="1010" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="3600" y="1010" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="54" value="Moderator sesji ma możliwość zaproszenia innych użytkowników do sesji" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="4440" y="470" width="190" height="150" as="geometry"/>
+                <mxCell id="54" value="Moderator sesji ma możliwość zaproszenia innych użytkowników do boardu" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="3820" y="470" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="56" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;Zaproszenie może być wysłane poprzez podanie emailu instejącego użytkownika (Jeżeli mail nie znaleziony to error)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="4440" y="650" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="3820" y="650" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="57" value="Zaproszenie może być wysłane przez podanie ID użytkownika" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="4440" y="830" width="190" height="150" as="geometry"/>
+                <mxCell id="57" value="Zaproszenie może być wysłane przez podanie ID użytkownika" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="3832" y="1400" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="58" value="&lt;font style=&quot;font-size: 19px;&quot;&gt;Moderator może ustawić uprawnienia użytwkoników (Moderator, Członek zepołu i widz)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="4660" y="470" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="4040" y="470" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="59" value="Moderator może stworzyć grupę labelek opisujące role użytkowników w mapowaniu" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="4880" y="470" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="4260" y="470" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="60" value="Widz ma uprawnienia jedynie read-only do boardu" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="4660" y="650" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="4040" y="650" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="61" value="Moderator może przypisać użytkownikowi labelke" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="4880" y="650" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="4260" y="650" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="62" value="Labelka musi zawierać nazwe" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="4880" y="830" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="4260" y="830" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="63" value="Moderator może zmienić kolor labelki" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="4880" y="1010" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="4260" y="1010" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="64" value="Użytkownicy mogą wyświetlić listę użytkowników którzy są dodani do boardu" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="5100" y="470" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="4480" y="470" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="65" value="W liście można zobaczyć jakie uprawnienia mają poszczególni użytkownicy" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="5100" y="650" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="4480" y="650" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="66" value="Jeżeli użytkownik ma przypisaną labelkę to jest ona widoczna w liście z kolorem" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="5100" y="830" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="4480" y="830" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="67" value="Moderator może ustawić ustawiania timera Timer" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="5320" y="470" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="4700" y="470" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="68" value="Moderator może ustawić ilość głosów na jednego użytkownika w sesji" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="5540" y="470" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="4920" y="470" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="69" value="Zakończenie upływu czasu jest sygnalizowane powiadomieniem wszystkim uczestinom sesji" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="5320" y="650" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="4700" y="650" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="70" value="Zakończenie timera jest sygnalizowane dźwiękowo" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="5320" y="830" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="4700" y="830" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="71" value="Każdy poza widzem może utworzyć nowy epic (czerwona kartka)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="5760" y="470" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="5140" y="470" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="72" value="Uczestnicy sesji mogą utowrzyć mapę" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e51400;fontColor=#000000;strokeColor=#B20000;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="5760" y="280" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="5140" y="280" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="75" value="Dodanie karteczki epika tworzy nową kolumne" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="5760" y="650" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="5140" y="650" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="76" value="Jest możliwość dodania nowego epica pomiedzy inne epici" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="5760" y="840" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="5140" y="840" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="77" value="Każdy poza widzem może utworzyć nowe story (żółta kartka) do danego epicu" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="5980" y="470" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="5360" y="470" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="78" value="Dodanie karteczki story tworzy nowy wiersz" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="5980" y="650" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="5360" y="650" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="79" value="Jest możliwość dodania nowego story pomiędzy inne" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="5980" y="840" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="5360" y="840" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="80" value="Użytkownicy mogą zdefiniować potencjalnych użytkowników dla których jest tworzona mapa" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="6426" y="470" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="5806" y="470" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="81" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;Każda karteczka może zawierać dodatkowy opis który jest pokazywany dopiero po kliknięciu&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="6202.5" y="650" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="5582.5" y="650" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="82" value="Wielkość fontu jest automatycznie dostosowywana aby cały tytuł mieścił się na karteczce" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="6202.5" y="840" width="190" height="150" as="geometry"/>
+                <mxCell id="82" value="Wielkość fontu jest automatycznie dostosowywana aby cały tytuł mieścił się na karteczce" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="5590" y="1400" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="83" value="Każda karteczka zawiera Tytuł" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="6202.5" y="470" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="5582.5" y="470" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="84" value="Dla każdego użytkownika można zdefiniować inny kolor" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="6426" y="650" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="5806" y="650" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="85" value="Pomiędzy liniami można przesuwać całe epiki" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="6650" y="650" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="6030" y="650" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="86" value="Moderator może kreślić linie aby wydzielać iteracje" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="6650" y="470" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="6030" y="470" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="87" value="Pomiędzy liniami można przesuwać pojedyńcze stories" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="6650" y="840" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="6030" y="840" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="88" value="Można przeprowadzić głosowanie na stories" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="6870" y="470" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="6250" y="470" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="89" value="Moderator może ustawić timer głosowania" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="6870" y="650" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="6250" y="650" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="90" value="Moderator może ustawić ile łącznie głosów będą mogli oddać uczestnicy" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="6870" y="830" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="6250" y="830" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="91" value="Każdy użytkownik poza widzem może przesuwać karteczki na boardzie" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="7090" y="470" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="6470" y="470" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="92" value="Karteczki można przesuwać poprzez drag and drop" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="7090" y="650" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="6470" y="650" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="93" value="Przesunięcie epiku względem innego epicu powoduje przeniesienie również jego stories" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="7090" y="830" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="6470" y="830" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="94" value="Przy przesunięciu story na samej górze przesuwa się cała kolumna ze storiesami" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="7090" y="1010" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="6470" y="1010" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="95" value="Pod całym epikiem można dodać multimedia z nim związane" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="7310" y="470" width="190" height="150" as="geometry"/>
+                <mxCell id="95" value="Pod całym epikiem można dodać multimedia z nim związane" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="7380" y="1400" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="96" value="Załącznik może być plikiem audio" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="7310" y="650" width="190" height="150" as="geometry"/>
+                <mxCell id="96" value="Załącznik może być plikiem audio" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="7380" y="1590" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="97" value="Załącznik może być obrazem" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="7310" y="830" width="190" height="150" as="geometry"/>
+                <mxCell id="97" value="Załącznik może być obrazem" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="7380" y="1760" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="98" value="Załącznik może być plikiem Video" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="7310" y="1010" width="190" height="150" as="geometry"/>
+                <mxCell id="98" value="Załącznik może być plikiem Video" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="7380" y="1940" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="99" value="Moderator może rozpocząć głosowanie" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="7530" y="470" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="6680" y="470" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="100" value="Głosowanie automatycznie uruchamia timer na wyznaczony czas" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="7530" y="650" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="6680" y="650" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="101" value="Moderator może ograniczyć czy głosowanie dotyczy story czy epica (czy obu)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="7530" y="830" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="6680" y="830" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="102" value="Moderator może wyzerować głosowanie" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="7530" y="1010" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="6680" y="1010" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="103" value="Każdy poza widzem może zagłosować na wybraną karteczkę" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="7750" y="470" width="190" height="150" as="geometry"/>
+                <mxCell id="103" value="Wszyscy uprawnieni mogą zagłosować na wybraną karteczkę" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="6900" y="470" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="104" value="&lt;font style=&quot;font-size: 17px;&quot;&gt;Przy wyborze karteczki nie należącej do danego głosowania użytkownik jest informowany o błędzie&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="7750" y="660" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="6900" y="660" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="105" value="Każdy użytkownik może zgłosować maksymalnie tyle razy ile pozwolił moderator" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="7750" y="830" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="6900" y="830" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="106" value="Użytkownik może cofnąć głos na daną karteczkę" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="7750" y="1010" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="6900" y="1010" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="107" value="Moderator może włączyć timer z labelką" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="7970" y="470" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="7120" y="470" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="108" value="Timer jest widoczny dla wszystkich uczestników sesji" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="7970" y="650" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="7120" y="650" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="109" value="Do każdego stories uczestnik sesji może dodać swój komentarz" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="8190" y="470" width="190" height="150" as="geometry"/>
+                <mxCell id="109" value="Do każdego stories uczestnik sesji może dodać swój komentarz" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="7620" y="1400" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="110" value="Jedno stories może mieć wiele komentarzy" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="8190" y="650" width="190" height="150" as="geometry"/>
+                <mxCell id="110" value="Jedno stories może mieć wiele komentarzy" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="7620" y="1580" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="111" value="Wszystkie komentarze są widoczne w wersji chronologicznej" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="8190" y="830" width="190" height="150" as="geometry"/>
+                <mxCell id="111" value="Wszystkie komentarze są widoczne w wersji chronologicznej" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="7620" y="1760" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="112" value="Przy komentarzu można zobaczyć kto go napisał, jego funkcję oraz jego rolę" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="8190" y="1010" width="190" height="150" as="geometry"/>
+                <mxCell id="112" value="Przy komentarzu można zobaczyć kto go napisał, jego funkcję oraz jego rolę" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="7620" y="1940" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="113" value="Chat boardu" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e51400;fontColor=#000000;strokeColor=#B20000;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="8410" y="250" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="7920" y="2280" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="114" value="Dla uczestników sesji mapowania jest dostępny chat" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="8410" y="470" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="7920" y="2500" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="115" value="Chat jest jawny" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="8630" y="470" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="8140" y="2500" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="116" value="Przy każdym postcie jest podpisany autor wraz z rolą" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="8630" y="650" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="8140" y="2680" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="117" value="Autor może usunąć swój komentarz" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="8850" y="470" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="8360" y="2500" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="118" value="Moderator może usunąć komentarze innych osób" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="9070" y="470" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="8580" y="2500" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="119" value="Użytkownicy mogą dodawać reakcje do komentarza poprzez emotikony" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="9290" y="470" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="8800" y="2500" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="120" value="Użytkownik może cofnąć dodaną reakcję" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="9290" y="650" width="190" height="150" as="geometry"/>
+                <mxCell id="120" value="Użytkownik może cofnąć dodaną reakcję" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="8800" y="2680" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="121" value="Użytkownicy mogą odpowiadać na wybrane komentarze" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="9510" y="470" width="190" height="150" as="geometry"/>
+                <mxCell id="121" value="Użytkownicy mogą odpowiadać na wybrane komentarze" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="9020" y="2500" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="122" value="Wszyscy uczestnicy widzą na którą wiadomość jest to odpowiedź" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="9510" y="650" width="190" height="150" as="geometry"/>
+                <mxCell id="122" value="Wszyscy uczestnicy widzą na którą wiadomość jest to odpowiedź" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="9020" y="2680" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="123" value="&lt;b&gt;&lt;font style=&quot;font-size: 26px;&quot;&gt;Pomysły:&lt;br&gt;Przy implementacji chciałbym zaimplementować w pewnym stopniu CI, odpalanie na gate testów jednostkowych&lt;br&gt;Flutter, Firebase/C# oraz GithubActions&lt;br&gt;Myślałem czy nie potestować github co-pilot aby przy okazji pisania pracy poznać nowy tool&lt;br&gt;&lt;/font&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=17;fontColor=#000000;fillColor=#fa6800;strokeColor=#C73500;" parent="1" vertex="1">
                     <mxGeometry x="1270" y="-370" width="1510" height="390" as="geometry"/>
+                </mxCell>
+                <mxCell id="124" value="Jest możliwość dodania opisu danego milestone aby team lepiej zrozumiał scope" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="6030" y="1010" width="190" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="125" value="Porady no narzędzia" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="1360" y="1800" width="190" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="126" value="Handlowanie boardów po usunięciu" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="2250" y="660" width="190" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="127" value="Co jeżeli jest właścicielem boardu (randomowo przekazuje moderatora?)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="2250" y="840" width="190" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="128" value="Czy jeden czy więcej ról na raz" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="4260" y="1190" width="190" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="129" value="Moderator decyduje czy widzowie mogą głosować" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="4920" y="650" width="190" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="130" value="Dla uczestników sesji mapowania jest dostępny chat" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="7920" y="2500" width="190" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="131" value="Chat jest jawny" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="8140" y="2500" width="190" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="132" value="Przy każdym postcie jest podpisany autor wraz z rolą" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="8140" y="2680" width="190" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="133" value="Autor może usunąć swój komentarz" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="8360" y="2500" width="190" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="134" value="Moderator może usunąć komentarze innych osób" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="8580" y="2500" width="190" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="135" value="Dla uczestników sesji mapowania jest dostępny chat" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="7920" y="2500" width="190" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="136" value="Chat jest jawny" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="8140" y="2500" width="190" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="137" value="Przy każdym postcie jest podpisany autor wraz z rolą" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="8140" y="2680" width="190" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="138" value="Autor może usunąć swój komentarz" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="8360" y="2500" width="190" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="139" value="Moderator może usunąć komentarze innych osób" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="8580" y="2500" width="190" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="140" value="Dla uczestników sesji mapowania jest dostępny chat" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="7920" y="2500" width="190" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="141" value="Chat jest jawny" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="8140" y="2500" width="190" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="142" value="Przy każdym postcie jest podpisany autor wraz z rolą" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="8140" y="2680" width="190" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="143" value="Autor może usunąć swój komentarz" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="8360" y="2500" width="190" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="144" value="Moderator może usunąć komentarze innych osób" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="8580" y="2500" width="190" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="145" value="Użytkownicy mogą dodawać reakcje do komentarza poprzez emotikony" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="8800" y="2500" width="190" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="146" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=15;fillColor=#6a00ff;strokeColor=#3700CC;" edge="1" parent="1" target="148">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="9926.666666666666" y="1350" as="sourcePoint"/>
+                        <mxPoint x="9850" y="1350" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="148" value="&lt;h1&gt;&lt;font style=&quot;font-size: 61px;&quot;&gt;MVP&lt;/font&gt;&lt;/h1&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="-230" y="1319.999999999999" width="190" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="151" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=15;fontSize=61;" edge="1" parent="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="890" y="280" as="sourcePoint"/>
+                        <mxPoint x="920" y="2220" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="152" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=15;fontSize=61;" edge="1" parent="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="1560.000000000001" y="305" as="sourcePoint"/>
+                        <mxPoint x="1590.000000000001" y="2225" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="153" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=15;fontSize=61;" edge="1" parent="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="2660" y="330" as="sourcePoint"/>
+                        <mxPoint x="2690" y="2250" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="154" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=15;fontSize=61;" edge="1" parent="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="3320" y="260" as="sourcePoint"/>
+                        <mxPoint x="3350" y="2180" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="155" value="Nauczanie o User Story Mapping" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e51400;fontColor=#130101;strokeColor=#B20000;fontStyle=1" vertex="1" parent="1">
+                    <mxGeometry x="9325" y="2290" width="185" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="156" value="Użytkownik może porzeczytać informacje o User Story mapping" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;fontStyle=1" vertex="1" parent="1">
+                    <mxGeometry x="9320" y="2480" width="190" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="157" value="Sekcja o nauczaniu jest dostępna dla niezalogowanych użytkowników" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;fontStyle=1" vertex="1" parent="1">
+                    <mxGeometry x="9542" y="2480" width="190" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="158" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=15;fontSize=61;" edge="1" parent="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="9270" y="2210" as="sourcePoint"/>
+                        <mxPoint x="9270" y="2960" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="159" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=15;fontSize=61;" edge="1" parent="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="7820" y="270" as="sourcePoint"/>
+                        <mxPoint x="7850" y="2190" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="160" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=15;fontSize=61;" edge="1" parent="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="7842" y="2230" as="sourcePoint"/>
+                        <mxPoint x="7842" y="2930" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="161" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=15;fillColor=#6a00ff;strokeColor=#3700CC;" edge="1" parent="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="10370" y="2160" as="sourcePoint"/>
+                        <mxPoint x="-20" y="2229.716746728506" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="162" value="&lt;h1&gt;&lt;font style=&quot;font-size: 61px;&quot;&gt;M2&lt;/font&gt;&lt;/h1&gt;&lt;div&gt;&lt;font style=&quot;font-size: 61px;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="-180" y="2169.999999999999" width="190" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="163" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=15;fillColor=#6a00ff;strokeColor=#3700CC;" edge="1" parent="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="10330" y="2960" as="sourcePoint"/>
+                        <mxPoint x="-60" y="3019.716746728506" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="164" value="&lt;h1&gt;&lt;span style=&quot;font-size: 61px;&quot;&gt;M3&lt;/span&gt;&lt;/h1&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="-200" y="2949.999999999999" width="190" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="165" value="" style="endArrow=none;html=1;rounded=0;strokeWidth=15;fontSize=61;" edge="1" parent="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="5130" y="300" as="sourcePoint"/>
+                        <mxPoint x="5160" y="2220" as="targetPoint"/>
+                    </mxGeometry>
                 </mxCell>
             </root>
         </mxGraphModel>
