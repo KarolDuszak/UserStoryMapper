@@ -1,38 +1,32 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:user_story_mapper/models/potentialUser.dart';
-import 'package:user_story_mapper/models/comment.dart';
+import 'package:user_story_mapper/models/story.dart';
 import 'dart:convert';
 
 @JsonSerializable(explicitToJson: true)
-class Story {
-  Story(
+class Feature {
+  Feature(
       {required this.id,
-      required this.creatorId,
       required this.description,
       required this.title,
-      required this.potentialUsers,
-      required this.comments,
-      required this.votes});
+      required this.stories,
+      required this.potentialUsers});
 
   //Informations
   final String id;
-  final String creatorId;
   String description;
   String title;
   //Interaction
-  List<PotentialUser>? potentialUsers;
-  Comment? comments;
-  int? votes;
+  List<PotentialUser> potentialUsers;
+  List<Story> stories;
 
-  static Story getEmptyObj() {
-    return Story(
+  static Feature getEmptyObj() {
+    return Feature(
         id: "NULL",
-        creatorId: "NULL creatorId",
         description: "NULL description",
         title: "NULL title",
         potentialUsers: List<PotentialUser>.filled(
             2, PotentialUser.getEmptyObj()),
-        comments: Comment.getEmptyCommentObj(),
-        votes: 0);
+        stories: List<Story>.filled(5, Story.getEmptyObj()));
   }
 }

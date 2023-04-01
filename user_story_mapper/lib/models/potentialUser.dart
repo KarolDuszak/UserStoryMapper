@@ -15,7 +15,7 @@ class PotentialUser {
   final String name;
   final String description;
 
-  static PotentialUser getEmptyPotentialUserObj() {
+  static PotentialUser getEmptyObj() {
     return PotentialUser(
         id: "NULL",
         color: Colors.red,
