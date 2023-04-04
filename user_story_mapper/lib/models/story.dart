@@ -26,13 +26,26 @@ class Story {
 
   static Story getEmptyObj() {
     return Story(
-        id: "NULL",
+        id: "NULL ID",
         creatorId: "NULL creatorId",
         description: "NULL description",
-        title: "NULL title",
-        potentialUsers: List<PotentialUser>.filled(
-            2, PotentialUser.getEmptyObj()),
+        title:
+            "Very long title sadasdasda sadasdasdasd asdasdasdasd sadasdasd asdasdasd",
+        potentialUsers:
+            List<PotentialUser>.filled(6, PotentialUser.getEmptyObj()),
         comments: Comment.getEmptyCommentObj(),
-        votes: 0);
+        votes: 4);
+  }
+
+  static Story getEmptyObj2() {
+    return Story(
+        id: "NULL ID",
+        creatorId: "NULL creatorId",
+        description: "NULL description",
+        title: "Short title",
+        potentialUsers:
+            List<PotentialUser>.filled(3, PotentialUser.getEmptyObj()),
+        comments: Comment.getEmptyCommentObj(),
+        votes: 4);
   }
 }

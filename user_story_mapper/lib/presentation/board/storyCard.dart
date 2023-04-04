@@ -1,18 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:user_story_mapper/models/potentialUser.dart';
+import 'package:user_story_mapper/models/story.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class StoryCard extends StatelessWidget {
-  const StoryCard(
-      {super.key,
-      this.title = '',
-      this.description = '',
-      this.votes = 0,
-      this.potentialUser = const PotentialUser.constConstructor(
-          "NULL", Colors.red, "NULL name", "NULL description")});
-  final String title;
-  final String description;
-  final int votes;
-  final PotentialUser potentialUser;
+  StoryCard({super.key, required this.storyData});
+  Story storyData;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +15,7 @@ class StoryCard extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(12.0),
         child: SizedBox(
-          width: 150,
+          width: 180,
           height: 150,
           child: Container(
             color: Colors.amber[300],
@@ -33,32 +26,37 @@ class StoryCard extends StatelessWidget {
                   height: 120,
                   duration: const Duration(milliseconds: 100),
                   curve: Curves.easeInOut,
-                  child: Center(
-                    child: Text(
-                      title,
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            fontSize: 18.0,
-                          ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 0, horizontal: 7),
+                    child: Center(
+                      child: AutoSizeText(
+                        storyData.title,
+                        style: TextStyle(fontSize: 30),
+                        maxLines: 4,
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(
-                  height: 30,
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       SizedBox(
-                          width: 100,
+                          width: 140,
                           child: Row(
                             children: [
+                              rowBuilder(storyData.potentialUsers?.length ?? 0)
                               // TODO: Fix to display dinamically icons
-                              for (var i = 0; i < 3; i++)
-                                {Icon(Icons.person, color: potentialUser.color)}
+                              //for (var i = 0; i < 3; i++)
+                              //{
+
+                              //}
+                              //Icon(Icons.person,
+                              //  color: storyData.potentialUsers?[0].color)
                             ],
                           )),
                       SizedBox(
-                          width: 50,
-                          child: Text("+" + votes.toString(),
+                          child: Text("+" + storyData.votes.toString(),
                               textAlign: TextAlign.center,
                               style:
                                   const TextStyle(fontWeight: FontWeight.bold)))
@@ -71,5 +69,16 @@ class StoryCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  rowBuilder(length) {
+    if (length > 5) {
+      length = 5;
+    }
+    var itemArray = List<Widget>.generate(length,
+        (i) => Icon(Icons.person, color: storyData.potentialUsers?[i].color));
+
+    return Row(
+        mainAxisAlignment: MainAxisAlignment.center, children: itemArray);
   }
 }
