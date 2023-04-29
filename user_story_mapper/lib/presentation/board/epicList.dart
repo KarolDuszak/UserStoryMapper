@@ -5,6 +5,8 @@ import 'package:user_story_mapper/models/story.dart';
 import 'package:user_story_mapper/models/feature.dart';
 import 'package:user_story_mapper/presentation/board/storyCard.dart';
 
+import '../../models/epic.dart';
+
 class EpicList extends StatefulWidget {
   const EpicList({Key? key}) : super(key: key);
 
@@ -19,15 +21,13 @@ class InnerList {
 }
 
 class _EpicList extends State<EpicList> {
-  late List<Feature> _epic;
+  late Epic _epic;
 
   @override
   void initState() {
     super.initState();
 
-    _epic = List.generate(9, (outerIndex) {
-      return Feature.getEmptyObj(outerIndex);
-    });
+    _epic = Epic.getEmptyObj(0);
   }
 
   @override
@@ -37,7 +37,8 @@ class _EpicList extends State<EpicList> {
         title: const Text('User Story Board'),
       ),
       body: DragAndDropLists(
-        children: List.generate(_epic.length, (index) => _buildList(index)),
+        children:
+            List.generate(_epic.features.length, (index) => _buildList(index)),
         onItemReorder: _onItemReorder,
         onListReorder: _onListReorder,
         axis: Axis.horizontal,
@@ -52,7 +53,7 @@ class _EpicList extends State<EpicList> {
   }
 
   _buildList(int outerIndex) {
-    var feature = _epic[outerIndex];
+    var feature = _epic.features[outerIndex];
     return DragAndDropList(
       leftSide: const VerticalDivider(
         color: Colors.black,
@@ -85,15 +86,16 @@ class _EpicList extends State<EpicList> {
       int oldItemIndex, int oldListIndex, int newItemIndex, int newListIndex) {
     setState(() {
       // = _epic[oldListIndex].stories[oldItemIndex];
-      var movedItem = _epic[oldListIndex].stories.removeAt(oldItemIndex);
-      _epic[newListIndex].stories.insert(newItemIndex, movedItem);
+      var movedItem =
+          _epic.features[oldListIndex].stories.removeAt(oldItemIndex);
+      _epic.features[newListIndex].stories.insert(newItemIndex, movedItem);
     });
   }
 
   _onListReorder(int oldListIndex, int newListIndex) {
     setState(() {
-      var movedList = _epic.removeAt(oldListIndex);
-      _epic.insert(newListIndex, movedList);
+      var movedList = _epic.features.removeAt(oldListIndex);
+      _epic.features.insert(newListIndex, movedList);
     });
   }
 }
