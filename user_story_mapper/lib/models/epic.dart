@@ -9,15 +9,12 @@ class Epic {
       {required this.id,
       required this.description,
       required this.title,
-      required this.features,
-      required this.potentialUsers});
+      required this.features});
 
   //Informations
    String id;
   String description;
   String title;
-  //Interaction
-  List<PotentialUser> potentialUsers;
   List<Feature> features;
 
   static Epic getEmptyObj(int num) {
@@ -25,8 +22,6 @@ class Epic {
         id: "NULL",
         description: "NULL description",
         title: "NULL title",
-        potentialUsers: List<PotentialUser>.filled(
-            2, PotentialUser.getEmptyObj()),
-        features: List<Feature>.filled(3, Feature.getEmptyObj(num)));
+        features: List.generate(10, (innerIndex) => Feature.getEmptyObj(innerIndex)));
   }
 }
