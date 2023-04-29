@@ -10,11 +10,11 @@ class Comment {
       required this.content,
       required this.date});
 
-  final String id;
-  final String creatorId;
-  final String storyId;
-  final String content;
-  final DateTime date;
+   String id;
+   String creatorId;
+   String storyId;
+   String content;
+   DateTime date;
 
   static Comment getEmptyCommentObj() {
     return Comment(

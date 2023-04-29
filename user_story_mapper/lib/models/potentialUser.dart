@@ -10,10 +10,10 @@ class PotentialUser {
       required this.name,
       required this.description});
 
-  final String id;
-  final Color color;
-  final String name;
-  final String description;
+  String id;
+  Color color;
+  String name;
+  String description;
 
   static PotentialUser getEmptyObj() {
     return PotentialUser(
@@ -23,6 +23,6 @@ class PotentialUser {
         description: "NULL description");
   }
 
-  const PotentialUser.constConstructor(
-      this.id, this.color, this.name, this.description);
+  //const PotentialUser.constConstructor(
+    //  this.id, this.color, this.name, this.description);
 }

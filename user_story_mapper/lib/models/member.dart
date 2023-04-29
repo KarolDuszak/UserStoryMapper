@@ -12,7 +12,7 @@ class Member {
       required this.roleLabel});
 
   //Informations
-  final String id;
+   String id;
   String role;
   int? voterRemaining;
   RoleLabel? roleLabel;

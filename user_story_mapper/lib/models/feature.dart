@@ -13,20 +13,21 @@ class Feature {
       required this.potentialUsers});
 
   //Informations
-  final String id;
+  String id;
   String description;
   String title;
   //Interaction
   List<PotentialUser> potentialUsers;
   List<Story> stories;
 
-  static Feature getEmptyObj() {
+  static Feature getEmptyObj(int num) {
     return Feature(
-        id: "NULL",
+        id: num.toString(),
         description: "NULL description",
         title: "NULL title",
-        potentialUsers: List<PotentialUser>.filled(
-            2, PotentialUser.getEmptyObj()),
-        stories: List<Story>.filled(5, Story.getEmptyObj()));
+        potentialUsers:
+            List<PotentialUser>.filled(2, PotentialUser.getEmptyObj()),
+        stories:
+            List.generate(10, (innerIndex) => Story.getEmptyObj(innerIndex)));
   }
 }

@@ -4,8 +4,9 @@ import 'package:user_story_mapper/models/story.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
 class StoryCard extends StatelessWidget {
-  StoryCard({super.key, required this.storyData});
+  StoryCard({super.key, required this.storyData, required this.color});
   Story storyData;
+  Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class StoryCard extends StatelessWidget {
           width: 180,
           height: 150,
           child: Container(
-            color: Colors.amber[300],
+            color: color,
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -46,13 +47,6 @@ class StoryCard extends StatelessWidget {
                           child: Row(
                             children: [
                               rowBuilder(storyData.potentialUsers?.length ?? 0)
-                              // TODO: Fix to display dinamically icons
-                              //for (var i = 0; i < 3; i++)
-                              //{
-
-                              //}
-                              //Icon(Icons.person,
-                              //  color: storyData.potentialUsers?[0].color)
                             ],
                           )),
                       SizedBox(

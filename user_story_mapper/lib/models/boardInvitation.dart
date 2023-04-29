@@ -12,10 +12,10 @@ class BoardInvitation {
       required this.inviterId});
 
   //Informations
-  final String id;
-  final String boardInformation;
-  final String userId;
-  final String inviterId;
+   String id;
+   String boardInformation;
+   String userId;
+   String inviterId;
 
   static BoardInvitation getEmptyObj() {
     return BoardInvitation(

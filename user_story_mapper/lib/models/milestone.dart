@@ -13,20 +13,20 @@ class Milestone {
       required this.potentialUsers});
 
   //Informations
-  final String id;
+   String id;
   String description;
   String title;
   //Interaction
   List<PotentialUser> potentialUsers;
   List<Epic> epics;
 
-  static Milestone getEmptyObj() {
+  static Milestone getEmptyObj(int num) {
     return Milestone(
         id: "NULL",
         description: "NULL description",
         title: "NULL title",
         potentialUsers: List<PotentialUser>.filled(
             2, PotentialUser.getEmptyObj()),
-        epics: List<Epic>.filled(2, Epic.getEmptyObj()));
+        epics: List<Epic>.filled(2, Epic.getEmptyObj(num)));
   }
 }

@@ -20,9 +20,9 @@ class Board {
       required this.timer});
 
   //Informations
-  final String id;
-  final String creatorId;
-  final List<String> roles =
+  String id;
+  String creatorId;
+  List<String> roles =
       List<String>.from(<String>["Owner", "Member", "Visitor"]);
   String? description;
   String? title;
@@ -34,7 +34,7 @@ class Board {
   int? votesNumber;
   String? timer; //Not sure how to implement jet
 
-  static Board getEmptyObj() {
+  static Board getEmptyObj(int num) {
     return Board(
       id: "NULL",
       creatorId: "NULL creatorId",
@@ -42,7 +42,7 @@ class Board {
       title: "NULL title",
       potentialUsers:
           List<PotentialUser>.filled(3, PotentialUser.getEmptyObj()),
-      milestones: List<Milestone>.filled(2, Milestone.getEmptyObj()),
+      milestones: List<Milestone>.filled(2, Milestone.getEmptyObj(num)),
       roleLabels: List<RoleLabel>.filled(2, RoleLabel.getEmptyObj()),
       members: List<Member>.filled(2, Member.getEmptyObj()),
       votesNumber: 5,

@@ -14,14 +14,14 @@ class User {
       required this.boards});
 
   //Informations
-  final String id;
+   String id;
   String email;
   String name;
   String password;
   List<BoardInvitation> invitationsToBoard;
   List<Board> boards;
 
-  static User getEmptyObj() {
+  static User getEmptyObj(int num) {
     return User(
         id: "NULL",
         email: "NULL email",
@@ -29,6 +29,6 @@ class User {
         password: "NULL password",
         invitationsToBoard:
             List<BoardInvitation>.filled(2, BoardInvitation.getEmptyObj()),
-        boards: List<Board>.filled(3, Board.getEmptyObj()));
+        boards: List<Board>.filled(3, Board.getEmptyObj(num)));
   }
 }

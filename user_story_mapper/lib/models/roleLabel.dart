@@ -9,7 +9,7 @@ class RoleLabel {
   RoleLabel({required this.id, required this.color, required this.title});
 
   //Informations
-  final String id;
+   String id;
   Color color;
   String title;
 

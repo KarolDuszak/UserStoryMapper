@@ -15,8 +15,8 @@ class Story {
       required this.votes});
 
   //Informations
-  final String id;
-  final String creatorId;
+  String id;
+  String creatorId;
   String description;
   String title;
   //Interaction
@@ -24,13 +24,13 @@ class Story {
   Comment? comments;
   int? votes;
 
-  static Story getEmptyObj() {
+  static Story getEmptyObj(int num) {
     return Story(
-        id: "NULL ID",
+        id: num.toString(),
         creatorId: "NULL creatorId",
         description: "NULL description",
         title:
-            "Very long title sadasdasda sadasdasdasd asdasdasdasd sadasdasd asdasdasd",
+            "${num} Very long title sadasdasda sadasdasdasd asdasdasdasd sadasdasd asdasdasd",
         potentialUsers:
             List<PotentialUser>.filled(6, PotentialUser.getEmptyObj()),
         comments: Comment.getEmptyCommentObj(),
