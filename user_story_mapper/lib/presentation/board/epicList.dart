@@ -1,10 +1,7 @@
-import 'package:drag_and_drop_lists/drag_and_drop_list_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:drag_and_drop_lists/drag_and_drop_lists.dart';
 import 'package:user_story_mapper/models/story.dart';
-import 'package:user_story_mapper/models/feature.dart';
 import 'package:user_story_mapper/presentation/board/storyCard.dart';
-
 import '../../models/epic.dart';
 
 class EpicList extends StatefulWidget {
@@ -12,12 +9,6 @@ class EpicList extends StatefulWidget {
 
   @override
   State createState() => _EpicList();
-}
-
-class InnerList {
-  String title;
-  List<Story> stories;
-  InnerList({required this.title, required this.stories});
 }
 
 class _EpicList extends State<EpicList> {
@@ -33,23 +24,28 @@ class _EpicList extends State<EpicList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('User Story Board'),
-      ),
-      body: DragAndDropLists(
-        children:
-            List.generate(_epic.features.length, (index) => _buildList(index)),
-        onItemReorder: _onItemReorder,
-        onListReorder: _onListReorder,
-        axis: Axis.horizontal,
-        listWidth: 200,
-        listDraggingWidth: 200,
-        listDecoration: BoxDecoration(
-          color: Colors.grey[200],
+        body: Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Container(
+          padding: EdgeInsets.fromLTRB(15, 5, 15, 10),
+          child: StoryCard(storyData: Story.getEmptyObj2(), color: Colors.red),
         ),
-        listPadding: const EdgeInsets.all(5.0),
-      ),
-    );
+        Expanded(
+          child: DragAndDropLists(
+            children: List.generate(
+                _epic.features.length, (index) => _buildList(index)),
+            onItemReorder: _onItemReorder,
+            onListReorder: _onListReorder,
+            axis: Axis.horizontal,
+            listWidth: 215,
+            listDraggingWidth: 215,
+            listPadding: const EdgeInsets.all(5.0),
+          ),
+        ),
+      ],
+    ));
   }
 
   _buildList(int outerIndex) {
@@ -58,12 +54,7 @@ class _EpicList extends State<EpicList> {
       leftSide: const VerticalDivider(
         color: Colors.black,
         width: 1.5,
-        thickness: 1.5,
-      ),
-      rightSide: const VerticalDivider(
-        color: Colors.black,
-        width: 1.5,
-        thickness: 1.5,
+        thickness: 1,
       ),
       children: List.generate(feature.stories.length,
           (index) => _buildItem(feature.stories[index])),

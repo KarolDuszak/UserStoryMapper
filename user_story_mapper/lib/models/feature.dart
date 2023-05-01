@@ -23,6 +23,6 @@ class Feature {
         description: "NULL description",
         title: "NULL title",
         stories:
-            List.generate(10, (innerIndex) => Story.getEmptyObj(innerIndex)));
+            List.generate(4, (innerIndex) => Story.getEmptyObj(innerIndex)));
   }
 }
