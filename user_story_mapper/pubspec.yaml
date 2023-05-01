@@ -38,6 +38,10 @@ dependencies:
   json_annotation: ^4.8.0
   auto_size_text: ^3.0.0
   drag_and_drop_lists: ^0.3.3
+  flutter_bloc: ^8.1.2
+  angular_bloc: ^9.0.0
+  hydrated_bloc: ^9.1.0
+  replay_bloc: ^0.2.3
 
 dev_dependencies:
   flutter_test:

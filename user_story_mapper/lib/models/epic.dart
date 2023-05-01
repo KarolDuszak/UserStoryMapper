@@ -12,7 +12,7 @@ class Epic {
       required this.features});
 
   //Informations
-   String id;
+  String id;
   String description;
   String title;
   List<Feature> features;
