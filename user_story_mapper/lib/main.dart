@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:user_story_mapper/presentation/board/epicList.dart';
+import 'package:user_story_mapper/models/epic.dart';
+import 'package:user_story_mapper/presentation/board/epicWidget.dart';
 
 void main() => runApp(const ReorderableApp());
 
@@ -13,7 +14,9 @@ class ReorderableApp extends StatelessWidget {
       title: 'Drag and Drop Lists',
       initialRoute: '/',
       routes: {
-        '/': (context) => const EpicList(),
+        '/': (context) => EpicList(
+              epic: Epic.getEmptyObj(2),
+            ),
       },
     );
   }

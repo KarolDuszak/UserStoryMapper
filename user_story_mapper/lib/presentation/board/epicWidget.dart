@@ -5,7 +5,9 @@ import 'package:user_story_mapper/presentation/board/storyCard.dart';
 import '../../models/epic.dart';
 
 class EpicList extends StatefulWidget {
-  const EpicList({Key? key}) : super(key: key);
+  final Epic epic;
+
+  EpicList({Key? key, required this.epic}) : super(key: key);
 
   @override
   State createState() => _EpicList();
@@ -18,7 +20,7 @@ class _EpicList extends State<EpicList> {
   void initState() {
     super.initState();
 
-    _epic = Epic.getEmptyObj(0);
+    _epic = widget.epic;
   }
 
   @override
