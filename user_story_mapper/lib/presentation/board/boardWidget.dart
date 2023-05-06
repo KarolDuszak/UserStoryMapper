@@ -4,6 +4,7 @@ import 'package:user_story_mapper/models/board.dart';
 import 'package:user_story_mapper/presentation/board/epicWidget.dart';
 import '../../models/milestone.dart';
 import '../../models/epic.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class BoardList extends StatefulWidget {
   const BoardList({Key? key}) : super(key: key);
@@ -54,10 +55,27 @@ class _BoardList extends State<BoardList> {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-            Text(
-              milestone.title,
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-            )
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+              child: SizedBox(
+                width: 200,
+                child: Column(
+                  children: [
+                    AutoSizeText(
+                      milestone.title,
+                      style:
+                          TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+                    ),
+                    AutoSizeText(
+                      milestone.description,
+                      style: TextStyle(
+                        fontSize: 30,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ]),
           Expanded(
             child: ListView(
