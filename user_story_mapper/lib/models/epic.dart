@@ -21,7 +21,8 @@ class Epic {
     return Epic(
         id: "NULL",
         description: "NULL description",
-        title: "NULL title",
-        features: List.generate(5, (innerIndex) => Feature.getEmptyObj(innerIndex)));
+        title: "NULL title ${num}",
+        features:
+            List.generate(5, (innerIndex) => Feature.getEmptyObj(innerIndex)));
   }
 }

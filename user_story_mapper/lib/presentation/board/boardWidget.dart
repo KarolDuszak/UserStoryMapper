@@ -27,18 +27,18 @@ class _BoardList extends State<BoardList> {
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Expanded(
-            child: DragAndDropLists(
-              children: List.generate(
-                  _board.milestones.length, (index) => _buildList(index)),
-              onItemReorder: _onItemReorder,
-              onListReorder: _onListReorder,
-              axis: Axis.horizontal,
-              listWidth: 215 * 5 * 4,
-              listDraggingWidth: 215 * 5 * 4,
-              listPadding: const EdgeInsets.all(5.0),
+            child: ListView.builder(
+              itemCount: _board.milestones.length,
+              itemBuilder: (context, index) {
+                return Container(
+                    decoration:
+                        BoxDecoration(border: Border(bottom: BorderSide())),
+                    child: _buildList(index));
+              },
             ),
           ),
         ],
@@ -48,19 +48,34 @@ class _BoardList extends State<BoardList> {
 
   _buildList(int outerIndex) {
     var milestone = _board.milestones[outerIndex];
-    return DragAndDropList(
-      children: List.generate(
-        _board.milestones.length,
-        (index) => _buildItem(milestone.epics[index]),
+    return ConstrainedBox(
+      constraints: BoxConstraints(maxHeight: _getMaxHeightInMilestone() * 1.2),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Column(mainAxisAlignment: MainAxisAlignment.end, children: [
+            Text(
+              milestone.title,
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            )
+          ]),
+          Expanded(
+            child: ListView(
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              children: List.generate(
+                milestone.epics.length,
+                (index) => _buildItem(milestone.epics[index]),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
 
   _buildItem(Epic item) {
-    return DragAndDropItem(
-      child:
-          Container(padding: EdgeInsets.all(10), child: EpicList(epic: item)),
-    );
+    return EpicList(epic: item);
   }
 
   _onItemReorder(
@@ -78,5 +93,18 @@ class _BoardList extends State<BoardList> {
       var movedList = _board.milestones.removeAt(oldListIndex);
       _board.milestones.insert(newListIndex, movedList);
     });
+  }
+
+  _getMaxHeightInMilestone() {
+    var maxHeight = 0;
+    for (var i = 0; i < _board.milestones.length; i++) {
+      for (var j = 0; j < _board.milestones[i].epics.length; j++) {
+        var currentHeight = _board.milestones[i].epics[j].features.length;
+        if (currentHeight > maxHeight) {
+          maxHeight = currentHeight;
+        }
+      }
+    }
+    return maxHeight * 180 + 30;
   }
 }

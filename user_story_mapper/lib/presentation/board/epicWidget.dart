@@ -27,7 +27,7 @@ class _EpicList extends State<EpicList> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 215 * _epic.features.length.toDouble(),
-      height: 215 * _getLongestFeature().toDouble() + 100,
+      height: 180 * _getLongestFeature().toDouble() + 30,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -86,7 +86,6 @@ class _EpicList extends State<EpicList> {
   _onItemReorder(
       int oldItemIndex, int oldListIndex, int newItemIndex, int newListIndex) {
     setState(() {
-      // = _epic[oldListIndex].stories[oldItemIndex];
       var movedItem =
           _epic.features[oldListIndex].stories.removeAt(oldItemIndex);
       _epic.features[newListIndex].stories.insert(newItemIndex, movedItem);
