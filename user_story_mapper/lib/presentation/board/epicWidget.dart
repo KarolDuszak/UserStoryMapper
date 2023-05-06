@@ -26,7 +26,7 @@ class _EpicList extends State<EpicList> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 215 * _epic.features.length.toDouble(),
+      width: 215 * _epic.features.length.toDouble() + 126,
       height: 180 * _getLongestFeature().toDouble() + 30,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -50,6 +50,7 @@ class _EpicList extends State<EpicList> {
               ),
               listDividerOnLastChild: false,
               axis: Axis.horizontal,
+              disableScrolling: true,
               listWidth: 215,
               listDraggingWidth: 215,
               listPadding: const EdgeInsets.all(5.0),

@@ -52,7 +52,7 @@ class _BoardList extends State<BoardList> {
     return ConstrainedBox(
       constraints: BoxConstraints(maxHeight: _getMaxHeightInMilestone() * 1.2),
       child: Row(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: MainAxisSize.max,
         children: <Widget>[
           Column(mainAxisAlignment: MainAxisAlignment.end, children: [
             Padding(
