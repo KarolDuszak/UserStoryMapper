@@ -5,19 +5,19 @@ import 'dart:convert';
 
 @JsonSerializable(explicitToJson: true)
 class Milestone {
-  Milestone(
-      {required this.id,
-      required this.description,
-      required this.title,
-      required this.epics,
-      required this.potentialUsers});
+  Milestone({
+    required this.id,
+    required this.description,
+    required this.title,
+    required this.epics,
+    //required this.potentialUsers,
+  });
 
   //Informations
-   String id;
+  String id;
   String description;
   String title;
   //Interaction
-  List<PotentialUser> potentialUsers;
   List<Epic> epics;
 
   static Milestone getEmptyObj(int num) {
@@ -25,8 +25,8 @@ class Milestone {
         id: "NULL",
         description: "NULL description",
         title: "NULL title",
-        potentialUsers: List<PotentialUser>.filled(
-            2, PotentialUser.getEmptyObj()),
-        epics: List<Epic>.filled(2, Epic.getEmptyObj(num)));
+        //potentialUsers: List<PotentialUser>.filled(
+        //    2, PotentialUser.getEmptyObj()),
+        epics: List.generate(3, (innerIndex) => Epic.getEmptyObj(innerIndex)));
   }
 }

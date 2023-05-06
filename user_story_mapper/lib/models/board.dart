@@ -42,7 +42,8 @@ class Board {
       title: "NULL title",
       potentialUsers:
           List<PotentialUser>.filled(3, PotentialUser.getEmptyObj()),
-      milestones: List<Milestone>.filled(2, Milestone.getEmptyObj(num)),
+      milestones:
+          List.generate(2, (innerIndex) => Milestone.getEmptyObj(innerIndex)),
       roleLabels: List<RoleLabel>.filled(2, RoleLabel.getEmptyObj()),
       members: List<Member>.filled(2, Member.getEmptyObj()),
       votesNumber: 5,
