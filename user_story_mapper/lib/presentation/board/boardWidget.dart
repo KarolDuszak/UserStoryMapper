@@ -50,11 +50,11 @@ class _BoardList extends State<BoardList> {
   _buildList(int outerIndex) {
     var milestone = _board.milestones[outerIndex];
     return ConstrainedBox(
-      constraints: BoxConstraints(maxHeight: _getMaxHeightInMilestone() * 1.2),
+      constraints: BoxConstraints(maxHeight: _getMaxHeightInMilestone()),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
-          Column(mainAxisAlignment: MainAxisAlignment.end, children: [
+          Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             Padding(
               padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
               child: SizedBox(
@@ -69,7 +69,7 @@ class _BoardList extends State<BoardList> {
                     AutoSizeText(
                       milestone.description,
                       style: TextStyle(
-                        fontSize: 30,
+                        fontSize: 24,
                       ),
                     ),
                   ],
@@ -119,12 +119,17 @@ class _BoardList extends State<BoardList> {
     var maxHeight = 0;
     for (var i = 0; i < _board.milestones.length; i++) {
       for (var j = 0; j < _board.milestones[i].epics.length; j++) {
-        var currentHeight = _board.milestones[i].epics[j].features.length;
-        if (currentHeight > maxHeight) {
-          maxHeight = currentHeight;
+        for (var k = 0;
+            k < _board.milestones[i].epics[j].features.length;
+            k++) {
+          var currentHeight =
+              _board.milestones[i].epics[j].features[k].stories.length;
+          if (currentHeight > maxHeight) {
+            maxHeight = currentHeight;
+          }
         }
       }
     }
-    return maxHeight * 180 + 30;
+    return (maxHeight + 1) * 219 + 40;
   }
 }

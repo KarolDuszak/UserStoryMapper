@@ -19,15 +19,14 @@ class _EpicList extends State<EpicList> {
   @override
   void initState() {
     super.initState();
-
     _epic = widget.epic;
   }
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 215 * _epic.features.length.toDouble() + 126,
-      height: 180 * _getLongestFeature().toDouble() + 30,
+      width: 233.5 * _epic.features.length.toDouble(),
+      height: 219 * _getLongestFeature().toDouble() + 40,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,7 +49,7 @@ class _EpicList extends State<EpicList> {
               ),
               listDividerOnLastChild: false,
               axis: Axis.horizontal,
-              disableScrolling: true,
+              disableScrolling: false,
               listWidth: 215,
               listDraggingWidth: 215,
               listPadding: const EdgeInsets.all(5.0),
@@ -108,6 +107,6 @@ class _EpicList extends State<EpicList> {
         maxLen = feature.stories.length;
       }
     }
-    return maxLen;
+    return maxLen + 1;
   }
 }
