@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:user_story_mapper/models/epic.dart';
 import 'package:user_story_mapper/presentation/board/epicWidget.dart';
@@ -14,6 +16,14 @@ class ReorderableApp extends StatelessWidget {
     return MaterialApp(
       title: 'Drag and Drop Lists',
       initialRoute: '/milestone_example',
+      scrollBehavior: MaterialScrollBehavior().copyWith(
+        dragDevices: {
+          PointerDeviceKind.mouse,
+          PointerDeviceKind.touch,
+          PointerDeviceKind.stylus,
+          PointerDeviceKind.unknown
+        },
+      ),
       routes: {
         '/': (context) => EpicList(
               epic: Epic.getEmptyObj(2),

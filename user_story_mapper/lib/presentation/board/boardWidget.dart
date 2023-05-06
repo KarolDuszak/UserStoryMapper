@@ -78,13 +78,15 @@ class _BoardList extends State<BoardList> {
             ),
           ]),
           Expanded(
-            child: ListView(
-              shrinkWrap: true,
+            child: ListView.builder(
+              itemCount: milestone.epics.length,
               scrollDirection: Axis.horizontal,
-              children: List.generate(
-                milestone.epics.length,
-                (index) => _buildItem(milestone.epics[index]),
-              ),
+              itemBuilder: (context, index) {
+                return Container(
+                    decoration:
+                        BoxDecoration(border: Border(right: BorderSide())),
+                    child: _buildItem(milestone.epics[index]));
+              },
             ),
           ),
         ],

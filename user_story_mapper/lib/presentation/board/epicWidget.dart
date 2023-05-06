@@ -43,6 +43,12 @@ class _EpicList extends State<EpicList> {
                   _epic.features.length, (index) => _buildList(index)),
               onItemReorder: _onItemReorder,
               onListReorder: _onListReorder,
+              listDivider: const VerticalDivider(
+                color: Colors.black,
+                width: 1.5,
+                thickness: 1,
+              ),
+              listDividerOnLastChild: false,
               axis: Axis.horizontal,
               listWidth: 215,
               listDraggingWidth: 215,
@@ -57,11 +63,6 @@ class _EpicList extends State<EpicList> {
   _buildList(int outerIndex) {
     var feature = _epic.features[outerIndex];
     return DragAndDropList(
-        leftSide: const VerticalDivider(
-          color: Colors.black,
-          width: 1.5,
-          thickness: 1,
-        ),
         footer: Container(
             alignment: Alignment.center,
             child: ElevatedButton(onPressed: () {}, child: Text("Add Story"))),
