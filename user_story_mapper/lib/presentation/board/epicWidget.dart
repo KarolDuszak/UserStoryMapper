@@ -25,8 +25,10 @@ class _EpicList extends State<EpicList> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
+    return SizedBox(
+      width: 215 * _epic.features.length.toDouble(),
+      height: 215 * _getLongestFeature().toDouble() + 100,
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -96,5 +98,15 @@ class _EpicList extends State<EpicList> {
       var movedList = _epic.features.removeAt(oldListIndex);
       _epic.features.insert(newListIndex, movedList);
     });
+  }
+
+  int _getLongestFeature() {
+    int maxLen = 0;
+    for (var feature in _epic.features) {
+      if (feature.stories.length > maxLen) {
+        maxLen = feature.stories.length;
+      }
+    }
+    return maxLen;
   }
 }

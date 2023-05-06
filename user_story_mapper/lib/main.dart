@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:user_story_mapper/models/epic.dart';
 import 'package:user_story_mapper/presentation/board/epicWidget.dart';
+import 'package:user_story_mapper/presentation/board/boardWidget.dart';
 
 void main() => runApp(const ReorderableApp());
 
@@ -12,11 +13,12 @@ class ReorderableApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Drag and Drop Lists',
-      initialRoute: '/',
+      initialRoute: '/milestone_example',
       routes: {
         '/': (context) => EpicList(
               epic: Epic.getEmptyObj(2),
             ),
+        '/milestone_example': (context) => const BoardList(),
       },
     );
   }

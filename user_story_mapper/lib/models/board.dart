@@ -28,7 +28,7 @@ class Board {
   String? title;
   //Interaction
   List<PotentialUser>? potentialUsers;
-  List<Milestone>? milestones;
+  List<Milestone> milestones;
   List<RoleLabel>? roleLabels;
   List<Member>? members;
   int? votesNumber;
