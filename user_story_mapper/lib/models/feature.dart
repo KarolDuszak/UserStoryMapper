@@ -17,6 +17,14 @@ class Feature {
   String title;
   List<Story> stories;
 
+  static Feature getNewEmptyFeature(int id, String title, String description) {
+    return Feature(
+        id: id.toString(),
+        description: description,
+        title: title,
+        stories: []);
+  }
+
   static Feature getEmptyObj(int num) {
     return Feature(
         id: num.toString(),
