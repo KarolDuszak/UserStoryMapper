@@ -3,6 +3,8 @@ import 'package:user_story_mapper/models/potentialUser.dart';
 import 'package:user_story_mapper/models/story.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
+import 'editStoryForm.dart';
+
 class StoryCard extends StatefulWidget {
   final Story storyData;
   final Color? color;
@@ -52,7 +54,10 @@ class _StoryCard extends State<StoryCard> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             ElevatedButton(
-                onPressed: () => print("b1 pressed"), child: Icon(Icons.edit)),
+                onPressed: () {
+                  showEditStoryDialog(context);
+                },
+                child: Icon(Icons.edit)),
             ElevatedButton(
                 onPressed: () => print("b2 pressed"), child: Icon(Icons.save)),
             ElevatedButton(
@@ -120,5 +125,32 @@ class _StoryCard extends State<StoryCard> {
 
     return Row(
         mainAxisAlignment: MainAxisAlignment.center, children: itemArray);
+  }
+
+  showEditStoryDialog(BuildContext context) {
+    // set up the buttons
+    Widget cancelButton = ElevatedButton(
+      child: Text("Anuluj"),
+      style: ElevatedButton.styleFrom(primary: Colors.green[700]),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Edit User Story ${storyData.title}"),
+      content: Container(child: EditOrderForm(storyData)),
+      actions: [
+        cancelButton,
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 }
