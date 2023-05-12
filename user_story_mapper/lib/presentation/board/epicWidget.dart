@@ -36,8 +36,7 @@ class _EpicList extends State<EpicList> {
         children: <Widget>[
           Container(
             padding: EdgeInsets.fromLTRB(15, 5, 15, 10),
-            child:
-                StoryCard(storyData: Story.getEmptyObj2(), color: Colors.red),
+            child: StoryCard.epic(_epic, Colors.red[500]),
           ),
           Expanded(
             child: DragAndDropLists(
@@ -72,7 +71,7 @@ class _EpicList extends State<EpicList> {
             alignment: Alignment.center,
             child: ElevatedButton(
                 onPressed: () {
-                  showEditStoryDialog(context, _epic.features.length - 1);
+                  showAddStoryDialog(context, _epic.features.length - 1);
                 },
                 child: Text("Add Story"))),
         children: [],
@@ -83,29 +82,41 @@ class _EpicList extends State<EpicList> {
 
   _buildList(int outerIndex) {
     var feature = _epic.features[outerIndex];
+    List<DragAndDropItem> featureList = List.generate(feature.stories.length,
+        (index) => _buildItemFromStory(feature.stories[index]));
+    featureList.add(_buildItemFromFeature(feature));
+
     return DragAndDropList(
         footer: Container(
             alignment: Alignment.center,
             child: ElevatedButton(
                 onPressed: () {
-                  showEditStoryDialog(context, outerIndex);
+                  showAddStoryDialog(context, outerIndex);
                 },
                 child: Text("Add Story"))),
         header: Container(
             alignment: Alignment.center,
             child:
                 ElevatedButton(onPressed: () {}, child: Text("Move feature"))),
-        children: List.generate(feature.stories.length,
-            (index) => _buildItem(feature.stories[index])));
+        children: featureList);
   }
 
-  _buildItem(Story item) {
+  _buildItemFromStory(Story item) {
     return DragAndDropItem(
       child: Container(
         padding: EdgeInsets.all(10),
-        child: StoryCard(
-          storyData: item,
-          color: Colors.amber[300],
+        child: StoryCard.story(item, Colors.amber[300]),
+      ),
+    );
+  }
+
+  _buildItemFromFeature(Feature item) {
+    return DragAndDropItem(
+      child: Container(
+        padding: EdgeInsets.all(10),
+        child: StoryCard.featrue(
+          item,
+          Colors.amber[300],
         ),
       ),
     );
@@ -160,7 +171,7 @@ class _EpicList extends State<EpicList> {
     return maxLen + 1;
   }
 
-  showEditStoryDialog(BuildContext context, int listIndex) {
+  showAddStoryDialog(BuildContext context, int listIndex) {
     // set up the buttons
     Widget cancelButton = ElevatedButton(
       child: Text("Anuluj"),
@@ -174,7 +185,7 @@ class _EpicList extends State<EpicList> {
     AlertDialog alert = AlertDialog(
       title:
           Text("Add User Story to Feature ${_epic.features[listIndex].title}"),
-      content: Container(child: EditOrderForm(Story.getEmptyObj2())),
+      content: Container(child: EditStoryForm(Story.getEmptyObj2())),
       actions: [
         cancelButton,
       ],

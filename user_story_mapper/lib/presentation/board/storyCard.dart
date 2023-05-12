@@ -1,31 +1,76 @@
 import 'package:flutter/material.dart';
+import 'package:user_story_mapper/models/comment.dart';
+import 'package:user_story_mapper/models/feature.dart';
 import 'package:user_story_mapper/models/potentialUser.dart';
 import 'package:user_story_mapper/models/story.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
+import '../../models/epic.dart';
 import 'editStoryForm.dart';
 
 class StoryCard extends StatefulWidget {
-  final Story storyData;
+  final String id;
+  final String title;
+  final String description;
+  final List<PotentialUser>? potentialUsers;
+  final int votes;
   final Color? color;
-
-  StoryCard({Key? key, required this.storyData, required this.color})
+  StoryCard(
+      {Key? key,
+      required this.id,
+      required this.title,
+      required this.description,
+      required this.potentialUsers,
+      required this.votes,
+      required this.color})
       : super(key: key);
+
+  StoryCard.featrue(Feature feature, Color? color)
+      : id = feature.id,
+        title = feature.title,
+        description = feature.description,
+        potentialUsers = feature.potentialUsers,
+        votes = feature.votes ?? 0,
+        color = color;
+
+  StoryCard.epic(Epic epic, Color? color)
+      : id = epic.id,
+        title = epic.title,
+        description = epic.description,
+        potentialUsers = epic.potentialUsers,
+        votes = epic.votes ?? 0,
+        color = color;
+
+  StoryCard.story(Story story, Color? color)
+      : id = story.id,
+        title = story.title,
+        description = story.description,
+        potentialUsers = story.potentialUsers,
+        votes = story.votes ?? 0,
+        color = color;
 
   @override
   State createState() => _StoryCard();
 }
 
 class _StoryCard extends State<StoryCard> {
-  late Story storyData;
+  late String id;
+  late String title;
+  late String description;
+  late List<PotentialUser>? potentialUsers;
+  late int votes;
   late Color? color;
-  bool isEditMode = false;
+  late bool isEditMode = false;
 
   @override
   void initState() {
     super.initState();
-    storyData = widget.storyData;
+    id = widget.id;
+    title = widget.title;
+    description = widget.description;
     color = widget.color;
+    potentialUsers = widget.potentialUsers;
+    votes = widget.votes;
   }
 
   @override
@@ -85,7 +130,7 @@ class _StoryCard extends State<StoryCard> {
                 padding: EdgeInsets.symmetric(vertical: 0, horizontal: 7),
                 child: Center(
                   child: AutoSizeText(
-                    storyData.title,
+                    title,
                     style: TextStyle(fontSize: 30),
                     maxLines: 4,
                   ),
@@ -99,12 +144,10 @@ class _StoryCard extends State<StoryCard> {
                   SizedBox(
                       width: 140,
                       child: Row(
-                        children: [
-                          rowBuilder(storyData.potentialUsers?.length ?? 0)
-                        ],
+                        children: [rowBuilder(potentialUsers?.length ?? 0)],
                       )),
                   SizedBox(
-                      child: Text("+" + storyData.votes.toString(),
+                      child: Text("+" + votes.toString(),
                           textAlign: TextAlign.center,
                           style: const TextStyle(fontWeight: FontWeight.bold)))
                 ],
@@ -120,8 +163,8 @@ class _StoryCard extends State<StoryCard> {
     if (length > 5) {
       length = 5;
     }
-    var itemArray = List<Widget>.generate(length,
-        (i) => Icon(Icons.person, color: storyData.potentialUsers?[i].color));
+    var itemArray = List<Widget>.generate(
+        length, (i) => Icon(Icons.person, color: potentialUsers?[i].color));
 
     return Row(
         mainAxisAlignment: MainAxisAlignment.center, children: itemArray);
@@ -139,8 +182,19 @@ class _StoryCard extends State<StoryCard> {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("Edit User Story ${storyData.title}"),
-      content: Container(child: EditOrderForm(storyData)),
+      title: Text("Edit User Story ${title}"),
+      content: Container(
+        child: EditStoryForm(
+          Story(
+              id: id,
+              creatorId: "TO BE PASSED WHEN USERS WILL LOGIN",
+              title: title,
+              description: description,
+              potentialUsers: potentialUsers,
+              votes: votes,
+              comments: Comment.getEmptyCommentObj()),
+        ),
+      ),
       actions: [
         cancelButton,
       ],

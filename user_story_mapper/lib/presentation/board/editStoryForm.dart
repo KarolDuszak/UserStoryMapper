@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:user_story_mapper/models/potentialUser.dart';
 import 'package:user_story_mapper/models/story.dart';
 
-class EditOrderForm extends StatefulWidget {
+class EditStoryForm extends StatefulWidget {
   late Story currentStory;
   @override
-  EditOrderFormState createState() => EditOrderFormState(currentStory);
+  EditStoryFormState createState() => EditStoryFormState(currentStory);
 
-  EditOrderForm(Story order) {
+  EditStoryForm(Story order) {
     this.currentStory = order;
   }
 }
 
-class EditOrderFormState extends State<EditOrderForm> {
+class EditStoryFormState extends State<EditStoryForm> {
   final _formKey = GlobalKey<FormState>();
   late Story currentStory;
 
@@ -21,7 +21,7 @@ class EditOrderFormState extends State<EditOrderForm> {
   final title = TextEditingController();
   final potentialUser = TextEditingController();
 
-  EditOrderFormState(Story order) {
+  EditStoryFormState(Story order) {
     this.currentStory = order;
     this.description.text = currentStory.description;
     this.title.text = currentStory.title;
