@@ -122,8 +122,7 @@ class _BoardList extends State<BoardList> {
         for (var k = 0;
             k < _board.milestones[i].epics[j].features.length;
             k++) {
-          var currentHeight =
-              _board.milestones[i].epics[j].features[k].stories.length;
+          var currentHeight = _board.milestones[i].epics[j].features[k].length;
           if (currentHeight > maxHeight) {
             maxHeight = currentHeight;
           }

@@ -4,7 +4,6 @@ import 'package:drag_and_drop_lists/drag_and_drop_lists.dart';
 import 'package:user_story_mapper/models/story.dart';
 import 'package:user_story_mapper/presentation/board/storyCard.dart';
 import '../../models/epic.dart';
-import '../../models/feature.dart';
 import 'editStoryForm.dart';
 
 class EpicList extends StatefulWidget {
@@ -82,9 +81,8 @@ class _EpicList extends State<EpicList> {
 
   _buildList(int outerIndex) {
     var feature = _epic.features[outerIndex];
-    List<DragAndDropItem> featureList = List.generate(feature.stories.length,
-        (index) => _buildItemFromStory(feature.stories[index]));
-    featureList.add(_buildItemFromFeature(feature));
+    List<DragAndDropItem> featureList = List.generate(
+        feature.length, (index) => _buildItemFromStory(feature[index]));
 
     return DragAndDropList(
         footer: Container(
@@ -110,42 +108,24 @@ class _EpicList extends State<EpicList> {
     );
   }
 
-  _buildItemFromFeature(Feature item) {
-    return DragAndDropItem(
-      child: Container(
-        padding: EdgeInsets.all(10),
-        child: StoryCard.featrue(
-          item,
-          Colors.amber[300],
-        ),
-      ),
-    );
-  }
-
   _onItemReorder(
       int oldItemIndex, int oldListIndex, int newItemIndex, int newListIndex) {
     setState(
       () {
-        var movedItem =
-            _epic.features[oldListIndex].stories.removeAt(oldItemIndex);
-        if (_epic.features.length <= newListIndex) {
-          _epic.features.add(_createFeatureFromStory(movedItem));
-        }
-        _epic.features[newListIndex].stories.insert(newItemIndex, movedItem);
+        var movedItem = _epic.features[oldListIndex].removeAt(oldItemIndex);
 
-        if (_epic.features[oldListIndex].stories.isEmpty) {
-          final Feature feature = _epic.features.removeAt(oldListIndex);
+        //Add new feature if needed
+        if (_epic.features.length <= newListIndex) {
+          _epic.features.add([]);
+        }
+        _epic.features[newListIndex].insert(newItemIndex, movedItem);
+
+        //Remove empty feature
+        if (_epic.features[oldListIndex].isEmpty) {
+          _epic.features.removeAt(oldListIndex);
         }
       },
     );
-  }
-
-  _createFeatureFromStory(Story story) {
-    return Feature(
-        id: story.id,
-        description: story.description,
-        title: story.title,
-        stories: []);
   }
 
   _onListReorder(int oldListIndex, int newListIndex) {
@@ -157,15 +137,16 @@ class _EpicList extends State<EpicList> {
 
   void _onListAdd(var draggableList, int listIndex) {
     setState(() {
-      _epic.features.insert(listIndex, Feature.getEmptyObj(1));
+      _epic.features.insert(
+          listIndex, List.generate(4, (index) => Story.getEmptyObj(index)));
     });
   }
 
   int _getLongestFeature() {
     int maxLen = 0;
     for (var feature in _epic.features) {
-      if (feature.stories.length > maxLen) {
-        maxLen = feature.stories.length;
+      if (feature.length > maxLen) {
+        maxLen = feature.length;
       }
     }
     return maxLen + 1;
@@ -183,8 +164,7 @@ class _EpicList extends State<EpicList> {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title:
-          Text("Add User Story to Feature ${_epic.features[listIndex].title}"),
+      title: Text("Add User Story to Epic ${_epic.title}"),
       content: Container(child: EditStoryForm(Story.getEmptyObj2())),
       actions: [
         cancelButton,

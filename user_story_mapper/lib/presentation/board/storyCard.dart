@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:user_story_mapper/models/comment.dart';
-import 'package:user_story_mapper/models/feature.dart';
 import 'package:user_story_mapper/models/potentialUser.dart';
 import 'package:user_story_mapper/models/story.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -24,14 +23,6 @@ class StoryCard extends StatefulWidget {
       required this.votes,
       required this.color})
       : super(key: key);
-
-  StoryCard.featrue(Feature feature, Color? color)
-      : id = feature.id,
-        title = feature.title,
-        description = feature.description,
-        potentialUsers = feature.potentialUsers,
-        votes = feature.votes ?? 0,
-        color = color;
 
   StoryCard.epic(Epic epic, Color? color)
       : id = epic.id,

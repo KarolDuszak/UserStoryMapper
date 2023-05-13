@@ -3,6 +3,8 @@ import 'package:user_story_mapper/models/potentialUser.dart';
 import 'package:user_story_mapper/models/comment.dart';
 import 'dart:convert';
 
+import 'package:uuid/uuid.dart';
+
 @JsonSerializable(explicitToJson: true)
 class Story {
   Story(
@@ -38,8 +40,9 @@ class Story {
   }
 
   static Story getEmptyObj2() {
+    var uuid = Uuid();
     return Story(
-        id: "NULL ID",
+        id: uuid.v1(),
         creatorId: "NULL creatorId",
         description: "NULL description",
         title: "Short title",
