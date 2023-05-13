@@ -14,31 +14,31 @@ class StoryCard extends StatefulWidget {
   final List<PotentialUser>? potentialUsers;
   final int votes;
   final Color? color;
+
   StoryCard(
-      {Key? key,
-      required this.id,
+      {required this.id,
       required this.title,
       required this.description,
       required this.potentialUsers,
       required this.votes,
       required this.color})
-      : super(key: key);
+      : super(key: Key(id));
 
-  StoryCard.epic(Epic epic, Color? color)
+  StoryCard.epic(Epic epic)
       : id = epic.id,
         title = epic.title,
         description = epic.description,
         potentialUsers = epic.potentialUsers,
         votes = epic.votes ?? 0,
-        color = color;
+        color = Colors.red[500];
 
-  StoryCard.story(Story story, Color? color)
+  StoryCard.story(Story story)
       : id = story.id,
         title = story.title,
         description = story.description,
         potentialUsers = story.potentialUsers,
         votes = story.votes ?? 0,
-        color = color;
+        color = Colors.amber[300];
 
   @override
   State createState() => _StoryCard();
@@ -56,6 +56,10 @@ class _StoryCard extends State<StoryCard> {
   @override
   void initState() {
     super.initState();
+    _setProperties();
+  }
+
+  _setProperties() {
     id = widget.id;
     title = widget.title;
     description = widget.description;
@@ -66,6 +70,7 @@ class _StoryCard extends State<StoryCard> {
 
   @override
   Widget build(BuildContext context) {
+    _setProperties();
     return Material(
       elevation: 12.0,
       borderRadius: BorderRadius.circular(15),
@@ -173,7 +178,7 @@ class _StoryCard extends State<StoryCard> {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("Edit User Story ${title}"),
+      title: Text("Edit User Story: ${title}"),
       content: Container(
         child: EditStoryForm(
           Story(

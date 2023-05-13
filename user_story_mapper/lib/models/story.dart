@@ -26,13 +26,13 @@ class Story {
   Comment? comments;
   int? votes;
 
-  static Story getEmptyObj(int num) {
+  static Story getEmptyObj(String num) {
+    var uuid = Uuid().v1();
     return Story(
-        id: num.toString(),
+        id: uuid,
         creatorId: "NULL creatorId",
         description: "NULL description",
-        title:
-            "${num} Very long title sadasdasda sadasdasdasd asdasdasdasd sadasdasd asdasdasd",
+        title: "${num} Very long title sadasdasda sadasdasdasd asdasdasdasd ",
         potentialUsers:
             List<PotentialUser>.filled(6, PotentialUser.getEmptyObj()),
         comments: Comment.getEmptyCommentObj(),
@@ -40,12 +40,12 @@ class Story {
   }
 
   static Story getEmptyObj2() {
-    var uuid = Uuid();
+    var uuid = Uuid().v1();
     return Story(
-        id: uuid.v1(),
+        id: uuid,
         creatorId: "NULL creatorId",
         description: "NULL description",
-        title: "Short title",
+        title: "${uuid} short title",
         potentialUsers:
             List<PotentialUser>.filled(3, PotentialUser.getEmptyObj()),
         comments: Comment.getEmptyCommentObj(),

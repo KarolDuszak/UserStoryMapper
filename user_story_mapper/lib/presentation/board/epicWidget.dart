@@ -26,6 +26,7 @@ class _EpicList extends State<EpicList> {
 
   @override
   Widget build(BuildContext context) {
+    _epic = widget.epic;
     return SizedBox(
       width: 233.5 * (_epic.features.length.toDouble() + 1),
       height: 219 * _getLongestFeature().toDouble() + 40,
@@ -35,7 +36,7 @@ class _EpicList extends State<EpicList> {
         children: <Widget>[
           Container(
             padding: EdgeInsets.fromLTRB(15, 5, 15, 10),
-            child: StoryCard.epic(_epic, Colors.red[500]),
+            child: StoryCard.epic(_epic),
           ),
           Expanded(
             child: DragAndDropLists(
@@ -103,7 +104,7 @@ class _EpicList extends State<EpicList> {
     return DragAndDropItem(
       child: Container(
         padding: EdgeInsets.all(10),
-        child: StoryCard.story(item, Colors.amber[300]),
+        child: StoryCard.story(item),
       ),
     );
   }
@@ -136,10 +137,7 @@ class _EpicList extends State<EpicList> {
   }
 
   void _onListAdd(var draggableList, int listIndex) {
-    setState(() {
-      _epic.features.insert(
-          listIndex, List.generate(4, (index) => Story.getEmptyObj(index)));
-    });
+    setState(() {});
   }
 
   int _getLongestFeature() {

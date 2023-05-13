@@ -33,6 +33,8 @@ class Epic {
         features: List.generate(
             5,
             (outerIndex) => List.generate(
-                4, (innerindex) => Story.getEmptyObj(innerindex))));
+                4,
+                (innerindex) =>
+                    Story.getEmptyObj("${outerIndex},${innerindex}"))));
   }
 }
