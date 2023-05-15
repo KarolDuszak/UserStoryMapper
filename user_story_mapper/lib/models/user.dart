@@ -1,7 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:user_story_mapper/models/board.dart';
 import 'package:user_story_mapper/models/boardInvitation.dart';
-import 'dart:convert';
+
+part 'user.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class User {
@@ -14,12 +15,15 @@ class User {
       required this.boards});
 
   //Informations
-   String id;
+  String id;
   String email;
   String name;
   String password;
   List<BoardInvitation> invitationsToBoard;
   List<Board> boards;
+
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  Map<String, dynamic> toJson() => _$UserToJson(this);
 
   static User getEmptyObj(int num) {
     return User(

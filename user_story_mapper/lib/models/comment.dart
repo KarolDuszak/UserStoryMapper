@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'dart:convert';
+
+part 'comment.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class Comment {
@@ -10,11 +11,15 @@ class Comment {
       required this.content,
       required this.date});
 
-   String id;
-   String creatorId;
-   String storyId;
-   String content;
-   DateTime date;
+  String id;
+  String creatorId;
+  String storyId;
+  String content;
+  DateTime date;
+
+  factory Comment.fromJson(Map<String, dynamic> json) =>
+      _$CommentFromJson(json);
+  Map<String, dynamic> toJson() => _$CommentToJson(this);
 
   static Comment getEmptyCommentObj() {
     return Comment(

@@ -36,7 +36,13 @@ class _EpicList extends State<EpicList> {
         children: <Widget>[
           Container(
             padding: EdgeInsets.fromLTRB(15, 5, 15, 10),
-            child: StoryCard.epic(_epic),
+            child: Row(
+              children: [
+                StoryCard.epic(_epic),
+                SizedBox(width: 30),
+                ElevatedButton(onPressed: () {}, child: Text("Move Epic"))
+              ],
+            ),
           ),
           Expanded(
             child: DragAndDropLists(

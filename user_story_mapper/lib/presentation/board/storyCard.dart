@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:user_story_mapper/models/comment.dart';
+import 'package:user_story_mapper/models/labelColor.dart';
 import 'package:user_story_mapper/models/potentialUser.dart';
 import 'package:user_story_mapper/models/story.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -160,7 +161,7 @@ class _StoryCard extends State<StoryCard> {
       length = 5;
     }
     var itemArray = List<Widget>.generate(
-        length, (i) => Icon(Icons.person, color: potentialUsers?[i].color));
+        length, (i) => Icon(Icons.person, color: getColorFromLabel(potentialUsers?[i].color)));
 
     return Row(
         mainAxisAlignment: MainAxisAlignment.center, children: itemArray);

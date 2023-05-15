@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:user_story_mapper/models/potentialUser.dart';
 import 'package:user_story_mapper/models/epic.dart';
-import 'dart:convert';
+
+part 'milestone.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class Milestone {
@@ -19,6 +19,10 @@ class Milestone {
   String title;
   //Interaction
   List<Epic> epics;
+
+  factory Milestone.fromJson(Map<String, dynamic> json) =>
+      _$MilestoneFromJson(json);
+  Map<String, dynamic> toJson() => _$MilestoneToJson(this);
 
   static Milestone getEmptyObj(int num) {
     return Milestone(

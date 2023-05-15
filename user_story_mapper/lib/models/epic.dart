@@ -4,6 +4,8 @@ import 'package:user_story_mapper/models/comment.dart';
 import 'package:user_story_mapper/models/potentialUser.dart';
 import 'package:user_story_mapper/models/story.dart';
 
+part 'epic.g.dart';
+
 @JsonSerializable(explicitToJson: true)
 class Epic {
   Epic(
@@ -23,6 +25,9 @@ class Epic {
   List<PotentialUser>? potentialUsers;
   Comment? comments;
   int? votes;
+
+  factory Epic.fromJson(Map<String, dynamic> json) => _$EpicFromJson(json);
+  Map<String, dynamic> toJson() => _$EpicToJson(this);
 
   static Epic getEmptyObj(int num) {
     var uuid = Uuid();

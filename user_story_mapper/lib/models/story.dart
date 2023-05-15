@@ -1,9 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:user_story_mapper/models/potentialUser.dart';
 import 'package:user_story_mapper/models/comment.dart';
-import 'dart:convert';
 
 import 'package:uuid/uuid.dart';
+
+part 'story.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class Story {
@@ -25,6 +26,9 @@ class Story {
   List<PotentialUser>? potentialUsers;
   Comment? comments;
   int? votes;
+
+  factory Story.fromJson(Map<String, dynamic> json) => _$StoryFromJson(json);
+  Map<String, dynamic> toJson() => _$StoryToJson(this);
 
   static Story getEmptyObj(String num) {
     var uuid = Uuid().v1();

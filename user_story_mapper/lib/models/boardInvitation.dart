@@ -1,7 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:user_story_mapper/models/potentialUser.dart';
-import 'package:user_story_mapper/models/epic.dart';
-import 'dart:convert';
+
+part 'boardInvitation.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class BoardInvitation {
@@ -12,10 +11,14 @@ class BoardInvitation {
       required this.inviterId});
 
   //Informations
-   String id;
-   String boardInformation;
-   String userId;
-   String inviterId;
+  String id;
+  String boardInformation;
+  String userId;
+  String inviterId;
+
+  factory BoardInvitation.fromJson(Map<String, dynamic> json) =>
+      _$BoardInvitationFromJson(json);
+  Map<String, dynamic> toJson() => _$BoardInvitationToJson(this);
 
   static BoardInvitation getEmptyObj() {
     return BoardInvitation(

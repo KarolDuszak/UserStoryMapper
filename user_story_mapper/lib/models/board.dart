@@ -3,7 +3,8 @@ import 'package:user_story_mapper/models/potentialUser.dart';
 import 'package:user_story_mapper/models/milestone.dart';
 import 'package:user_story_mapper/models/roleLabel.dart';
 import 'package:user_story_mapper/models/member.dart';
-import 'dart:convert';
+
+part 'board.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class Board {
@@ -33,6 +34,9 @@ class Board {
   List<Member>? members;
   int? votesNumber;
   String? timer; //Not sure how to implement jet
+
+  factory Board.fromJson(Map<String, dynamic> json) => _$BoardFromJson(json);
+  Map<String, dynamic> toJson() => _$BoardToJson(this);
 
   static Board getEmptyObj(int num) {
     return Board(

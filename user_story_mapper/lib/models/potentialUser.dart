@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'dart:convert';
+import 'package:user_story_mapper/models/labelColor.dart';
+
+part 'potentialUser.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class PotentialUser {
@@ -11,18 +13,22 @@ class PotentialUser {
       required this.description});
 
   String id;
-  Color color;
+  ColorLabel color;
   String name;
   String description;
+
+  factory PotentialUser.fromJson(Map<String, dynamic> json) =>
+      _$PotentialUserFromJson(json);
+  Map<String, dynamic> toJson() => _$PotentialUserToJson(this);
 
   static PotentialUser getEmptyObj() {
     return PotentialUser(
         id: "NULL",
-        color: Colors.red,
+        color: ColorLabel.blue,
         name: "NULL name",
         description: "NULL description");
   }
 
   //const PotentialUser.constConstructor(
-    //  this.id, this.color, this.name, this.description);
+  //  this.id, this.color, this.name, this.description);
 }

@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:user_story_mapper/models/roleLabel.dart';
-import 'package:user_story_mapper/models/boardInvitation.dart';
-import 'dart:convert';
+
+part 'member.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class Member {
@@ -12,10 +12,13 @@ class Member {
       required this.roleLabel});
 
   //Informations
-   String id;
+  String id;
   String role;
   int? voterRemaining;
   RoleLabel? roleLabel;
+
+  factory Member.fromJson(Map<String, dynamic> json) => _$MemberFromJson(json);
+  Map<String, dynamic> toJson() => _$MemberToJson(this);
 
   static Member getEmptyObj() {
     return Member(
