@@ -54,29 +54,33 @@ class _BoardList extends State<BoardList> {
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
-          Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-              child: SizedBox(
-                width: 200,
-                child: Column(
-                  children: [
-                    AutoSizeText(
-                      milestone.title,
-                      style:
-                          TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
-                    ),
-                    AutoSizeText(
-                      milestone.description,
-                      style: TextStyle(
-                        fontSize: 24,
+          Container(
+            color: Color.fromARGB(255, 240, 242, 243),
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                child: SizedBox(
+                  width: 200,
+                  child: Column(
+                    children: [
+                      AutoSizeText(
+                        milestone.title,
+                        style: TextStyle(
+                            fontSize: 36, fontWeight: FontWeight.bold),
                       ),
-                    ),
-                  ],
+                      AutoSizeText(
+                        milestone.description,
+                        style: TextStyle(
+                          fontSize: 24,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ]),
+            ]),
+          ),
           Expanded(
             child: ListView.builder(
               itemCount: milestone.epics.length,
