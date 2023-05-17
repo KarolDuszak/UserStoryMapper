@@ -1,10 +1,11 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:user_story_mapper/models/epic.dart';
 
 part 'milestone.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class Milestone {
+class Milestone extends Equatable {
   Milestone({
     required this.id,
     required this.description,
@@ -14,15 +15,18 @@ class Milestone {
   });
 
   //Informations
-  String id;
-  String description;
-  String title;
+  final String id;
+  final String description;
+  final String title;
   //Interaction
-  List<Epic> epics;
+  final List<Epic> epics;
 
   factory Milestone.fromJson(Map<String, dynamic> json) =>
       _$MilestoneFromJson(json);
   Map<String, dynamic> toJson() => _$MilestoneToJson(this);
+
+  @override
+  List<Object?> get props => [id, description, title, epics];
 
   static Milestone getEmptyObj(int num) {
     return Milestone(
