@@ -3,6 +3,7 @@ import 'package:user_story_mapper/models/potentialUser.dart';
 import 'package:user_story_mapper/models/milestone.dart';
 import 'package:user_story_mapper/models/roleLabel.dart';
 import 'package:user_story_mapper/models/member.dart';
+import 'package:uuid/uuid.dart';
 
 part 'board.g.dart';
 
@@ -40,7 +41,7 @@ class Board {
 
   static Board getEmptyObj(int num) {
     return Board(
-      id: "NULL",
+      id: Uuid().v4(),
       creatorId: "NULL creatorId",
       description: "NULL description",
       title: "NULL title",
