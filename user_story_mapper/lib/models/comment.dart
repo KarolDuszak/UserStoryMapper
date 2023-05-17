@@ -1,9 +1,10 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'comment.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class Comment {
+class Comment extends Equatable {
   Comment(
       {required this.id,
       required this.creatorId,
@@ -11,15 +12,18 @@ class Comment {
       required this.content,
       required this.date});
 
-  String id;
-  String creatorId;
-  String storyId;
-  String content;
-  DateTime date;
+  final String id;
+  final String creatorId;
+  final String storyId;
+  final String content;
+  final DateTime date;
 
   factory Comment.fromJson(Map<String, dynamic> json) =>
       _$CommentFromJson(json);
   Map<String, dynamic> toJson() => _$CommentToJson(this);
+
+  @override
+  List<Object?> get props => [id, creatorId, storyId, content, date];
 
   static Comment getEmptyCommentObj() {
     return Comment(

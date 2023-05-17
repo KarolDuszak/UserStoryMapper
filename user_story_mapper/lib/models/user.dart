@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:user_story_mapper/models/board.dart';
 import 'package:user_story_mapper/models/boardInvitation.dart';
@@ -5,7 +6,7 @@ import 'package:user_story_mapper/models/boardInvitation.dart';
 part 'user.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class User {
+class User extends Equatable {
   User(
       {required this.id,
       required this.email,
@@ -15,15 +16,19 @@ class User {
       required this.boards});
 
   //Informations
-  String id;
-  String email;
-  String name;
-  String password;
-  List<BoardInvitation> invitationsToBoard;
-  List<Board> boards;
+  final String id;
+  final String email;
+  final String name;
+  final String password;
+  final List<BoardInvitation> invitationsToBoard;
+  final List<Board> boards;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
   Map<String, dynamic> toJson() => _$UserToJson(this);
+
+  @override
+  List<Object?> get props =>
+      [id, email, name, password, invitationsToBoard, boards];
 
   static User getEmptyObj(int num) {
     return User(
