@@ -1,3 +1,5 @@
+import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:user_story_mapper/models/potentialUser.dart';
 import 'package:user_story_mapper/models/milestone.dart';
@@ -7,8 +9,9 @@ import 'package:uuid/uuid.dart';
 
 part 'board.g.dart';
 
+@immutable
 @JsonSerializable(explicitToJson: true)
-class Board {
+class Board extends Equatable {
   Board(
       {required this.id,
       required this.creatorId,
@@ -22,22 +25,36 @@ class Board {
       required this.timer});
 
   //Informations
-  String id;
-  String creatorId;
-  List<String> roles =
+  final String id;
+  final String creatorId;
+  final List<String> roles =
       List<String>.from(<String>["Owner", "Member", "Visitor"]);
-  String? description;
-  String? title;
+  final String? description;
+  final String? title;
   //Interaction
-  List<PotentialUser>? potentialUsers;
-  List<Milestone> milestones;
-  List<RoleLabel>? roleLabels;
-  List<Member>? members;
-  int? votesNumber;
-  String? timer; //Not sure how to implement jet
+  final List<PotentialUser>? potentialUsers;
+  final List<Milestone> milestones;
+  final List<RoleLabel>? roleLabels;
+  final List<Member>? members;
+  final int? votesNumber;
+  final String? timer; //Not sure how to implement jet
 
   factory Board.fromJson(Map<String, dynamic> json) => _$BoardFromJson(json);
   Map<String, dynamic> toJson() => _$BoardToJson(this);
+
+  @override
+  List<Object?> get props => [
+        id,
+        creatorId,
+        description,
+        title,
+        potentialUsers,
+        milestones,
+        roleLabels,
+        members,
+        votesNumber,
+        timer
+      ];
 
   static Board getEmptyObj(int num) {
     return Board(

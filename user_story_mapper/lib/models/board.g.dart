@@ -25,13 +25,11 @@ Board _$BoardFromJson(Map<String, dynamic> json) => Board(
           .toList(),
       votesNumber: json['votesNumber'] as int?,
       timer: json['timer'] as String?,
-    )..roles =
-        (json['roles'] as List<dynamic>).map((e) => e as String).toList();
+    );
 
 Map<String, dynamic> _$BoardToJson(Board instance) => <String, dynamic>{
       'id': instance.id,
       'creatorId': instance.creatorId,
-      'roles': instance.roles,
       'description': instance.description,
       'title': instance.title,
       'potentialUsers':
