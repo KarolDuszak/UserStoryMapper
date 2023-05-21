@@ -8,3 +8,5 @@ abstract class IBoardApi {
   Future<void> updateBoard(Board board);
   Future<void> deleteBoard(String boardId);
 }
+
+class BoardNotFoundException implements Exception {}

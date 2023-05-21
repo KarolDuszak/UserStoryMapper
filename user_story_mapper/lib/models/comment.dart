@@ -14,6 +14,8 @@ class Comment extends Equatable {
 
   final String id;
   final String creatorId;
+  //TODO: Remove this field
+  //Redundant data due noSQL database this information will be retrieved from document structure
   final String storyId;
   final String content;
   final DateTime date;

@@ -39,15 +39,25 @@ class LocalStorageBoardApi extends IBoardApi {
   }
 
   @override
-  Future<void> createBoard(Board board) {
-    // TODO: implement createBoard
-    throw UnimplementedError();
+  Future<void> createBoard(Board board) async {
+    _boardStreamController.add([..._boardStreamController.value, board]);
   }
 
   @override
   Future<void> deleteBoard(String boardId) {
-    // TODO: implement deleteBoard
-    throw UnimplementedError();
+    final boards = [..._boardStreamController.value];
+    final index = boards.indexWhere((board) => board.id == boardId);
+
+    if (index == -1) {
+      throw BoardNotFoundException();
+    } else {
+      boards.removeAt(index);
+      _boardStreamController.add(boards);
+      return _setValue(
+        kTodosCollectionKey,
+        json.encode(boards),
+      );
+    }
   }
 
   @override
@@ -65,13 +75,25 @@ class LocalStorageBoardApi extends IBoardApi {
 
   @override
   Future<List<String>> getAllBoardsId() {
-//    return _boardStreamController.stream
-    throw UnimplementedError();
+    List<Board> boards = _boardStreamController.value;
+    return Future.value(boards.map((board) => board.id).toList());
   }
 
   @override
   Future<void> updateBoard(Board board) {
-    // TODO: implement updateBoard
-    throw UnimplementedError();
+    // ... spread operator inserts all elements of list into another list
+    // ..? does this same but check for null
+    final boards = [..._boardStreamController.value];
+    final index = boards.indexWhere((b) => b.id == board.id);
+    if (index >= 0) {
+      boards[index] = board;
+    } else {
+      boards.add(board);
+    }
+    _boardStreamController.add(boards);
+    return _setValue(
+      kTodosCollectionKey,
+      json.encode(boards),
+    );
   }
 }
