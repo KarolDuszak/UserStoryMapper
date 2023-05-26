@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "663219331575",
+    "project_id": "userstorymapper-9f77f",
+    "storage_bucket": "userstorymapper-9f77f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663219331575:android:e982f7e4eae5220a084ef2",
+        "android_client_info": {
+          "package_name": "com.example.user_story_mapper"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwYyMIixAOUlccbV1Z-Ylgkm_g1-EJQAs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
