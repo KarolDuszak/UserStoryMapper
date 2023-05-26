@@ -67,19 +67,6 @@ class LocalStorageBoardApi extends IBoardApi {
   }
 
   @override
-  Future<List<Board>> getBoards() {
-    // NOTE: THIS METHOD MY NOT BE NEEDED TO REMOVE IF NOT IMPLEMENTED
-    // TODO: implement getBoards
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<List<String>> getAllBoardsId() {
-    List<Board> boards = _boardStreamController.value;
-    return Future.value(boards.map((board) => board.id).toList());
-  }
-
-  @override
   Future<void> updateBoard(Board board) {
     // ... spread operator inserts all elements of list into another list
     // ..? does this same but check for null
