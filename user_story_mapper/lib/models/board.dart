@@ -37,7 +37,7 @@ class Board extends Equatable {
   final List<RoleLabel>? roleLabels;
   final List<Member>? members;
   final int? votesNumber;
-  final String? timer; //Not sure how to implement jet
+  final DateTime? timer; //Not sure how to implement jet
 
   factory Board.fromJson(Map<String, dynamic> json) => _$BoardFromJson(json);
   Map<String, dynamic> toJson() => _$BoardToJson(this);
@@ -69,7 +69,22 @@ class Board extends Equatable {
       roleLabels: List<RoleLabel>.filled(2, RoleLabel.getEmptyObj()),
       members: List<Member>.filled(2, Member.getEmptyObj()),
       votesNumber: 5,
-      timer: "NULL timer",
+      timer: DateTime.now(),
+    );
+  }
+
+  static Board addNewBoard(String creatorId, String title, String description) {
+    return Board(
+      id: Uuid().v4(),
+      creatorId: creatorId,
+      title: title,
+      description: description,
+      milestones: [],
+      potentialUsers: [],
+      roleLabels: [],
+      members: [],
+      votesNumber: 5,
+      timer: DateTime.now(),
     );
   }
 }
