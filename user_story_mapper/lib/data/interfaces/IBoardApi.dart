@@ -23,7 +23,7 @@ abstract class IBoardApi {
   Future<void> updateMilestone(String boardId, Milestone milestone);
   Future<void> deleteMilestone(String boardId, String milestoneId);
   Future<void> moveEpicToDifferentMilestone(String boardId, String epicId,
-      String fromMilestoneId, String toMilestoneId);
+      String fromMilestoneId, String toMilestoneId, int milestoneListPosition);
 
   Stream<Epic> getEpic(String boardId, String milestoneId, String epicId);
   Stream<Epic> getEpics(String boardId, String milestoneId);

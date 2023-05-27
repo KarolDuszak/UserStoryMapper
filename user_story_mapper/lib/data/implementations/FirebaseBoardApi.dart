@@ -121,7 +121,7 @@ class FirebaseBoardApi extends IBoardApi {
 
   @override
   Future<void> moveEpicToDifferentMilestone(String boardId, String epicId,
-      String fromMilestoneId, String toMilestoneId) {
+      String fromMilestoneId, String toMilestoneId, int milestoneListPosition) {
     // TODO: implement moveEpicToDifferentMilestone
     throw UnimplementedError();
   }
