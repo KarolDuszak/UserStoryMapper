@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:uuid/uuid.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:user_story_mapper/models/comment.dart';
 import 'package:user_story_mapper/models/potentialUser.dart';
 import 'package:user_story_mapper/models/story.dart';
 
@@ -15,7 +14,6 @@ class Epic extends Equatable {
       required this.title,
       required this.features,
       this.potentialUsers,
-      this.comments,
       this.votes});
 
   //Informations
@@ -24,7 +22,6 @@ class Epic extends Equatable {
   final String title;
   final List<List<Story>> features;
   final List<PotentialUser>? potentialUsers;
-  final Comment? comments;
   final int? votes;
 
   factory Epic.fromJson(Map<String, dynamic> json) => _$EpicFromJson(json);
@@ -32,7 +29,7 @@ class Epic extends Equatable {
 
   @override
   List<Object?> get props =>
-      [id, description, title, features, potentialUsers, comments, votes];
+      [id, description, title, features, potentialUsers, votes];
 
   static Epic getEmptyObj(int num) {
     var uuid = Uuid();
@@ -40,6 +37,9 @@ class Epic extends Equatable {
         id: uuid.v1(),
         description: "NULL description",
         title: "NULL title ${num}",
+        votes: 3,
+        potentialUsers:
+            List.generate(1, (index) => PotentialUser.getEmptyObj()),
         features: List.generate(
             5,
             (outerIndex) => List.generate(

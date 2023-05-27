@@ -36,7 +36,6 @@ class EditStoryFormState extends State<EditStoryForm> {
         title: description.text,
         potentialUsers:
             List.generate(2, (index) => PotentialUser.getEmptyObj()),
-        comments: null,
         votes: 0);
   }
 

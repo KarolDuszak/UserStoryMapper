@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:user_story_mapper/models/potentialUser.dart';
-import 'package:user_story_mapper/models/comment.dart';
 
 import 'package:uuid/uuid.dart';
 
@@ -15,7 +14,6 @@ class Story extends Equatable {
       required this.description,
       required this.title,
       required this.potentialUsers,
-      required this.comments,
       required this.votes});
 
   //Informations
@@ -25,7 +23,6 @@ class Story extends Equatable {
   final String title;
   //Interaction
   final List<PotentialUser>? potentialUsers;
-  final Comment? comments;
   final int? votes;
 
   factory Story.fromJson(Map<String, dynamic> json) => _$StoryFromJson(json);
@@ -33,7 +30,7 @@ class Story extends Equatable {
 
   @override
   List<Object?> get props =>
-      [id, creatorId, description, title, potentialUsers, comments, votes];
+      [id, creatorId, description, title, potentialUsers, votes];
 
   static Story getEmptyObj(String num) {
     var uuid = Uuid().v1();
@@ -44,7 +41,6 @@ class Story extends Equatable {
         title: "${num} Very long title sadasdasda sadasdasdasd asdasdasdasd ",
         potentialUsers:
             List<PotentialUser>.filled(6, PotentialUser.getEmptyObj()),
-        comments: Comment.getEmptyCommentObj(),
         votes: 4);
   }
 
@@ -57,7 +53,6 @@ class Story extends Equatable {
         title: "${uuid} short title",
         potentialUsers:
             List<PotentialUser>.filled(3, PotentialUser.getEmptyObj()),
-        comments: Comment.getEmptyCommentObj(),
         votes: 4);
   }
 }

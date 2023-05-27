@@ -18,9 +18,6 @@ Epic _$EpicFromJson(Map<String, dynamic> json) => Epic(
       potentialUsers: (json['potentialUsers'] as List<dynamic>?)
           ?.map((e) => PotentialUser.fromJson(e as Map<String, dynamic>))
           .toList(),
-      comments: json['comments'] == null
-          ? null
-          : Comment.fromJson(json['comments'] as Map<String, dynamic>),
       votes: json['votes'] as int?,
     );
 
@@ -29,10 +26,9 @@ Map<String, dynamic> _$EpicToJson(Epic instance) => <String, dynamic>{
       'description': instance.description,
       'title': instance.title,
       'features': instance.features
-          .map((e) => e.map((e) => e.toJson()).toList())
+          .map((c) => c.map((e) => e.toJson()).toList())
           .toList(),
       'potentialUsers':
           instance.potentialUsers?.map((e) => e.toJson()).toList(),
-      'comments': instance.comments?.toJson(),
       'votes': instance.votes,
     };

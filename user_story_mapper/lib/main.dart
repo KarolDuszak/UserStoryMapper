@@ -1,11 +1,19 @@
 import 'dart:ui';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:user_story_mapper/models/epic.dart';
 import 'package:user_story_mapper/presentation/board/epicWidget.dart';
 import 'package:user_story_mapper/presentation/board/boardWidget.dart';
 
-void main() => runApp(const ReorderableApp());
+import 'firebase_options.dart';
+
+void main() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(const ReorderableApp());
+}
 
 final GlobalKey _draggableKey = GlobalKey();
 
