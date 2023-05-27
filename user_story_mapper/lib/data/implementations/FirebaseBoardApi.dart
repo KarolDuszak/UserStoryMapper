@@ -144,4 +144,35 @@ class FirebaseBoardApi extends IBoardApi {
     // TODO: implement updatePotentialUser
     throw UnimplementedError();
   }
+
+  @override
+  Future<void> unvoteForEpic(
+      String boardId, String milestoneId, String epicId) {
+    // TODO: implement unvoteForEpic
+    // Tip for implementation https://fireship.io/snippets/firestore-increment-tips/
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> unvoteForStory(
+      String boardId, String milestoneId, String epicId, String storyId) {
+    // TODO: implement unvoteForStory
+    // Tip for implementation https://fireship.io/snippets/firestore-increment-tips/
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> voteForEpic(String boardId, String milestoneId, String epicId) {
+    // TODO: implement voteForEpic
+    // Tip for implementation https://fireship.io/snippets/firestore-increment-tips/
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> voteForStory(
+      String boardId, String milestoneId, String epicId, String storyId) {
+    // TODO: implement voteForStory
+    // Tip for implementation https://fireship.io/snippets/firestore-increment-tips/
+    throw UnimplementedError();
+  }
 }
