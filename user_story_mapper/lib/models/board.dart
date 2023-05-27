@@ -37,7 +37,7 @@ class Board extends Equatable {
   final List<RoleLabel>? roleLabels;
   final List<Member>? members;
   final int? votesNumber;
-  final DateTime? timer; //Not sure how to implement jet
+  final DateTime? timer;
 
   factory Board.fromJson(Map<String, dynamic> json) => _$BoardFromJson(json);
   Map<String, dynamic> toJson() => _$BoardToJson(this);
@@ -58,7 +58,7 @@ class Board extends Equatable {
 
   static Board getEmptyObj(int num) {
     return Board(
-      id: Uuid().v4(),
+      id: "Test",
       creatorId: "NULL creatorId",
       description: "NULL description",
       title: "NULL title",

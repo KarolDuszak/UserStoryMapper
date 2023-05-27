@@ -131,7 +131,7 @@ class LocalStorageBoardApi extends IBoardApi {
   }
 
   @override
-  Stream<Epic> getEpics(String boardId, String milestoneId) {
+  Future<Epic> getEpics(String boardId, String milestoneId) {
     // TODO: implement getEpics
     throw UnimplementedError();
   }
@@ -143,7 +143,7 @@ class LocalStorageBoardApi extends IBoardApi {
   }
 
   @override
-  Stream<Milestone> getMilestones(String boardId) {
+  Future<Milestone> getMilestones(String boardId) {
     // TODO: implement getMilestones
     throw UnimplementedError();
   }
@@ -156,7 +156,7 @@ class LocalStorageBoardApi extends IBoardApi {
   }
 
   @override
-  Stream<PotentialUser> getPotentialUsers(String boardId) {
+  Future<PotentialUser> getPotentialUsers(String boardId) {
     // TODO: implement getPotentialUsers
     throw UnimplementedError();
   }

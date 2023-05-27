@@ -53,15 +53,23 @@ class FirebaseBoardApi extends IBoardApi {
 
   @override
   Future<void> createMilestone(String boardId, Milestone milestone) {
-    // TODO: implement createMilestone
-    throw UnimplementedError();
+    return boardsRef
+        .doc(boardId)
+        .collection("milestones")
+        .doc(milestone.id)
+        .set(milestone.toJson())
+        .then((value) => print("Milestone Created"));
   }
 
   @override
   Future<void> createPotentialUser(
       String boardId, PotentialUser potentialUser) {
-    // TODO: implement createPotentialUser
-    throw UnimplementedError();
+    return boardsRef
+        .doc(boardId)
+        .collection("potentialUsers")
+        .doc(potentialUser.id)
+        .set(potentialUser.toJson())
+        .then((value) => print("PotentialUser Created"));
   }
 
   @override
@@ -89,7 +97,7 @@ class FirebaseBoardApi extends IBoardApi {
   }
 
   @override
-  Stream<Epic> getEpics(String boardId, String milestoneId) {
+  Future<Epic> getEpics(String boardId, String milestoneId) {
     // TODO: implement getEpics
     throw UnimplementedError();
   }
@@ -101,7 +109,7 @@ class FirebaseBoardApi extends IBoardApi {
   }
 
   @override
-  Stream<Milestone> getMilestones(String boardId) {
+  Future<Milestone> getMilestones(String boardId) {
     // TODO: implement getMilestones
     throw UnimplementedError();
   }
@@ -114,7 +122,7 @@ class FirebaseBoardApi extends IBoardApi {
   }
 
   @override
-  Stream<PotentialUser> getPotentialUsers(String boardId) {
+  Future<PotentialUser> getPotentialUsers(String boardId) {
     // TODO: implement getPotentialUsers
     throw UnimplementedError();
   }

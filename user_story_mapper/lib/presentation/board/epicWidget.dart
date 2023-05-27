@@ -1,8 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drag_and_drop_lists/drag_and_drop_list_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:drag_and_drop_lists/drag_and_drop_lists.dart';
+import 'package:user_story_mapper/data/implementations/FirebaseBoardApi.dart';
 import 'package:user_story_mapper/models/story.dart';
 import 'package:user_story_mapper/presentation/board/storyCard.dart';
+import '../../models/board.dart';
 import '../../models/epic.dart';
 import 'editStoryForm.dart';
 
@@ -159,9 +162,43 @@ class _EpicList extends State<EpicList> {
   showAddStoryDialog(BuildContext context, int listIndex) {
     // set up the buttons
     Widget cancelButton = ElevatedButton(
-      child: Text("Anuluj"),
+      child: Text("Cancel"),
+      style: ElevatedButton.styleFrom(primary: Colors.red[700]),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+
+    //TODO: Implement correct adding story mechanizm
+    //It should add story at the end of epics
+    //adds new story to Database
+    Widget addButton = ElevatedButton(
+      child: Text("Add"),
       style: ElevatedButton.styleFrom(primary: Colors.green[700]),
       onPressed: () {
+        DateTime now = DateTime.now();
+        FirebaseBoardApi().createBoard(
+          Board(
+            creatorId: "NULL",
+            title: "NULL",
+            id: "Test",
+            milestones: [],
+            description: "NULL",
+            potentialUsers: [],
+            roleLabels: [],
+            members: [],
+            votesNumber: 5,
+            timer: DateTime(now.year, now.month, now.day, now.hour,
+                now.minute + 5, now.second),
+          ),
+        );
+
+        //var ref = FirebaseFirestore.instance.collection('test');
+        //ref.doc("asdas3").set({
+        //  "name": "Dumbbell curl",
+        //  "muscle": "Biceps",
+        //  "sets": {"reps": 10, "weight": 40}
+        //}).then((value) => print("Board Created"));
         Navigator.of(context).pop();
       },
     );
@@ -171,6 +208,7 @@ class _EpicList extends State<EpicList> {
       title: Text("Add User Story to Epic ${_epic.title}"),
       content: Container(child: EditStoryForm(Story.getEmptyObj2())),
       actions: [
+        addButton,
         cancelButton,
       ],
     );

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:drag_and_drop_lists/drag_and_drop_lists.dart';
 import 'package:user_story_mapper/models/board.dart';
+import 'package:user_story_mapper/models/potentialUser.dart';
 import 'package:user_story_mapper/presentation/board/epicWidget.dart';
+import 'package:uuid/uuid.dart';
+import '../../data/implementations/FirebaseBoardApi.dart';
 import '../../models/milestone.dart';
 import '../../models/epic.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -56,30 +59,60 @@ class _BoardList extends State<BoardList> {
         children: <Widget>[
           Container(
             color: Color.fromARGB(255, 240, 242, 243),
-            child:
-                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-                child: SizedBox(
-                  width: 200,
-                  child: Column(
-                    children: [
-                      AutoSizeText(
-                        milestone.title,
-                        style: TextStyle(
-                            fontSize: 36, fontWeight: FontWeight.bold),
-                      ),
-                      AutoSizeText(
-                        milestone.description,
-                        style: TextStyle(
-                          fontSize: 24,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                  child: SizedBox(
+                    width: 200,
+                    child: Column(
+                      children: [
+                        AutoSizeText(
+                          milestone.title,
+                          style: TextStyle(
+                              fontSize: 36, fontWeight: FontWeight.bold),
                         ),
-                      ),
-                    ],
+                        AutoSizeText(
+                          milestone.description,
+                          style: TextStyle(
+                            fontSize: 24,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ]),
+                //TODO: Add milestone button
+                ElevatedButton(
+                  child: Text("Add Milestone"),
+                  style: ElevatedButton.styleFrom(primary: Colors.green[700]),
+                  onPressed: () {
+                    print("Add Milestone Clicked");
+                    FirebaseBoardApi().createMilestone(
+                      _board.id,
+                      Milestone(
+                          title: "New Milestone",
+                          description: "New Milestone Description",
+                          epics: [],
+                          id: "1"),
+                    );
+                  },
+                ),
+                //TODO: Add potentialUser
+                ElevatedButton(
+                  child: Text("Add Potential User"),
+                  style: ElevatedButton.styleFrom(primary: Colors.green[700]),
+                  onPressed: () {
+                    print("Add PotentialUser Clicked");
+                    FirebaseBoardApi().createPotentialUser(
+                      _board.id,
+                      PotentialUser.getEmptyObj(),
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
           Expanded(
             child: ListView.builder(
@@ -93,6 +126,7 @@ class _BoardList extends State<BoardList> {
               },
             ),
           ),
+          //TODO: Add epic button
         ],
       ),
     );

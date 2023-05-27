@@ -12,13 +12,13 @@ abstract class IBoardApi {
 
   Stream<PotentialUser> getPotentialUser(
       String boardId, String potentialUserId);
-  Stream<PotentialUser> getPotentialUsers(String boardId);
+  Future<PotentialUser> getPotentialUsers(String boardId);
   Future<void> createPotentialUser(String boardId, PotentialUser potentialUser);
   Future<void> updatePotentialUser(String boardId, PotentialUser potentialUser);
   Future<void> deletePotentialUser(String boardId, String potentialUserId);
 
   Stream<Milestone> getMilestone(String boardId, String milestoneId);
-  Stream<Milestone> getMilestones(String boardId);
+  Future<Milestone> getMilestones(String boardId);
   Future<void> createMilestone(String boardId, Milestone milestone);
   Future<void> updateMilestone(String boardId, Milestone milestone);
   Future<void> deleteMilestone(String boardId, String milestoneId);
@@ -26,7 +26,7 @@ abstract class IBoardApi {
       String fromMilestoneId, String toMilestoneId, int milestoneListPosition);
 
   Stream<Epic> getEpic(String boardId, String milestoneId, String epicId);
-  Stream<Epic> getEpics(String boardId, String milestoneId);
+  Future<Epic> getEpics(String boardId, String milestoneId);
   Future<void> createEpic(String boardId, String milestoneId, Epic epic);
   Future<void> updateEpic(String boardId, String milestoneId, Epic epic);
   Future<void> deleteEpic(String boardId, String milestoneId, String epicId);

@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:user_story_mapper/models/labelColor.dart';
+import 'package:uuid/uuid.dart';
 
 part 'potentialUser.g.dart';
 
@@ -27,7 +28,7 @@ class PotentialUser extends Equatable {
 
   static PotentialUser getEmptyObj() {
     return PotentialUser(
-        id: "NULL",
+        id: Uuid().v4(),
         color: ColorLabel.blue,
         name: "NULL name",
         description: "NULL description");

@@ -34,7 +34,7 @@ Map<String, dynamic> _$BoardToJson(Board instance) => <String, dynamic>{
       'title': instance.title,
       'potentialUsers':
           instance.potentialUsers?.map((e) => e.toJson()).toList(),
-      'milestones': instance.milestones.map((e) => e.toJson()).toList(),
+      //'milestones': instance.milestones.map((e) => e.toJson()).toList(),
       'roleLabels': instance.roleLabels?.map((e) => e.toJson()).toList(),
       'members': instance.members?.map((e) => e.toJson()).toList(),
       'votesNumber': instance.votesNumber,
