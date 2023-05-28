@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -6,10 +7,11 @@ import 'package:user_story_mapper/models/milestone.dart';
 import 'package:user_story_mapper/models/roleLabel.dart';
 import 'package:user_story_mapper/models/member.dart';
 import 'package:uuid/uuid.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:cloud_firestore_odm/cloud_firestore_odm.dart';
 
 part 'board.g.dart';
 
-@immutable
 @JsonSerializable(explicitToJson: true)
 class Board extends Equatable {
   Board(

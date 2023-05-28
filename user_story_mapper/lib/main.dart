@@ -9,6 +9,7 @@ import 'package:user_story_mapper/presentation/board/boardWidget.dart';
 import 'firebase_options.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
