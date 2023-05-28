@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:drag_and_drop_lists/drag_and_drop_lists.dart';
 import 'package:user_story_mapper/models/board.dart';
@@ -17,18 +18,52 @@ class BoardList extends StatefulWidget {
 }
 
 class _BoardList extends State<BoardList> {
+  //final Stream<Board> _boardStream =
+  //    FirebaseBoardApi().getBoard("4437b74b-99c2-4b5b-b26a-e95b63f5b602");
   late Board _board;
 
   @override
   void initState() {
     super.initState();
+    //var boardStream =
+    //    FirebaseBoardApi().getBoard("4437b74b-99c2-4b5b-b26a-e95b63f5b602");
 
-    _board = Board.getEmptyObj(0);
+    //_board = Board.addNewBoard("creatorId", "title", "description");
+    //FirebaseBoardApi().createBoard(_board);
+
+    _board = Board.getEmptyObj(5);
   }
 
   @override
   Widget build(BuildContext context) {
+    //return StreamBuilder<Board>(
+    //  stream: _boardStream,
+    //  builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+    //    if (snapshot.hasError) {
+    //      return Text('Something went wrong');
+    //    }
+//
+    //    if (snapshot.connectionState == ConnectionState.waiting) {
+    //      return Text("Loading");
+    //    }
+
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+      floatingActionButton: FloatingActionButton.extended(
+        icon: Icon(Icons.settings),
+        label: Text("Open Settings"),
+        tooltip: "Add Milestone",
+        onPressed: () {
+          print("Add Milestone");
+          _board.milestones
+              .add(Milestone.createNewMilestone("description", "title"));
+          FirebaseBoardApi().updateBoard(_board);
+
+          //TODO: Implement getBoard() method to recieve Stream to board
+          //then add here simple update of board
+          //_board = FirebaseBoardApi().getBoard(_board.id);
+        },
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         mainAxisSize: MainAxisSize.min,
@@ -48,6 +83,8 @@ class _BoardList extends State<BoardList> {
         ],
       ),
     );
+    //},
+    //);
   }
 
   _buildList(int outerIndex) {
@@ -83,26 +120,19 @@ class _BoardList extends State<BoardList> {
                     ),
                   ),
                 ),
-                //TODO: Add milestone button
+                //TODO: Implement edit milestone dialog where data can be modified
                 ElevatedButton(
-                  child: Text("Add Milestone"),
+                  child: Text("Edit Milestone"),
                   style: ElevatedButton.styleFrom(primary: Colors.green[700]),
                   onPressed: () {
-                    print("Add Milestone Clicked");
-                    FirebaseBoardApi().createMilestone(
-                      _board.id,
-                      Milestone(
-                          title: "New Milestone",
-                          description: "New Milestone Description",
-                          epics: [],
-                          id: "1"),
-                    );
+                    print("Edit Milestone");
+                    FirebaseBoardApi().createBoard(_board);
                   },
                 ),
-                //TODO: Add potentialUser
+                //TODO: Add potentialUser dialog where new potentialUser can be added
                 ElevatedButton(
                   child: Text("Add Potential User"),
-                  style: ElevatedButton.styleFrom(primary: Colors.green[700]),
+                  style: ElevatedButton.styleFrom(primary: Colors.red[700]),
                   onPressed: () {
                     print("Add PotentialUser Clicked");
                     FirebaseBoardApi().createPotentialUser(

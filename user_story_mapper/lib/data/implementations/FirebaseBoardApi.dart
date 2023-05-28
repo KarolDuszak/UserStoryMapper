@@ -19,8 +19,6 @@ class FirebaseBoardApi extends IBoardApi {
 
   @override
   Future<void> createBoard(Board board) {
-    //TODO: check if id exists in db if so then change its id
-
     return boardsRef
         .doc(board.id)
         .set(board.toJson())
@@ -29,24 +27,27 @@ class FirebaseBoardApi extends IBoardApi {
 
   @override
   Future<void> deleteBoard(String boardId) {
-    // TODO: implement deleteBoard
-    throw UnimplementedError();
+    return boardsRef
+        .doc(boardId)
+        .delete()
+        .then((value) => print("Board $boardId Deleted"))
+        .onError((error, stackTrace) => print(error));
   }
 
   @override
   Stream<Board> getBoard(String boardId) {
-    print("it runned");
-    var board = boardsRef.doc(boardId).get();
-
-    print("it runned");
-    // TODO: implement getBoard
+    Stream documentStream =
+        boardsRef.doc(boardId).snapshots(includeMetadataChanges: true);
     throw UnimplementedError();
   }
 
   @override
   Future<void> updateBoard(Board board) {
-    // TODO: implement updateBoard
-    throw UnimplementedError();
+    return boardsRef
+        .doc(board.id)
+        .update(board.toJson())
+        .then((value) => print("Board ${board.id} Updated"))
+        .onError((error, stackTrace) => print(error));
   }
 
   @override

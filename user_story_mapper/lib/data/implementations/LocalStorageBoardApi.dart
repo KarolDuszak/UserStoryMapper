@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:user_story_mapper/data/interfaces/IBoardApi.dart';
 import 'package:user_story_mapper/models/board.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -65,8 +66,7 @@ class LocalStorageBoardApi extends IBoardApi {
 
   @override
   Stream<Board> getBoard(String boardId) {
-    return _boardStreamController.stream
-        .map((boards) => boards.firstWhere((board) => board.id == boardId));
+    throw UnimplementedError();
   }
 
   @override

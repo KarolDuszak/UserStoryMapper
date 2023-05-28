@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:user_story_mapper/models/epic.dart';
+import 'package:uuid/uuid.dart';
 
 part 'milestone.g.dart';
 
@@ -11,7 +12,6 @@ class Milestone extends Equatable {
     required this.description,
     required this.title,
     required this.epics,
-    //required this.potentialUsers,
   });
 
   //Informations
@@ -33,8 +33,16 @@ class Milestone extends Equatable {
         id: "NULL",
         description: "NULL description",
         title: "NULL title",
-        //potentialUsers: List<PotentialUser>.filled(
-        //    2, PotentialUser.getEmptyObj()),
         epics: List.generate(3, (innerIndex) => Epic.getEmptyObj(innerIndex)));
+  }
+
+  static Milestone createMvpMilestone() {
+    return Milestone(
+        id: Uuid().v4(), description: "description", title: "MVP", epics: []);
+  }
+
+  static Milestone createNewMilestone(String description, String title) {
+    return Milestone(
+        id: Uuid().v4(), description: description, title: title, epics: []);
   }
 }

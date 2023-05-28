@@ -81,7 +81,7 @@ class Board extends Equatable {
       creatorId: creatorId,
       title: title,
       description: description,
-      milestones: [],
+      milestones: [Milestone.createMvpMilestone()],
       potentialUsers: [],
       roleLabels: [],
       members: [],
