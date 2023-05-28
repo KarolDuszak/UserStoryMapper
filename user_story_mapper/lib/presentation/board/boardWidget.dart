@@ -52,7 +52,8 @@ class _BoardList extends State<BoardList> {
       floatingActionButton: FloatingActionButton.extended(
         icon: Icon(Icons.settings),
         label: Text("Open Settings"),
-        tooltip: "Add Milestone",
+        tooltip:
+            "TODO: Add/Edit potentialUsers, members, roles, milestone, board data etc.",
         onPressed: () {
           print("Add Milestone");
           _board.milestones
@@ -129,9 +130,9 @@ class _BoardList extends State<BoardList> {
                     FirebaseBoardApi().createBoard(_board);
                   },
                 ),
-                //TODO: Add potentialUser dialog where new potentialUser can be added
+                //TODO: Add new Epic to milestone
                 ElevatedButton(
-                  child: Text("Add Potential User"),
+                  child: Text("Add New Epic"),
                   style: ElevatedButton.styleFrom(primary: Colors.red[700]),
                   onPressed: () {
                     print("Add PotentialUser Clicked");

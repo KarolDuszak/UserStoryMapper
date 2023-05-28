@@ -140,6 +140,9 @@ class _EpicList extends State<EpicList> {
 
   _onListReorder(int oldListIndex, int newListIndex) {
     setState(() {
+      if (newListIndex >= _epic.features.length) {
+        newListIndex = _epic.features.length - 1;
+      }
       var movedList = _epic.features.removeAt(oldListIndex);
       _epic.features.insert(newListIndex, movedList);
     });
@@ -177,21 +180,26 @@ class _EpicList extends State<EpicList> {
       style: ElevatedButton.styleFrom(primary: Colors.green[700]),
       onPressed: () {
         DateTime now = DateTime.now();
-        FirebaseBoardApi().createBoard(
-          Board(
-            creatorId: "NULL",
-            title: "NULL",
-            id: "Test",
-            milestones: [],
-            description: "NULL",
-            potentialUsers: [],
-            roleLabels: [],
-            members: [],
-            votesNumber: 5,
-            timer: DateTime(now.year, now.month, now.day, now.hour,
-                now.minute + 5, now.second),
-          ),
+        //FirebaseBoardApi().createBoard(
+        Board(
+          creatorId: "NULL",
+          title: "NULL",
+          id: "Test",
+          milestones: [],
+          description: "NULL",
+          potentialUsers: [],
+          roleLabels: [],
+          members: [],
+          votesNumber: 5,
+          timer: DateTime(now.year, now.month, now.day, now.hour,
+              now.minute + 5, now.second),
+          //  ),
         );
+
+        Board x = Board.getEmptyObj(5);
+        var z = x.toJson();
+        print(z);
+        FirebaseBoardApi().createBoard(x);
 
         //var ref = FirebaseFirestore.instance.collection('test');
         //ref.doc("asdas3").set({
