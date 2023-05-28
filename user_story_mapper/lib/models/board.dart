@@ -60,7 +60,7 @@ class Board extends Equatable {
 
   static Board getEmptyObj(int num) {
     return Board(
-      id: "Test",
+      id: Uuid().v4(),
       creatorId: "NULL creatorId",
       description: "NULL description",
       title: "NULL title",

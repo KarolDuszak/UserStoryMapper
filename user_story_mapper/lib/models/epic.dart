@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:user_story_mapper/utils/utils.dart';
 import 'package:uuid/uuid.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:user_story_mapper/models/potentialUser.dart';

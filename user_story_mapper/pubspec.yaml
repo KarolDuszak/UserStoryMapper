@@ -48,6 +48,8 @@ dependencies:
   meta: ^1.8.0
   firebase_core: ^2.13.0
   cloud_firestore: ^4.7.1
+  json_annotation: ^4.7.0
+  cloud_firestore_odm: ^1.0.0-dev.58
 
 dev_dependencies:
   flutter_test:
@@ -59,8 +61,9 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
-  build_runner: ^2.2.0
+  build_runner: ^2.3.3
   json_serializable: ^6.5.4
+  cloud_firestore_odm_generator: ^1.0.0-dev.45
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
