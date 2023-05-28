@@ -88,18 +88,6 @@ class LocalStorageBoardApi extends IBoardApi {
   }
 
   @override
-  Future<void> createEpic(String boardId, String milestoneId, Epic epic) {
-    // TODO: implement createEpic
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<void> createMilestone(String boardId, Milestone milestone) {
-    // TODO: implement createMilestone
-    throw UnimplementedError();
-  }
-
-  @override
   Future<void> createPotentialUser(
       String boardId, PotentialUser potentialUser) {
     // TODO: implement createPotentialUser
@@ -107,44 +95,8 @@ class LocalStorageBoardApi extends IBoardApi {
   }
 
   @override
-  Future<void> deleteEpic(String boardId, String milestoneId, String epicId) {
-    // TODO: implement deleteEpic
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<void> deleteMilestone(String boardId, String milestoneId) {
-    // TODO: implement deleteMilestone
-    throw UnimplementedError();
-  }
-
-  @override
   Future<void> deletePotentialUser(String boardId, String potentialUserId) {
     // TODO: implement deletePotentialUser
-    throw UnimplementedError();
-  }
-
-  @override
-  Stream<Epic> getEpic(String boardId, String milestoneId, String epicId) {
-    // TODO: implement getEpic
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Epic> getEpics(String boardId, String milestoneId) {
-    // TODO: implement getEpics
-    throw UnimplementedError();
-  }
-
-  @override
-  Stream<Milestone> getMilestone(String boardId, String milestoneId) {
-    // TODO: implement getMilestone
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Milestone> getMilestones(String boardId) {
-    // TODO: implement getMilestones
     throw UnimplementedError();
   }
 
@@ -162,51 +114,35 @@ class LocalStorageBoardApi extends IBoardApi {
   }
 
   @override
-  Future<void> moveEpicToDifferentMilestone(String boardId, String epicId,
-      String fromMilestoneId, String toMilestoneId, int milestoneListPosition) {
-    // TODO: implement moveEpicToDifferentMilestone
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<void> updateEpic(String boardId, String milestoneId, Epic epic) {
-    // TODO: implement updateEpic
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<void> updateMilestone(String boardId, Milestone milestone) {
-    // TODO: implement updateMilestone
-    throw UnimplementedError();
-  }
-
-  @override
   Future<void> updatePotentialUser(
       String boardId, PotentialUser potentialUser) {
     // TODO: implement updatePotentialUser
     throw UnimplementedError();
   }
-  
+
   @override
-  Future<void> unvoteForEpic(String boardId, String milestoneId, String epicId) {
+  Future<void> unvoteForEpic(
+      String boardId, String milestoneId, String epicId) {
     // TODO: implement unvoteForEpic
     throw UnimplementedError();
   }
-  
+
   @override
-  Future<void> unvoteForStory(String boardId, String milestoneId, String epicId, String storyId) {
+  Future<void> unvoteForStory(
+      String boardId, String milestoneId, String epicId, String storyId) {
     // TODO: implement unvoteForStory
     throw UnimplementedError();
   }
-  
+
   @override
   Future<void> voteForEpic(String boardId, String milestoneId, String epicId) {
     // TODO: implement voteForEpic
     throw UnimplementedError();
   }
-  
+
   @override
-  Future<void> voteForStory(String boardId, String milestoneId, String epicId, String storyId) {
+  Future<void> voteForStory(
+      String boardId, String milestoneId, String epicId, String storyId) {
     // TODO: implement voteForStory
     throw UnimplementedError();
   }

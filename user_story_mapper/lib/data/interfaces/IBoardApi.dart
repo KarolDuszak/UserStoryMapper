@@ -17,20 +17,6 @@ abstract class IBoardApi {
   Future<void> updatePotentialUser(String boardId, PotentialUser potentialUser);
   Future<void> deletePotentialUser(String boardId, String potentialUserId);
 
-  Stream<Milestone> getMilestone(String boardId, String milestoneId);
-  Future<Milestone> getMilestones(String boardId);
-  Future<void> createMilestone(String boardId, Milestone milestone);
-  Future<void> updateMilestone(String boardId, Milestone milestone);
-  Future<void> deleteMilestone(String boardId, String milestoneId);
-  Future<void> moveEpicToDifferentMilestone(String boardId, String epicId,
-      String fromMilestoneId, String toMilestoneId, int milestoneListPosition);
-
-  Stream<Epic> getEpic(String boardId, String milestoneId, String epicId);
-  Future<Epic> getEpics(String boardId, String milestoneId);
-  Future<void> createEpic(String boardId, String milestoneId, Epic epic);
-  Future<void> updateEpic(String boardId, String milestoneId, Epic epic);
-  Future<void> deleteEpic(String boardId, String milestoneId, String epicId);
-
   Future<void> voteForEpic(String boardId, String milestoneId, String epicId);
   Future<void> unvoteForEpic(String boardId, String milestoneId, String epicId);
   Future<void> voteForStory(
