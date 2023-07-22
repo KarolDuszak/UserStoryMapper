@@ -65,7 +65,7 @@ class LocalStorageBoardApi extends IBoardApi {
   }
 
   @override
-  Stream<Board> getBoard(String boardId) {
+  Stream<QuerySnapshot> getBoard(String boardId) {
     throw UnimplementedError();
   }
 

@@ -11,7 +11,6 @@ class User extends Equatable {
       {required this.id,
       required this.email,
       required this.name,
-      required this.password,
       required this.invitationsToBoard,
       required this.boards});
 
@@ -19,7 +18,6 @@ class User extends Equatable {
   final String id;
   final String email;
   final String name;
-  final String password;
   final List<BoardInvitation> invitationsToBoard;
   final List<Board> boards;
 
@@ -27,15 +25,13 @@ class User extends Equatable {
   Map<String, dynamic> toJson() => _$UserToJson(this);
 
   @override
-  List<Object?> get props =>
-      [id, email, name, password, invitationsToBoard, boards];
+  List<Object?> get props => [id, email, name, invitationsToBoard, boards];
 
   static User getEmptyObj(int num) {
     return User(
         id: "NULL",
         email: "NULL email",
         name: "NULL email",
-        password: "NULL password",
         invitationsToBoard:
             List<BoardInvitation>.filled(2, BoardInvitation.getEmptyObj()),
         boards: List<Board>.filled(3, Board.getEmptyObj(num)));

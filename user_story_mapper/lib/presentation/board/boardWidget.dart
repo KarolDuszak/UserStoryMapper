@@ -126,8 +126,10 @@ class _BoardList extends State<BoardList> {
                   child: Text("Edit Milestone"),
                   style: ElevatedButton.styleFrom(primary: Colors.green[700]),
                   onPressed: () {
-                    print("Edit Milestone");
-                    FirebaseBoardApi().createBoard(_board);
+                    FirebaseBoardApi()
+                        .getBoard("4437b74b-99c2-4b5b-b26a-e95b63f5b602");
+                    //print("Edit Milestone");
+                    // FirebaseBoardApi().createBoard(_board);
                   },
                 ),
                 //TODO: Add new Epic to milestone
@@ -135,11 +137,11 @@ class _BoardList extends State<BoardList> {
                   child: Text("Add New Epic"),
                   style: ElevatedButton.styleFrom(primary: Colors.red[700]),
                   onPressed: () {
-                    print("Add PotentialUser Clicked");
-                    FirebaseBoardApi().createPotentialUser(
-                      _board.id,
-                      PotentialUser.getEmptyObj(),
-                    );
+                    //print("Add PotentialUser Clicked");
+                    //FirebaseBoardApi().createPotentialUser(
+                    //  _board.id,
+                    //  PotentialUser.getEmptyObj(),
+                    //);
                   },
                 ),
               ],

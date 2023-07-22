@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:user_story_mapper/models/milestone.dart';
 import 'package:user_story_mapper/models/potentialUser.dart';
 
@@ -5,7 +6,7 @@ import '../../models/board.dart';
 import '../../models/epic.dart';
 
 abstract class IBoardApi {
-  Stream<Board> getBoard(String boardId);
+  Stream<QuerySnapshot> getBoard(String boardId);
   Future<void> createBoard(Board board);
   Future<void> updateBoard(Board board);
   Future<void> deleteBoard(String boardId);

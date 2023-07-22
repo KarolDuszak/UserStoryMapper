@@ -35,9 +35,13 @@ class FirebaseBoardApi extends IBoardApi {
   }
 
   @override
-  Stream<Board> getBoard(String boardId) {
-    Stream documentStream =
-        boardsRef.doc(boardId).snapshots(includeMetadataChanges: true);
+  Stream<QuerySnapshot> getBoard(String boardId) {
+    Stream documentStream = FirebaseFirestore.instance
+        .collection('boards')
+        .doc(boardId)
+        .snapshots();
+
+    var x = 1;
     throw UnimplementedError();
   }
 
