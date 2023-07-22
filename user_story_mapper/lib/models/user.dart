@@ -31,9 +31,6 @@ class User extends Equatable {
   /// Convenience getter to determine whether the current user is not empty.
   bool get isNotEmpty => this != User.empty;
 
-  @override
-  List<Object?> get props => [email, id, name, invitationsToBoard, boards];
-
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
   Map<String, dynamic> toJson() => _$UserToJson(this);
 
