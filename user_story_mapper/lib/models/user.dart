@@ -7,7 +7,7 @@ part 'user.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class User extends Equatable {
-  User(
+  const User(
       {required this.id,
       required this.email,
       required this.name,
@@ -20,6 +20,19 @@ class User extends Equatable {
   final String name;
   final List<BoardInvitation> invitationsToBoard;
   final List<Board> boards;
+
+  /// Empty user which represents an unauthenticated user.
+  static const empty =
+      User(id: '', email: '', name: '', invitationsToBoard: [], boards: []);
+
+  /// Convenience getter to determine whether the current user is empty.
+  bool get isEmpty => this == User.empty;
+
+  /// Convenience getter to determine whether the current user is not empty.
+  bool get isNotEmpty => this != User.empty;
+
+  @override
+  List<Object?> get props => [email, id, name, invitationsToBoard, boards];
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
   Map<String, dynamic> toJson() => _$UserToJson(this);
