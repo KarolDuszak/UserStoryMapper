@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:html';
 
 import 'package:user_story_mapper/data/interfaces/IBoardApi.dart';
 import 'package:user_story_mapper/models/board.dart';
@@ -35,14 +36,13 @@ class FirebaseBoardApi extends IBoardApi {
   }
 
   @override
-  Stream<QuerySnapshot> getBoard(String boardId) {
+  Stream getBoard(String boardId) {
     Stream documentStream = FirebaseFirestore.instance
         .collection('boards')
         .doc(boardId)
         .snapshots();
 
-    var x = 1;
-    throw UnimplementedError();
+    return documentStream;
   }
 
   @override

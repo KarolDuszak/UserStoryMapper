@@ -6,7 +6,7 @@ import '../../models/board.dart';
 import '../../models/epic.dart';
 
 abstract class IBoardApi {
-  Stream<QuerySnapshot> getBoard(String boardId);
+  Stream getBoard(String boardId);
   Future<void> createBoard(Board board);
   Future<void> updateBoard(Board board);
   Future<void> deleteBoard(String boardId);
