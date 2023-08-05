@@ -9,6 +9,7 @@ import '../../data/implementations/FirebaseBoardApi.dart';
 import '../../models/milestone.dart';
 import '../../models/epic.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'dart:math';
 
 class BoardList extends StatefulWidget {
   const BoardList({Key? key}) : super(key: key);
@@ -47,11 +48,13 @@ class _BoardList extends State<BoardList> {
     //      return Text("Loading");
     //    }
 
+    //Tutaj może normalnie być stream builder jak w editmilestone
+    //jak nie ma danych yo wyswietlic napis loading a jak sa dane to normalnie wyswietlic ten view i git
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       floatingActionButton: FloatingActionButton.extended(
-        icon: Icon(Icons.settings),
-        label: Text("Open Settings"),
+        icon: const Icon(Icons.settings),
+        label: const Text("Open Settings"),
         tooltip:
             "TODO: Add/Edit potentialUsers, members, roles, milestone, board data etc.",
         onPressed: () {
@@ -65,25 +68,38 @@ class _BoardList extends State<BoardList> {
           //_board = FirebaseBoardApi().getBoard(_board.id);
         },
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Expanded(
-            child: ListView.builder(
-              itemCount: _board.milestones.length,
-              itemBuilder: (context, index) {
-                return Container(
-                    decoration:
-                        BoxDecoration(border: Border(bottom: BorderSide())),
-                    child: _buildList(index));
-              },
-            ),
-          ),
-        ],
+      body: StreamBuilder(
+        key: Key("${Random().nextDouble()}"),
+        stream:
+            FirebaseBoardApi().getBoard("4437b74b-99c2-4b5b-b26a-e95b63f5b602"),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            var x = snapshot.data.data()["id"]; //<--- how to get data
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: _board.milestones.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                          decoration: const BoxDecoration(
+                              border: Border(bottom: BorderSide())),
+                          child: _buildList(index));
+                    },
+                  ),
+                ),
+              ],
+            );
+          }
+          return Container(
+              alignment: Alignment.center, child: CircularProgressIndicator());
+        },
       ),
     );
+
     //},
     //);
   }
@@ -96,24 +112,25 @@ class _BoardList extends State<BoardList> {
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
           Container(
-            color: Color.fromARGB(255, 240, 242, 243),
+            color: const Color.fromARGB(255, 240, 242, 243),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
                   child: SizedBox(
                     width: 200,
                     child: Column(
                       children: [
                         AutoSizeText(
                           milestone.title,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 36, fontWeight: FontWeight.bold),
                         ),
                         AutoSizeText(
                           milestone.description,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 24,
                           ),
                         ),
@@ -123,18 +140,13 @@ class _BoardList extends State<BoardList> {
                 ),
                 //TODO: Implement edit milestone dialog where data can be modified
                 ElevatedButton(
-                  child: Text("Edit Milestone"),
+                  child: const Text("Edit Milestone"),
                   style: ElevatedButton.styleFrom(primary: Colors.green[700]),
-                  onPressed: () {
-                    FirebaseBoardApi()
-                        .getBoard("4437b74b-99c2-4b5b-b26a-e95b63f5b602");
-                    //print("Edit Milestone");
-                    // FirebaseBoardApi().createBoard(_board);
-                  },
+                  onPressed: () async {},
                 ),
                 //TODO: Add new Epic to milestone
                 ElevatedButton(
-                  child: Text("Add New Epic"),
+                  child: const Text("Add New Epic"),
                   style: ElevatedButton.styleFrom(primary: Colors.red[700]),
                   onPressed: () {
                     //print("Add PotentialUser Clicked");
@@ -153,8 +165,8 @@ class _BoardList extends State<BoardList> {
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return Container(
-                    decoration:
-                        BoxDecoration(border: Border(right: BorderSide())),
+                    decoration: const BoxDecoration(
+                        border: Border(right: BorderSide())),
                     child: _buildItem(milestone.epics[index]));
               },
             ),
