@@ -9,6 +9,7 @@ import 'package:meta/meta.dart';
 import 'package:user_story_mapper/models/potentialUser.dart';
 import 'package:user_story_mapper/models/milestone.dart';
 import 'package:user_story_mapper/models/epic.dart';
+import 'package:user_story_mapper/models/story.dart';
 
 class LocalStorageBoardApi extends IBoardApi {
   LocalStorageBoardApi({
@@ -144,6 +145,18 @@ class LocalStorageBoardApi extends IBoardApi {
   Future<void> voteForStory(
       String boardId, String milestoneId, String epicId, String storyId) {
     // TODO: implement voteForStory
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> updateEpic(Stream board, Epic epic) {
+    // TODO: implement updateEpic
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> updateStory(Stream board, Story story) {
+    // TODO: implement updateStory
     throw UnimplementedError();
   }
 }

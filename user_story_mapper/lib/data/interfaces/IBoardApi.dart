@@ -4,12 +4,16 @@ import 'package:user_story_mapper/models/potentialUser.dart';
 
 import '../../models/board.dart';
 import '../../models/epic.dart';
+import '../../models/story.dart';
 
 abstract class IBoardApi {
   Stream getBoard(String boardId);
   Future<void> createBoard(Board board);
   Future<void> updateBoard(Board board);
   Future<void> deleteBoard(String boardId);
+
+  Future<void> updateStory(Stream board, Story story);
+  Future<void> updateEpic(Stream board, Epic epic);
 
   Stream<PotentialUser> getPotentialUser(
       String boardId, String potentialUserId);

@@ -22,34 +22,17 @@ class _BoardList extends State<BoardList> {
   //final Stream<Board> _boardStream =
   //    FirebaseBoardApi().getBoard("4437b74b-99c2-4b5b-b26a-e95b63f5b602");
   late Board _board;
+  late Stream _boardStream;
 
   @override
   void initState() {
     super.initState();
-    //var boardStream =
-    //    FirebaseBoardApi().getBoard("4437b74b-99c2-4b5b-b26a-e95b63f5b602");
-
-    //_board = Board.addNewBoard("creatorId", "title", "description");
-    //FirebaseBoardApi().createBoard(_board);
-
-    _board = Board.getEmptyObj(5);
+    _boardStream =
+        FirebaseBoardApi().getBoard("4437b74b-99c2-4b5b-b26a-e95b63f5b602");
   }
 
   @override
   Widget build(BuildContext context) {
-    //return StreamBuilder<Board>(
-    //  stream: _boardStream,
-    //  builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-    //    if (snapshot.hasError) {
-    //      return Text('Something went wrong');
-    //    }
-//
-    //    if (snapshot.connectionState == ConnectionState.waiting) {
-    //      return Text("Loading");
-    //    }
-
-    //Tutaj może normalnie być stream builder jak w editmilestone
-    //jak nie ma danych yo wyswietlic napis loading a jak sa dane to normalnie wyswietlic ten view i git
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       floatingActionButton: FloatingActionButton.extended(
@@ -62,16 +45,11 @@ class _BoardList extends State<BoardList> {
           _board.milestones
               .add(Milestone.createNewMilestone("description", "title"));
           FirebaseBoardApi().updateBoard(_board);
-
-          //TODO: Implement getBoard() method to recieve Stream to board
-          //then add here simple update of board
-          //_board = FirebaseBoardApi().getBoard(_board.id);
         },
       ),
       body: StreamBuilder(
         key: Key("${Random().nextDouble()}"),
-        stream:
-            FirebaseBoardApi().getBoard("4437b74b-99c2-4b5b-b26a-e95b63f5b602"),
+        stream: _boardStream,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             _board = Board.fromJson(snapshot.data.data());
@@ -99,9 +77,6 @@ class _BoardList extends State<BoardList> {
         },
       ),
     );
-
-    //},
-    //);
   }
 
   _buildList(int outerIndex) {
