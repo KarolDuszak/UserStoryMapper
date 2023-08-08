@@ -153,7 +153,7 @@ class _BoardList extends State<BoardList> {
   }
 
   _buildItem(Epic item) {
-    return EpicList(epic: item);
+    return EpicList(epic: item, boardStream: _boardStream);
   }
 
   _onItemReorder(

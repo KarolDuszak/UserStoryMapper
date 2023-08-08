@@ -11,8 +11,10 @@ import 'editStoryForm.dart';
 
 class EpicList extends StatefulWidget {
   final Epic epic;
+  Stream boardStream;
 
-  EpicList({Key? key, required this.epic}) : super(key: key);
+  EpicList({Key? key, required this.epic, required this.boardStream})
+      : super(key: key);
 
   @override
   State createState() => _EpicList();
@@ -20,11 +22,13 @@ class EpicList extends StatefulWidget {
 
 class _EpicList extends State<EpicList> {
   late Epic _epic;
+  late Stream _boardStream;
 
   @override
   void initState() {
     super.initState();
     _epic = widget.epic;
+    _boardStream = widget.boardStream;
   }
 
   @override
@@ -134,6 +138,7 @@ class _EpicList extends State<EpicList> {
         if (_epic.features[oldListIndex].isEmpty) {
           _epic.features.removeAt(oldListIndex);
         }
+        FirebaseBoardApi().updateEpic(_boardStream, _epic);
       },
     );
   }
@@ -145,6 +150,7 @@ class _EpicList extends State<EpicList> {
       }
       var movedList = _epic.features.removeAt(oldListIndex);
       _epic.features.insert(newListIndex, movedList);
+      FirebaseBoardApi().updateEpic(_boardStream, _epic);
     });
   }
 
@@ -207,6 +213,7 @@ class _EpicList extends State<EpicList> {
         //  "muscle": "Biceps",
         //  "sets": {"reps": 10, "weight": 40}
         //}).then((value) => print("Board Created"));
+        FirebaseBoardApi().updateEpic(_boardStream, _epic);
         Navigator.of(context).pop();
       },
     );
