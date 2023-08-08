@@ -74,7 +74,7 @@ class _BoardList extends State<BoardList> {
             FirebaseBoardApi().getBoard("4437b74b-99c2-4b5b-b26a-e95b63f5b602"),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            var x = snapshot.data.data()["id"]; //<--- how to get data
+            _board = Board.fromJson(snapshot.data.data());
             return Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               mainAxisSize: MainAxisSize.min,
@@ -188,6 +188,7 @@ class _BoardList extends State<BoardList> {
       var movedItem =
           _board.milestones[oldListIndex].epics.removeAt(oldItemIndex);
       _board.milestones[newListIndex].epics.insert(newItemIndex, movedItem);
+      FirebaseBoardApi().updateBoard(_board);
     });
   }
 
@@ -196,6 +197,7 @@ class _BoardList extends State<BoardList> {
       var movedList = _board.milestones.removeAt(oldListIndex);
       _board.milestones.insert(newListIndex, movedList);
     });
+    FirebaseBoardApi().updateBoard(_board);
   }
 
   _getMaxHeightInMilestone() {
