@@ -13,6 +13,7 @@ abstract class IBoardApi {
   Future<void> deleteBoard(String boardId);
 
   Future<void> updateEpic(String boardId, Epic epic);
+  Future<void> updateEpicProperties(String boardId, Story epic);
   Future<void> updateStory(String boardId, String epicId, Story story);
 
   Stream<PotentialUser> getPotentialUser(

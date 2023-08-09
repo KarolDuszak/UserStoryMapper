@@ -107,10 +107,11 @@ class EditStoryFormState extends State<EditStoryForm> {
                       potentialUsers: currentStory.potentialUsers,
                       votes: currentStory.votes);
 
-                  FirebaseBoardApi()
-                      .updateStory(this.boardId, this.epicId, newStory);
-                  print(
-                      "Implementation to add new story to existing epic and to database");
+                  if (epicId != "") {
+                    FirebaseBoardApi().updateStory(boardId, epicId, newStory);
+                  } else {
+                    FirebaseBoardApi().updateEpicProperties(boardId, newStory);
+                  }
                 },
                 child: const Text("Confirm"),
               ),

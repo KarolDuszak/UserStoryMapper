@@ -89,6 +89,37 @@ class FirebaseBoardApi extends IBoardApi {
   }
 
   @override
+  Future<void> updateEpicProperties(String boardId, Story epic) async {
+    var snapshot = await boardsRef.doc(boardId).get();
+
+    var data = snapshot.data() as Map<String, dynamic>;
+    Board board = Board.fromJson(data);
+
+    for (var m in board.milestones) {
+      int index = m.epics.indexWhere((element) => element.id == epic.id);
+
+      if (index != -1) {
+        int mIndex =
+            board.milestones.indexWhere((element) => element.id == m.id);
+        Epic prevEpic = board.milestones[mIndex].epics[index];
+        Epic newEpic = Epic(
+            id: epic.id,
+            description: epic.description,
+            title: epic.title,
+            features: prevEpic.features,
+            potentialUsers: prevEpic.potentialUsers,
+            votes: prevEpic.votes);
+        board.milestones[mIndex].epics.removeAt(index);
+        board.milestones[mIndex].epics.insert(index, newEpic);
+        updateBoard(board);
+        return;
+      }
+    }
+
+    throw Exception("Could not find epic to update");
+  }
+
+  @override
   Future<void> updateStory(String boardId, String epicId, Story story) async {
     var snapshot = await boardsRef.doc(boardId).get();
     var data = snapshot.data() as Map<String, dynamic>;
