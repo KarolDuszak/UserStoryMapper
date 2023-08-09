@@ -1,42 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:user_story_mapper/data/implementations/FirebaseBoardApi.dart';
 import 'package:user_story_mapper/models/potentialUser.dart';
 import 'package:user_story_mapper/models/story.dart';
 
 class EditStoryForm extends StatefulWidget {
   late Story currentStory;
+  late String boardId;
+  late String epicId;
   @override
-  EditStoryFormState createState() => EditStoryFormState(currentStory);
+  EditStoryFormState createState() =>
+      EditStoryFormState(boardId, epicId, currentStory);
 
-  EditStoryForm(Story order) {
-    this.currentStory = order;
+  EditStoryForm(String boardId, String epicId, Story story) {
+    this.boardId = boardId;
+    this.epicId = epicId;
+    this.currentStory = story;
   }
 }
 
 class EditStoryFormState extends State<EditStoryForm> {
   final _formKey = GlobalKey<FormState>();
   late Story currentStory;
+  late String boardId;
+  late String epicId;
 
   //Story
   final description = TextEditingController();
   final title = TextEditingController();
   final potentialUser = TextEditingController();
 
-  EditStoryFormState(Story order) {
+  EditStoryFormState(String boardId, String epicId, Story order) {
     this.currentStory = order;
+    this.boardId = boardId;
+    this.epicId = epicId;
     this.description.text = currentStory.description;
     this.title.text = currentStory.title;
     this.potentialUser.text = currentStory.potentialUsers![0].name;
-  }
-
-  Future<Story> getStory() async {
-    return new Story(
-        id: "ID should be generated as GUID",
-        creatorId: "Prescribe creator id from context",
-        description: description.text,
-        title: description.text,
-        potentialUsers:
-            List.generate(2, (index) => PotentialUser.getEmptyObj()),
-        votes: 0);
   }
 
   @override
@@ -100,6 +99,16 @@ class EditStoryFormState extends State<EditStoryForm> {
               padding: const EdgeInsets.symmetric(vertical: 16.0),
               child: ElevatedButton(
                 onPressed: () async {
+                  Story newStory = Story(
+                      id: currentStory.id,
+                      creatorId: currentStory.creatorId,
+                      description: description.text,
+                      title: title.text,
+                      potentialUsers: currentStory.potentialUsers,
+                      votes: currentStory.votes);
+
+                  FirebaseBoardApi()
+                      .updateStory(this.boardId, this.epicId, newStory);
                   print(
                       "Implementation to add new story to existing epic and to database");
                 },

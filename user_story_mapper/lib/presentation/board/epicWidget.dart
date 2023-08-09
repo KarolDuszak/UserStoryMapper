@@ -44,7 +44,7 @@ class _EpicList extends State<EpicList> {
             padding: EdgeInsets.fromLTRB(15, 5, 15, 10),
             child: Row(
               children: [
-                StoryCard.epic(_epic),
+                StoryCard.epic(widget.boardId, _epic),
                 SizedBox(width: 30),
                 ElevatedButton(onPressed: () {}, child: Text("Move Epic")),
                 ElevatedButton(
@@ -122,7 +122,7 @@ class _EpicList extends State<EpicList> {
     return DragAndDropItem(
       child: Container(
         padding: EdgeInsets.all(10),
-        child: StoryCard.story(item),
+        child: StoryCard.story(widget.boardId, _epic.id, item),
       ),
     );
   }
@@ -226,7 +226,8 @@ class _EpicList extends State<EpicList> {
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Text("Add User Story to Epic ${_epic.title}"),
-      content: Container(child: EditStoryForm(Story.getEmptyObj2())),
+      content: Container(
+          child: EditStoryForm(widget.boardId, _epic.id, Story.getEmptyObj2())),
       actions: [
         addButton,
         cancelButton,

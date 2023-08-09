@@ -73,10 +73,10 @@ class FirebaseBoardApi extends IBoardApi {
     Board board = Board.fromJson(data);
 
     for (var m in board.milestones) {
-      final index = m.epics.indexWhere((element) => element.id == epic.id);
+      int index = m.epics.indexWhere((element) => element.id == epic.id);
 
       if (index != -1) {
-        var mIndex =
+        int mIndex =
             board.milestones.indexWhere((element) => element.id == m.id);
         board.milestones[mIndex].epics.removeAt(index);
         board.milestones[mIndex].epics.insert(index, epic);
@@ -85,14 +85,46 @@ class FirebaseBoardApi extends IBoardApi {
       }
     }
 
-    //Here should be custom exception for cound not update epic
-    throw UnimplementedError();
+    throw Exception("Could not find epic to update");
   }
 
   @override
-  Future<void> updateStory(String boardId, Story story) {
-    // TODO: implement updateStory
-    throw UnimplementedError();
+  Future<void> updateStory(String boardId, String epicId, Story story) async {
+    var snapshot = await boardsRef.doc(boardId).get();
+    var data = snapshot.data() as Map<String, dynamic>;
+    Board board = Board.fromJson(data);
+
+    for (var m in board.milestones) {
+      int eIndex = m.epics.indexWhere((element) => element.id == epicId);
+      if (eIndex == -1) {
+        continue;
+      }
+
+      int mIndex = board.milestones.indexWhere((element) => element.id == m.id);
+      for (List<Story> feature
+          in board.milestones[mIndex].epics[eIndex].features) {
+        int sIndex = feature.indexWhere((element) => element.id == story.id);
+
+        if (sIndex == -1) {
+          continue;
+        }
+        int fIndex = board.milestones[mIndex].epics[eIndex].features
+            .indexWhere((element) => element.first.id == feature.first.id);
+
+        if (fIndex == -1) {
+          throw Exception("For some reason feature not found");
+        }
+
+        board.milestones[mIndex].epics[eIndex].features[fIndex]
+            .removeAt(sIndex);
+        board.milestones[mIndex].epics[eIndex].features[fIndex]
+            .insert(sIndex, story);
+        updateBoard(board);
+        return;
+      }
+    }
+
+    throw Exception("Could not find story to update in database");
   }
 
   @override

@@ -8,36 +8,48 @@ import '../../models/epic.dart';
 import 'editStoryForm.dart';
 
 class StoryCard extends StatefulWidget {
+  final String boardId;
+  final String epicId;
   final String id;
   final String title;
   final String description;
   final List<PotentialUser>? potentialUsers;
   final int votes;
   final Color? color;
+  final bool isEpic;
 
   StoryCard(
-      {required this.id,
+      {required this.boardId,
+      required this.epicId,
+      required this.id,
       required this.title,
       required this.description,
       required this.potentialUsers,
       required this.votes,
+      required this.isEpic,
       required this.color})
       : super(key: Key(id));
 
-  StoryCard.epic(Epic epic)
-      : id = epic.id,
+  StoryCard.epic(String boardId, Epic epic)
+      : boardId = boardId,
+        epicId = "",
+        id = epic.id,
         title = epic.title,
         description = epic.description,
         potentialUsers = epic.potentialUsers,
         votes = epic.votes ?? 0,
+        isEpic = true,
         color = Colors.red[500];
 
-  StoryCard.story(Story story)
-      : id = story.id,
+  StoryCard.story(String boardId, String epicId, Story story)
+      : boardId = boardId,
+        epicId = epicId,
+        id = story.id,
         title = story.title,
         description = story.description,
         potentialUsers = story.potentialUsers,
         votes = story.votes ?? 0,
+        isEpic = false,
         color = Colors.amber[300];
 
   @override
@@ -45,12 +57,15 @@ class StoryCard extends StatefulWidget {
 }
 
 class _StoryCard extends State<StoryCard> {
+  late String boardId;
+  late String epicId;
   late String id;
   late String title;
   late String description;
   late List<PotentialUser>? potentialUsers;
   late int votes;
   late Color? color;
+  late bool isEpic;
   late bool isEditMode = false;
 
   @override
@@ -60,12 +75,15 @@ class _StoryCard extends State<StoryCard> {
   }
 
   _setProperties() {
+    boardId = widget.boardId;
+    epicId = widget.epicId;
     id = widget.id;
     title = widget.title;
     description = widget.description;
     color = widget.color;
     potentialUsers = widget.potentialUsers;
     votes = widget.votes;
+    isEpic = widget.isEpic;
   }
 
   @override
@@ -183,6 +201,8 @@ class _StoryCard extends State<StoryCard> {
       title: Text("Edit User Story: ${title}"),
       content: Container(
         child: EditStoryForm(
+          boardId,
+          epicId,
           Story(
               id: id,
               creatorId: "TO BE PASSED WHEN USERS WILL LOGIN",
