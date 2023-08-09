@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drag_and_drop_lists/drag_and_drop_list_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:drag_and_drop_lists/drag_and_drop_lists.dart';
@@ -11,9 +10,9 @@ import 'editStoryForm.dart';
 
 class EpicList extends StatefulWidget {
   final Epic epic;
-  Stream boardStream;
+  String boardId;
 
-  EpicList({Key? key, required this.epic, required this.boardStream})
+  EpicList({Key? key, required this.epic, required this.boardId})
       : super(key: key);
 
   @override
@@ -22,13 +21,13 @@ class EpicList extends StatefulWidget {
 
 class _EpicList extends State<EpicList> {
   late Epic _epic;
-  late Stream _boardStream;
+  late String _boardId;
 
   @override
   void initState() {
     super.initState();
     _epic = widget.epic;
-    _boardStream = widget.boardStream;
+    _boardId = widget.boardId;
   }
 
   @override
@@ -47,7 +46,13 @@ class _EpicList extends State<EpicList> {
               children: [
                 StoryCard.epic(_epic),
                 SizedBox(width: 30),
-                ElevatedButton(onPressed: () {}, child: Text("Move Epic"))
+                ElevatedButton(onPressed: () {}, child: Text("Move Epic")),
+                ElevatedButton(
+                  onPressed: () {
+                    FirebaseBoardApi().updateEpic(_boardId, _epic);
+                  },
+                  child: Text("Test api"),
+                ),
               ],
             ),
           ),
@@ -138,7 +143,7 @@ class _EpicList extends State<EpicList> {
         if (_epic.features[oldListIndex].isEmpty) {
           _epic.features.removeAt(oldListIndex);
         }
-        FirebaseBoardApi().updateEpic(_boardStream, _epic);
+        FirebaseBoardApi().updateEpic(_boardId, _epic);
       },
     );
   }
@@ -150,7 +155,7 @@ class _EpicList extends State<EpicList> {
       }
       var movedList = _epic.features.removeAt(oldListIndex);
       _epic.features.insert(newListIndex, movedList);
-      FirebaseBoardApi().updateEpic(_boardStream, _epic);
+      FirebaseBoardApi().updateEpic(_boardId, _epic);
     });
   }
 
@@ -213,7 +218,7 @@ class _EpicList extends State<EpicList> {
         //  "muscle": "Biceps",
         //  "sets": {"reps": 10, "weight": 40}
         //}).then((value) => print("Board Created"));
-        FirebaseBoardApi().updateEpic(_boardStream, _epic);
+        FirebaseBoardApi().updateEpic(_boardId, _epic);
         Navigator.of(context).pop();
       },
     );

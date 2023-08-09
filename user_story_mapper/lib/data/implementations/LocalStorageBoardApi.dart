@@ -149,13 +149,13 @@ class LocalStorageBoardApi extends IBoardApi {
   }
 
   @override
-  Future<void> updateEpic(Stream board, Epic epic) {
+  Future<void> updateEpic(String boardId, Epic epic) {
     // TODO: implement updateEpic
     throw UnimplementedError();
   }
 
   @override
-  Future<void> updateStory(Stream board, Story story) {
+  Future<void> updateStory(String boardId, Story story) {
     // TODO: implement updateStory
     throw UnimplementedError();
   }

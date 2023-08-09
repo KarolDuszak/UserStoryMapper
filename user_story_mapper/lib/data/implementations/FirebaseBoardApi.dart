@@ -66,13 +66,31 @@ class FirebaseBoardApi extends IBoardApi {
   }
 
   @override
-  Future<void> updateEpic(Stream board, Epic epic) {
-    // TODO: implement updateEpic
+  Future<void> updateEpic(String boardId, Epic epic) async {
+    var snapshot = await boardsRef.doc(boardId).get();
+
+    var data = snapshot.data() as Map<String, dynamic>;
+    Board board = Board.fromJson(data);
+
+    for (var m in board.milestones) {
+      final index = m.epics.indexWhere((element) => element.id == epic.id);
+
+      if (index != -1) {
+        var mIndex =
+            board.milestones.indexWhere((element) => element.id == m.id);
+        board.milestones[mIndex].epics.removeAt(index);
+        board.milestones[mIndex].epics.insert(index, epic);
+        updateBoard(board);
+        return;
+      }
+    }
+
+    //Here should be custom exception for cound not update epic
     throw UnimplementedError();
   }
 
   @override
-  Future<void> updateStory(Stream board, Story story) {
+  Future<void> updateStory(String boardId, Story story) {
     // TODO: implement updateStory
     throw UnimplementedError();
   }

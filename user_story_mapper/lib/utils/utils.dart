@@ -22,10 +22,12 @@ class Util {
     Map<String, Map<String, dynamic>> result = {};
     int index = 0;
     for (List<Story> row in features) {
+      int jIndex = 0;
       result.addEntries([MapEntry(index.toString(), {})]);
       for (Story story in row) {
         result[index.toString()]
-            ?.addEntries([MapEntry(story.id, story.toJson())]);
+            ?.addEntries([MapEntry(jIndex.toString(), story.toJson())]);
+        jIndex++;
       }
       index++;
     }

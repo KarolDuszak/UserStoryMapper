@@ -12,8 +12,8 @@ abstract class IBoardApi {
   Future<void> updateBoard(Board board);
   Future<void> deleteBoard(String boardId);
 
-  Future<void> updateStory(Stream board, Story story);
-  Future<void> updateEpic(Stream board, Epic epic);
+  Future<void> updateStory(String boardId, Story story);
+  Future<void> updateEpic(String boardId, Epic epic);
 
   Stream<PotentialUser> getPotentialUser(
       String boardId, String potentialUserId);
