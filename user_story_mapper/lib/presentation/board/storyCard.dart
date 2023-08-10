@@ -1,4 +1,6 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:user_story_mapper/data/implementations/FirebaseBoardApi.dart';
 import 'package:user_story_mapper/models/labelColor.dart';
 import 'package:user_story_mapper/models/potentialUser.dart';
 import 'package:user_story_mapper/models/story.dart';
@@ -120,7 +122,10 @@ class _StoryCard extends State<StoryCard> {
             ElevatedButton(
                 onPressed: () => print("b2 pressed"), child: Icon(Icons.save)),
             ElevatedButton(
-                onPressed: () => print("b3 pressed"), child: Icon(Icons.delete))
+                onPressed: () {
+                  showDeleteConfirmDialog(context);
+                },
+                child: Icon(Icons.delete))
           ],
         ),
       ),
@@ -186,12 +191,51 @@ class _StoryCard extends State<StoryCard> {
         mainAxisAlignment: MainAxisAlignment.center, children: itemArray);
   }
 
+  showDeleteConfirmDialog(BuildContext context) {
+    Widget cancelButton = ElevatedButton(
+      child: Text("Cancel"),
+      style: ElevatedButton.styleFrom(primary: Colors.green[700]),
+      onPressed: () {
+        isEditMode = false;
+        Navigator.of(context).pop();
+      },
+    );
+    Widget deleteButton = ElevatedButton(
+      child: Text("Delete"),
+      style: ElevatedButton.styleFrom(primary: Colors.red[700]),
+      onPressed: () {
+        FirebaseBoardApi().deleteStory(boardId, epicId, id);
+        isEditMode = false;
+        Navigator.of(context).pop();
+      },
+    );
+
+    AlertDialog alert = AlertDialog(
+      title: Text("Are you sure you want to delete user story?"),
+      content: Container(
+        child: Text(title),
+      ),
+      actions: [
+        deleteButton,
+        cancelButton,
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
   showEditStoryDialog(BuildContext context) {
     // set up the buttons
     Widget cancelButton = ElevatedButton(
-      child: Text("Anuluj"),
+      child: Text("Cancel"),
       style: ElevatedButton.styleFrom(primary: Colors.green[700]),
       onPressed: () {
+        isEditMode = false;
         Navigator.of(context).pop();
       },
     );

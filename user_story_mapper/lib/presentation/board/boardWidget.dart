@@ -19,16 +19,18 @@ class BoardList extends StatefulWidget {
 }
 
 class _BoardList extends State<BoardList> {
-  //final Stream<Board> _boardStream =
-  //    FirebaseBoardApi().getBoard("4437b74b-99c2-4b5b-b26a-e95b63f5b602");
   late Board _board;
   late Stream _boardStream;
 
   @override
   void initState() {
     super.initState();
+    //TODO to remove before deployment
+    //For testing porporse
+    //Board board2 = Board.getEmptyObj(4);
+    //FirebaseBoardApi().createBoard(board2);
     _boardStream =
-        FirebaseBoardApi().getBoard("4437b74b-99c2-4b5b-b26a-e95b63f5b602");
+        FirebaseBoardApi().getBoard("8be2ec23-4de6-4a27-9b1b-0ce8590e5e05");
   }
 
   @override

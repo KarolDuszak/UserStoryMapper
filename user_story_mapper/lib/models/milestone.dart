@@ -30,7 +30,7 @@ class Milestone extends Equatable {
 
   static Milestone getEmptyObj(int num) {
     return Milestone(
-        id: "NULL",
+        id: Uuid().v4(),
         description: "NULL description",
         title: "NULL title",
         epics: List.generate(3, (innerIndex) => Epic.getEmptyObj(innerIndex)));

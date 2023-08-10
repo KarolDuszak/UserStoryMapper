@@ -66,6 +66,12 @@ class FirebaseBoardApi extends IBoardApi {
   }
 
   @override
+  Future<void> createEpic(String boardId, int milestoneIndex, Epic epic) {
+    // TODO: implement createEpic
+    throw UnimplementedError();
+  }
+
+  @override
   Future<void> updateEpic(String boardId, Epic epic) async {
     var snapshot = await boardsRef.doc(boardId).get();
 
@@ -120,6 +126,19 @@ class FirebaseBoardApi extends IBoardApi {
   }
 
   @override
+  Future<void> deleteEpic(String boardId, String epicId) {
+    // TODO: implement deleteEpic
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> createStory(
+      String boardId, String epicId, int featureIndex, Story story) {
+    // TODO: implement createStory
+    throw UnimplementedError();
+  }
+
+  @override
   Future<void> updateStory(String boardId, String epicId, Story story) async {
     var snapshot = await boardsRef.doc(boardId).get();
     var data = snapshot.data() as Map<String, dynamic>;
@@ -156,6 +175,44 @@ class FirebaseBoardApi extends IBoardApi {
     }
 
     throw Exception("Could not find story to update in database");
+  }
+
+  @override
+  Future<void> deleteStory(
+      String boardId, String epicId, String storyId) async {
+    var snapshot = await boardsRef.doc(boardId).get();
+    var data = snapshot.data() as Map<String, dynamic>;
+    Board board = Board.fromJson(data);
+
+    for (var m in board.milestones) {
+      int eIndex = m.epics.indexWhere((element) => element.id == epicId);
+      if (eIndex == -1) {
+        continue;
+      }
+
+      int mIndex = board.milestones.indexWhere((element) => element.id == m.id);
+      for (List<Story> feature
+          in board.milestones[mIndex].epics[eIndex].features) {
+        int sIndex = feature.indexWhere((element) => element.id == storyId);
+
+        if (sIndex == -1) {
+          continue;
+        }
+        int fIndex = board.milestones[mIndex].epics[eIndex].features
+            .indexWhere((element) => element.first.id == feature.first.id);
+
+        if (fIndex == -1) {
+          throw Exception("For some reason feature not found");
+        }
+
+        board.milestones[mIndex].epics[eIndex].features[fIndex]
+            .removeAt(sIndex);
+        updateBoard(board);
+        return;
+      }
+    }
+
+    throw Exception("Could not find story to delete in database");
   }
 
   @override
