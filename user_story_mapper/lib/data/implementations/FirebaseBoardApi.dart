@@ -66,9 +66,14 @@ class FirebaseBoardApi extends IBoardApi {
   }
 
   @override
-  Future<void> createEpic(String boardId, int milestoneIndex, Epic epic) {
-    // TODO: implement createEpic
-    throw UnimplementedError();
+  Future<void> createEpic(String boardId, int milestoneIndex, Epic epic) async {
+    var snapshot = await boardsRef.doc(boardId).get();
+
+    var data = snapshot.data() as Map<String, dynamic>;
+    Board board = Board.fromJson(data);
+    board.milestones[milestoneIndex].epics.add(epic);
+
+    updateBoard(board);
   }
 
   @override
@@ -168,22 +173,22 @@ class FirebaseBoardApi extends IBoardApi {
 
       int mIndex = board.milestones.indexWhere((element) => element.id == m.id);
       for (List<Story> feature
-          in board.milestones[mIndex].epics[eIndex].features) {
+          in board.milestones[mIndex].epics[eIndex].features!) {
         int sIndex = feature.indexWhere((element) => element.id == story.id);
 
         if (sIndex == -1) {
           continue;
         }
-        int fIndex = board.milestones[mIndex].epics[eIndex].features
-            .indexWhere((element) => element.first.id == feature.first.id);
+        int? fIndex = board.milestones[mIndex].epics[eIndex].features
+            ?.indexWhere((element) => element.first.id == feature.first.id);
 
         if (fIndex == -1) {
           throw Exception("For some reason feature not found");
         }
 
-        board.milestones[mIndex].epics[eIndex].features[fIndex]
+        board.milestones[mIndex].epics[eIndex].features?[fIndex!]
             .removeAt(sIndex);
-        board.milestones[mIndex].epics[eIndex].features[fIndex]
+        board.milestones[mIndex].epics[eIndex].features?[fIndex!]
             .insert(sIndex, story);
         updateBoard(board);
         return;
@@ -208,20 +213,20 @@ class FirebaseBoardApi extends IBoardApi {
 
       int mIndex = board.milestones.indexWhere((element) => element.id == m.id);
       for (List<Story> feature
-          in board.milestones[mIndex].epics[eIndex].features) {
+          in board.milestones[mIndex].epics[eIndex].features!) {
         int sIndex = feature.indexWhere((element) => element.id == storyId);
 
         if (sIndex == -1) {
           continue;
         }
-        int fIndex = board.milestones[mIndex].epics[eIndex].features
-            .indexWhere((element) => element.first.id == feature.first.id);
+        int? fIndex = board.milestones[mIndex].epics[eIndex].features
+            ?.indexWhere((element) => element.first.id == feature.first.id);
 
         if (fIndex == -1) {
           throw Exception("For some reason feature not found");
         }
 
-        board.milestones[mIndex].epics[eIndex].features[fIndex]
+        board.milestones[mIndex].epics[eIndex].features?[fIndex!]
             .removeAt(sIndex);
         updateBoard(board);
         return;

@@ -12,8 +12,6 @@ abstract class IBoardApi {
   Future<void> updateBoard(Board board);
   Future<void> deleteBoard(String boardId);
 
-  //TA METODA PRAWDOPODOBNIE ZBEDNA! NA POZIOMIE BOARDU WYSTARCZY STWORZYĆ NA UI
-  //I WYWOLAC UPDATE BOARD! (bo mogę bezpośrednio dodać do objektu Board który jest w boardWidget)
   //Do zastanowienia się https://stackoverflow.com/questions/58159655/access-child-widgets-variable-in-parent-widget-flutter-with-dart
   //Czy zamiast przekazywania indexu to nie użyć call backa jak na stacku mówią
   Future<void> createEpic(String boardId, int milestoneIndex, Epic epic);

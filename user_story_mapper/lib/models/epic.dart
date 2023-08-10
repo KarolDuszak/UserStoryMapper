@@ -21,7 +21,7 @@ class Epic extends Equatable {
   final String id;
   final String description;
   final String title;
-  final List<List<Story>> features;
+  final List<List<Story>>? features;
   final List<PotentialUser>? potentialUsers;
   final int? votes;
 

@@ -18,10 +18,11 @@ class Util {
   }
 
   static Map<String, dynamic> encodeMatrixOfStoriesToMap(
-      List<List<Story>> features) {
+      List<List<Story>>? features) {
+        
     Map<String, Map<String, dynamic>> result = {};
     int index = 0;
-    for (List<Story> row in features) {
+    for (List<Story> row in features!) {
       int jIndex = 0;
       result.addEntries([MapEntry(index.toString(), {})]);
       for (Story story in row) {
