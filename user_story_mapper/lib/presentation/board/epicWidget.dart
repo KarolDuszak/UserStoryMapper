@@ -34,7 +34,7 @@ class _EpicList extends State<EpicList> {
   Widget build(BuildContext context) {
     _epic = widget.epic;
     return SizedBox(
-      width: 233.5 * (_epic.features.length.toDouble() + 1),
+      width: 233.5 * (_epic.features!.length.toDouble() + 1),
       height: 219 * _getLongestFeature().toDouble() + 40,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -89,7 +89,7 @@ class _EpicList extends State<EpicList> {
             alignment: Alignment.center,
             child: ElevatedButton(
                 onPressed: () {
-                  showAddStoryDialog(context, _epic.features.length - 1);
+                  showAddStoryDialog(context, _epic.features!.length - 1);
                 },
                 child: Text("Add Story"))),
         children: [],
@@ -99,7 +99,7 @@ class _EpicList extends State<EpicList> {
   }
 
   _buildList(int outerIndex) {
-    var feature = _epic.features[outerIndex];
+    var feature = _epic.features![outerIndex];
     List<DragAndDropItem> featureList = List.generate(
         feature.length, (index) => _buildItemFromStory(feature[index]));
 
@@ -131,17 +131,17 @@ class _EpicList extends State<EpicList> {
       int oldItemIndex, int oldListIndex, int newItemIndex, int newListIndex) {
     setState(
       () {
-        var movedItem = _epic.features[oldListIndex].removeAt(oldItemIndex);
+        var movedItem = _epic.features![oldListIndex].removeAt(oldItemIndex);
 
         //Add new feature if needed
-        if (_epic.features.length <= newListIndex) {
-          _epic.features.add([]);
+        if (_epic.features!.length <= newListIndex) {
+          _epic.features!.add([]);
         }
-        _epic.features[newListIndex].insert(newItemIndex, movedItem);
+        _epic.features![newListIndex].insert(newItemIndex, movedItem);
 
         //Remove empty feature
-        if (_epic.features[oldListIndex].isEmpty) {
-          _epic.features.removeAt(oldListIndex);
+        if (_epic.features![oldListIndex].isEmpty) {
+          _epic.features?.removeAt(oldListIndex);
         }
         FirebaseBoardApi().updateEpic(_boardId, _epic);
       },
@@ -150,11 +150,11 @@ class _EpicList extends State<EpicList> {
 
   _onListReorder(int oldListIndex, int newListIndex) {
     setState(() {
-      if (newListIndex >= _epic.features.length) {
-        newListIndex = _epic.features.length - 1;
+      if (newListIndex >= _epic.features!.length) {
+        newListIndex = _epic.features!.length - 1;
       }
-      var movedList = _epic.features.removeAt(oldListIndex);
-      _epic.features.insert(newListIndex, movedList);
+      var movedList = _epic.features?.removeAt(oldListIndex);
+      _epic.features?.insert(newListIndex, movedList!);
       FirebaseBoardApi().updateEpic(_boardId, _epic);
     });
   }
@@ -165,7 +165,7 @@ class _EpicList extends State<EpicList> {
 
   int _getLongestFeature() {
     int maxLen = 0;
-    for (var feature in _epic.features) {
+    for (var feature in _epic.features!) {
       if (feature.length > maxLen) {
         maxLen = feature.length;
       }

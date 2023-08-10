@@ -154,6 +154,50 @@ class _BoardList extends State<BoardList> {
     );
   }
 
+  showAddEpicDialog(BuildContext context) {
+    Widget cancelButton = ElevatedButton(
+      child: Text("Cancel"),
+      style: ElevatedButton.styleFrom(primary: Colors.green[700]),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+    Widget deleteButton = ElevatedButton(
+      child: Text("Delete"),
+      style: ElevatedButton.styleFrom(primary: Colors.red[700]),
+      onPressed: () {
+        FirebaseBoardApi().createEpic(
+          _board.id,
+          0,
+          Epic(id: Uuid().v4(), description: "l", title: "title"),
+        );
+        Navigator.of(context).pop();
+      },
+    );
+
+    AlertDialog alert = AlertDialog(
+      title: Text("Create new EPIC"),
+      content: Container(
+        child: Column(children: [
+          TextField(
+            decoration: InputDecoration(label: Text("Title")),
+          )
+        ]),
+      ),
+      actions: [
+        deleteButton,
+        cancelButton,
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
   _buildItem(Epic item) {
     return EpicList(epic: item, boardId: _board.id);
   }
@@ -182,9 +226,9 @@ class _BoardList extends State<BoardList> {
     for (var i = 0; i < _board.milestones.length; i++) {
       for (var j = 0; j < _board.milestones[i].epics.length; j++) {
         for (var k = 0;
-            k < _board.milestones[i].epics[j].features.length;
+            k < _board.milestones[i].epics[j].features!.length;
             k++) {
-          var currentHeight = _board.milestones[i].epics[j].features[k].length;
+          var currentHeight = _board.milestones[i].epics[j].features![k].length;
           if (currentHeight > maxHeight) {
             maxHeight = currentHeight;
           }

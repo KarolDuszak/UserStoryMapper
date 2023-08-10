@@ -13,7 +13,7 @@ class Epic extends Equatable {
       {required this.id,
       required this.description,
       required this.title,
-      required this.features,
+      this.features,
       this.potentialUsers,
       this.votes});
 
