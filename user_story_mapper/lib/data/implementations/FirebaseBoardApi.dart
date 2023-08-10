@@ -126,9 +126,25 @@ class FirebaseBoardApi extends IBoardApi {
   }
 
   @override
-  Future<void> deleteEpic(String boardId, String epicId) {
-    // TODO: implement deleteEpic
-    throw UnimplementedError();
+  Future<void> deleteEpic(String boardId, String epicId) async {
+    var snapshot = await boardsRef.doc(boardId).get();
+
+    var data = snapshot.data() as Map<String, dynamic>;
+    Board board = Board.fromJson(data);
+
+    for (var m in board.milestones) {
+      int index = m.epics.indexWhere((element) => element.id == epicId);
+
+      if (index != -1) {
+        int mIndex =
+            board.milestones.indexWhere((element) => element.id == m.id);
+        board.milestones[mIndex].epics.removeAt(index);
+        updateBoard(board);
+        return;
+      }
+    }
+
+    throw Exception("Could not find epic to delete");
   }
 
   @override

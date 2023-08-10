@@ -204,14 +204,23 @@ class _StoryCard extends State<StoryCard> {
       child: Text("Delete"),
       style: ElevatedButton.styleFrom(primary: Colors.red[700]),
       onPressed: () {
-        FirebaseBoardApi().deleteStory(boardId, epicId, id);
+        if (isEpic) {
+          FirebaseBoardApi().deleteEpic(boardId, id);
+        } else {
+          FirebaseBoardApi().deleteStory(boardId, epicId, id);
+        }
         isEditMode = false;
         Navigator.of(context).pop();
       },
     );
 
+    String alertText = "Are you sure you want to delete user story?";
+    if (isEpic) {
+      alertText = "Are you sure you want to delete EPIC?";
+    }
+
     AlertDialog alert = AlertDialog(
-      title: Text("Are you sure you want to delete user story?"),
+      title: Text(alertText),
       content: Container(
         child: Text(title),
       ),
