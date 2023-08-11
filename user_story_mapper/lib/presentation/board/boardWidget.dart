@@ -126,11 +126,7 @@ class _BoardList extends State<BoardList> {
                   child: const Text("Add New Epic"),
                   style: ElevatedButton.styleFrom(primary: Colors.red[700]),
                   onPressed: () {
-                    //print("Add PotentialUser Clicked");
-                    //FirebaseBoardApi().createPotentialUser(
-                    //  _board.id,
-                    //  PotentialUser.getEmptyObj(),
-                    //);
+                    showAddEpicDialog(context, outerIndex);
                   },
                 ),
               ],
@@ -154,7 +150,9 @@ class _BoardList extends State<BoardList> {
     );
   }
 
-  showAddEpicDialog(BuildContext context) {
+  showAddEpicDialog(BuildContext context, int milestoneIndex) {
+    final description = TextEditingController();
+    final title = TextEditingController();
     Widget cancelButton = ElevatedButton(
       child: Text("Cancel"),
       style: ElevatedButton.styleFrom(primary: Colors.green[700]),
@@ -168,8 +166,14 @@ class _BoardList extends State<BoardList> {
       onPressed: () {
         FirebaseBoardApi().createEpic(
           _board.id,
-          0,
-          Epic(id: Uuid().v4(), description: "l", title: "title"),
+          milestoneIndex,
+          Epic(
+              id: Uuid().v4(),
+              description: description.text,
+              title: title.text,
+              features: [],
+              potentialUsers: [],
+              votes: 0),
         );
         Navigator.of(context).pop();
       },
@@ -181,6 +185,11 @@ class _BoardList extends State<BoardList> {
         child: Column(children: [
           TextField(
             decoration: InputDecoration(label: Text("Title")),
+            controller: title,
+          ),
+          TextField(
+            decoration: InputDecoration(label: Text("Description")),
+            controller: description,
           )
         ]),
       ),

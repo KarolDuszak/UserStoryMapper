@@ -35,7 +35,11 @@ class EditStoryFormState extends State<EditStoryForm> {
     this.epicId = epicId;
     this.description.text = currentStory.description;
     this.title.text = currentStory.title;
-    this.potentialUser.text = currentStory.potentialUsers![0].name;
+    if (currentStory.potentialUsers!.length > 0) {
+      this.potentialUser.text = currentStory.potentialUsers![0].name;
+    } else {
+      this.potentialUser.text = "None";
+    }
   }
 
   @override

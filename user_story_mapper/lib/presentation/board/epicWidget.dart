@@ -33,8 +33,12 @@ class _EpicList extends State<EpicList> {
   @override
   Widget build(BuildContext context) {
     _epic = widget.epic;
+    var featuresFactor = (_epic.features!.length.toDouble() + 1);
+    if (featuresFactor < 2) {
+      featuresFactor = 2;
+    }
     return SizedBox(
-      width: 233.5 * (_epic.features!.length.toDouble() + 1),
+      width: 233.5 * featuresFactor,
       height: 219 * _getLongestFeature().toDouble() + 40,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
