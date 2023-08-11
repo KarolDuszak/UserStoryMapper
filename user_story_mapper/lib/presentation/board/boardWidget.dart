@@ -244,6 +244,6 @@ class _BoardList extends State<BoardList> {
         }
       }
     }
-    return (maxHeight + 1) * 219 + 40;
+    return (maxHeight + 1) * 170 + 100;
   }
 }

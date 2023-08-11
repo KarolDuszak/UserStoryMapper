@@ -39,7 +39,7 @@ class _EpicList extends State<EpicList> {
     }
     return SizedBox(
       width: 233.5 * featuresFactor,
-      height: 219 * _getLongestFeature().toDouble() + 40,
+      height: _getLongestFeature().toDouble() * 170 + 100,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -174,7 +174,7 @@ class _EpicList extends State<EpicList> {
         maxLen = feature.length;
       }
     }
-    return maxLen + 1;
+    return maxLen;
   }
 
   showAddStoryDialog(BuildContext context, int listIndex) {
