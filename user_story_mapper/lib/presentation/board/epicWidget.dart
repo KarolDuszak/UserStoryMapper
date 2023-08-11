@@ -93,7 +93,7 @@ class _EpicList extends State<EpicList> {
             alignment: Alignment.center,
             child: ElevatedButton(
                 onPressed: () {
-                  showAddStoryDialog(context, _epic.features!.length - 1);
+                  showAddStoryDialog(context, _epic.features!.length);
                 },
                 child: Text("Add Story"))),
         children: [],
@@ -178,6 +178,9 @@ class _EpicList extends State<EpicList> {
   }
 
   showAddStoryDialog(BuildContext context, int listIndex) {
+    final description = TextEditingController();
+    final title = TextEditingController();
+
     // set up the buttons
     Widget cancelButton = ElevatedButton(
       child: Text("Cancel"),
@@ -187,42 +190,12 @@ class _EpicList extends State<EpicList> {
       },
     );
 
-    //TODO: Implement correct adding story mechanizm
-    //It should add story at the end of epics
-    //adds new story to Database
     Widget addButton = ElevatedButton(
       child: Text("Add"),
       style: ElevatedButton.styleFrom(primary: Colors.green[700]),
       onPressed: () {
-        DateTime now = DateTime.now();
-        //FirebaseBoardApi().createBoard(
-        Board(
-          creatorId: "NULL",
-          title: "NULL",
-          id: "Test",
-          milestones: [],
-          description: "NULL",
-          potentialUsers: [],
-          roleLabels: [],
-          members: [],
-          votesNumber: 5,
-          timer: DateTime(now.year, now.month, now.day, now.hour,
-              now.minute + 5, now.second),
-          //  ),
-        );
-
-        Board x = Board.getEmptyObj(5);
-        var z = x.toJson();
-        print(z);
-        FirebaseBoardApi().createBoard(x);
-
-        //var ref = FirebaseFirestore.instance.collection('test');
-        //ref.doc("asdas3").set({
-        //  "name": "Dumbbell curl",
-        //  "muscle": "Biceps",
-        //  "sets": {"reps": 10, "weight": 40}
-        //}).then((value) => print("Board Created"));
-        FirebaseBoardApi().updateEpic(_boardId, _epic);
+        FirebaseBoardApi().createStory(_boardId, _epic.id, listIndex,
+            Story.createStory(title.text, description.text));
         Navigator.of(context).pop();
       },
     );
@@ -231,7 +204,19 @@ class _EpicList extends State<EpicList> {
     AlertDialog alert = AlertDialog(
       title: Text("Add User Story to Epic ${_epic.title}"),
       content: Container(
-          child: EditStoryForm(widget.boardId, _epic.id, Story.getEmptyObj2())),
+        child: Column(
+          children: [
+            TextField(
+              decoration: InputDecoration(label: Text("Title")),
+              controller: title,
+            ),
+            TextField(
+              decoration: InputDecoration(label: Text("Description")),
+              controller: description,
+            )
+          ],
+        ),
+      ),
       actions: [
         addButton,
         cancelButton,

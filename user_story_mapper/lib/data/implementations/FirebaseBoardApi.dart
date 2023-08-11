@@ -154,9 +154,32 @@ class FirebaseBoardApi extends IBoardApi {
 
   @override
   Future<void> createStory(
-      String boardId, String epicId, int featureIndex, Story story) {
-    // TODO: implement createStory
-    throw UnimplementedError();
+      String boardId, String epicId, int featureIndex, Story story) async {
+    var snapshot = await boardsRef.doc(boardId).get();
+
+    var data = snapshot.data() as Map<String, dynamic>;
+    Board board = Board.fromJson(data);
+    for (var m in board.milestones) {
+      int eIndex = m.epics.indexWhere((element) => element.id == epicId);
+      if (eIndex == -1) {
+        continue;
+      }
+
+      int mIndex = board.milestones.indexWhere((element) => element.id == m.id);
+
+      if (board.milestones[mIndex].epics[eIndex].features!.isEmpty ||
+          board.milestones[mIndex].epics[eIndex].features!.length <=
+              featureIndex) {
+        board.milestones[mIndex].epics[eIndex].features?.add([story]);
+      } else {
+        board.milestones[mIndex].epics[eIndex].features?[featureIndex]
+            .add(story);
+      }
+      updateBoard(board);
+      return;
+    }
+
+    throw Exception("Could not create new story");
   }
 
   @override

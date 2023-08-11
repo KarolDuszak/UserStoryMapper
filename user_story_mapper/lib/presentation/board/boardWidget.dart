@@ -155,14 +155,14 @@ class _BoardList extends State<BoardList> {
     final title = TextEditingController();
     Widget cancelButton = ElevatedButton(
       child: Text("Cancel"),
-      style: ElevatedButton.styleFrom(primary: Colors.green[700]),
+      style: ElevatedButton.styleFrom(primary: Colors.red[700]),
       onPressed: () {
         Navigator.of(context).pop();
       },
     );
     Widget deleteButton = ElevatedButton(
-      child: Text("Delete"),
-      style: ElevatedButton.styleFrom(primary: Colors.red[700]),
+      child: Text("Create"),
+      style: ElevatedButton.styleFrom(primary: Colors.green[700]),
       onPressed: () {
         FirebaseBoardApi().createEpic(
           _board.id,
@@ -182,16 +182,18 @@ class _BoardList extends State<BoardList> {
     AlertDialog alert = AlertDialog(
       title: Text("Create new EPIC"),
       content: Container(
-        child: Column(children: [
-          TextField(
-            decoration: InputDecoration(label: Text("Title")),
-            controller: title,
-          ),
-          TextField(
-            decoration: InputDecoration(label: Text("Description")),
-            controller: description,
-          )
-        ]),
+        child: Column(
+          children: [
+            TextField(
+              decoration: InputDecoration(label: Text("Title")),
+              controller: title,
+            ),
+            TextField(
+              decoration: InputDecoration(label: Text("Description")),
+              controller: description,
+            )
+          ],
+        ),
       ),
       actions: [
         deleteButton,
