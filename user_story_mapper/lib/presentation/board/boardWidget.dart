@@ -11,6 +11,8 @@ import '../../models/epic.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'dart:math';
 
+import 'potentialUserPanelWidget.dart';
+
 class BoardList extends StatefulWidget {
   const BoardList({Key? key}) : super(key: key);
 
@@ -41,12 +43,13 @@ class _BoardList extends State<BoardList> {
         icon: const Icon(Icons.settings),
         label: const Text("Open Settings"),
         tooltip:
-            "TODO: Add/Edit potentialUsers, members, roles, milestone, board data etc.",
+            "TODO: Add/Edit potentialUsers, members, roles, milestone, board data etc. Should be visible only for Admin of board",
         onPressed: () {
-          print("Add Milestone");
-          _board.milestones
-              .add(Milestone.createNewMilestone("description", "title"));
-          FirebaseBoardApi().updateBoard(_board);
+          showEditPotentialUserDialog(context);
+          //print("Add Milestone");
+          //_board.milestones
+          //    .add(Milestone.createNewMilestone("description", "title"));
+          //FirebaseBoardApi().updateBoard(_board);
         },
       ),
       body: StreamBuilder(
@@ -198,6 +201,33 @@ class _BoardList extends State<BoardList> {
       actions: [
         deleteButton,
         cancelButton,
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  showEditPotentialUserDialog(BuildContext context) {
+    Widget closeButton = ElevatedButton(
+      child: Text("Close"),
+      style: ElevatedButton.styleFrom(primary: Colors.green[700]),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+
+    AlertDialog alert = AlertDialog(
+      title: Text("Potential user menu"),
+      content: Container(
+        child: PotentialUserPanel(_board.id, _board.potentialUsers),
+      ),
+      actions: [
+        closeButton,
       ],
     );
     // show the dialog

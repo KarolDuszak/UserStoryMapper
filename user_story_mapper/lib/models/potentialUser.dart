@@ -33,7 +33,4 @@ class PotentialUser extends Equatable {
         name: "NULL name",
         description: "NULL description");
   }
-
-  //const PotentialUser.constConstructor(
-  //  this.id, this.color, this.name, this.description);
 }

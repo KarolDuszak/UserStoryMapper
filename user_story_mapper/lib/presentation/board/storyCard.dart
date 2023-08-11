@@ -120,7 +120,10 @@ class _StoryCard extends State<StoryCard> {
                 },
                 child: Icon(Icons.edit)),
             ElevatedButton(
-                onPressed: () => print("b2 pressed"), child: Icon(Icons.save)),
+                //TO DO
+                onPressed: () =>
+                    print("b2 here vote option should be provided"),
+                child: Icon(Icons.save)),
             ElevatedButton(
                 onPressed: () {
                   showDeleteConfirmDialog(context);

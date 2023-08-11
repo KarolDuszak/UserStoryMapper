@@ -4,13 +4,11 @@ import 'package:drag_and_drop_lists/drag_and_drop_lists.dart';
 import 'package:user_story_mapper/data/implementations/FirebaseBoardApi.dart';
 import 'package:user_story_mapper/models/story.dart';
 import 'package:user_story_mapper/presentation/board/storyCard.dart';
-import '../../models/board.dart';
 import '../../models/epic.dart';
-import 'editStoryForm.dart';
 
 class EpicList extends StatefulWidget {
   final Epic epic;
-  String boardId;
+  final String boardId;
 
   EpicList({Key? key, required this.epic, required this.boardId})
       : super(key: key);
