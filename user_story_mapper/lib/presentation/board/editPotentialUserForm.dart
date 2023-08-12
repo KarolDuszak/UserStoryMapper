@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:user_story_mapper/data/implementations/FirebaseBoardApi.dart';
 import 'package:user_story_mapper/models/potentialUser.dart';
 
 import '../../models/labelColor.dart';
@@ -62,7 +63,17 @@ class _EditPotentialUser extends State<EditPotentialUser> {
                 child: Text("Selected Color")),*/
             Row(
               children: [
-                ElevatedButton(onPressed: () {}, child: Text("Save")),
+                ElevatedButton(
+                    onPressed: () {
+                      FirebaseBoardApi().updatePotentialUser(
+                          boardId,
+                          PotentialUser(
+                              id: potentialUser.id,
+                              color: potentialUser.color,
+                              name: name.text,
+                              description: description.text));
+                    },
+                    child: Text("Save")),
                 SizedBox(width: 5),
                 ElevatedButton(
                     onPressed: () {
@@ -71,7 +82,15 @@ class _EditPotentialUser extends State<EditPotentialUser> {
                         name.text = potentialUser.name;
                       });
                     },
-                    child: Text("Reset"))
+                    child: Text("Reset")),
+                SizedBox(width: 5),
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(primary: Colors.red[700]),
+                    onPressed: () {
+                      FirebaseBoardApi()
+                          .deletePotentialUser(boardId, potentialUser.id);
+                    },
+                    child: Text("Delete")),
               ],
             ),
           ],

@@ -55,17 +55,6 @@ class FirebaseBoardApi extends IBoardApi {
   }
 
   @override
-  Future<void> createPotentialUser(
-      String boardId, PotentialUser potentialUser) {
-    return boardsRef
-        .doc(boardId)
-        .collection("potentialUsers")
-        .doc(potentialUser.id)
-        .set(potentialUser.toJson())
-        .then((value) => print("PotentialUser Created"));
-  }
-
-  @override
   Future<void> createEpic(String boardId, int milestoneIndex, Epic epic) async {
     var snapshot = await boardsRef.doc(boardId).get();
 
@@ -260,29 +249,50 @@ class FirebaseBoardApi extends IBoardApi {
   }
 
   @override
-  Future<void> deletePotentialUser(String boardId, String potentialUserId) {
-    // TODO: implement deletePotentialUser
-    throw UnimplementedError();
-  }
+  Future<void> deletePotentialUser(
+      String boardId, String potentialUserId) async {
+    var snapshot = await boardsRef.doc(boardId).get();
+    var data = snapshot.data() as Map<String, dynamic>;
+    Board board = Board.fromJson(data);
 
-  @override
-  Stream<PotentialUser> getPotentialUser(
-      String boardId, String potentialUserId) {
-    // TODO: implement getPotentialUser
-    throw UnimplementedError();
-  }
+    int uIndex = board.potentialUsers!
+        .indexWhere((element) => element.id == potentialUserId);
 
-  @override
-  Future<PotentialUser> getPotentialUsers(String boardId) {
-    // TODO: implement getPotentialUsers
-    throw UnimplementedError();
+    if (uIndex != -1) {
+      board.potentialUsers!
+          .removeWhere((element) => element.id == potentialUserId);
+      updateBoard(board);
+      return;
+    }
+
+    throw Exception(
+        "Could not find potential user with if ${potentialUserId} in database");
   }
 
   @override
   Future<void> updatePotentialUser(
-      String boardId, PotentialUser potentialUser) {
-    // TODO: implement updatePotentialUser
-    throw UnimplementedError();
+      String boardId, PotentialUser potentialUser) async {
+    var snapshot = await boardsRef.doc(boardId).get();
+    var data = snapshot.data() as Map<String, dynamic>;
+    Board board = Board.fromJson(data);
+
+    if (board.potentialUsers!.length == 0) {
+      board.potentialUsers!.add(potentialUser);
+      updateBoard(board);
+      return;
+    }
+
+    int uIndex = board.potentialUsers!
+        .indexWhere((element) => element.id == potentialUser.id);
+
+    if (uIndex == -1) {
+      board.potentialUsers!.add(potentialUser);
+      updateBoard(board);
+      return;
+    }
+
+    board.potentialUsers!.insert(uIndex, potentialUser);
+    updateBoard(board);
   }
 
   @override
