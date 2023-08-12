@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:user_story_mapper/models/potentialUser.dart';
 
+import 'editPotentialUserForm.dart';
+
 class PotentialUserPanel extends StatefulWidget {
   late final List<PotentialUser>? potentialUsers;
   late final String boardId;
@@ -15,8 +17,8 @@ class PotentialUserPanel extends StatefulWidget {
 }
 
 class PotentialUserPanelState extends State<PotentialUserPanel> {
-  late String boardId;
-  late List<PotentialUser>? potentialUsers;
+  late final String boardId;
+  late final List<PotentialUser>? potentialUsers;
 
   PotentialUserPanelState(String boardId, List<PotentialUser>? potentialUsers) {
     this.boardId = boardId;
@@ -25,6 +27,19 @@ class PotentialUserPanelState extends State<PotentialUserPanel> {
 
   @override
   Widget build(BuildContext context) {
-    throw UnimplementedError("");
+    return SizedBox(
+      width: double.maxFinite,
+      child: ListView.builder(
+        scrollDirection: Axis.vertical,
+        itemCount: potentialUsers?.length,
+        itemBuilder: (BuildContext ctxt, int index) {
+          return Center(
+              child: EditPotentialUser(
+            boardId: boardId,
+            potentialUser: potentialUsers![index],
+          ));
+        },
+      ),
+    );
   }
 }

@@ -215,9 +215,17 @@ class _BoardList extends State<BoardList> {
   showEditPotentialUserDialog(BuildContext context) {
     Widget closeButton = ElevatedButton(
       child: Text("Close"),
-      style: ElevatedButton.styleFrom(primary: Colors.green[700]),
+      style: ElevatedButton.styleFrom(primary: Colors.red[700]),
       onPressed: () {
         Navigator.of(context).pop();
+      },
+    );
+    Widget addButton = ElevatedButton(
+      child: Text("Add"),
+      style: ElevatedButton.styleFrom(primary: Colors.green[700]),
+      onPressed: () {
+        _board.potentialUsers!.add(PotentialUser.createNew());
+        
       },
     );
 
@@ -227,6 +235,7 @@ class _BoardList extends State<BoardList> {
         child: PotentialUserPanel(_board.id, _board.potentialUsers),
       ),
       actions: [
+        addButton,
         closeButton,
       ],
     );

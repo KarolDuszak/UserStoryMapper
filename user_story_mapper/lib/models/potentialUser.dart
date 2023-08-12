@@ -26,6 +26,11 @@ class PotentialUser extends Equatable {
   @override
   List<Object?> get props => [id, color, name, description];
 
+  static PotentialUser createNew() {
+    return PotentialUser(
+        id: Uuid().v4(), color: ColorLabel.grey, name: "", description: "");
+  }
+
   static PotentialUser getEmptyObj() {
     return PotentialUser(
         id: Uuid().v4(),
