@@ -2,6 +2,7 @@ import 'package:drag_and_drop_lists/drag_and_drop_list_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:drag_and_drop_lists/drag_and_drop_lists.dart';
 import 'package:user_story_mapper/data/implementations/FirebaseBoardApi.dart';
+import 'package:user_story_mapper/models/potentialUser.dart';
 import 'package:user_story_mapper/models/story.dart';
 import 'package:user_story_mapper/presentation/board/storyCard.dart';
 import '../../models/epic.dart';
@@ -9,8 +10,13 @@ import '../../models/epic.dart';
 class EpicList extends StatefulWidget {
   final Epic epic;
   final String boardId;
+  final List<PotentialUser> potentialUsers;
 
-  EpicList({Key? key, required this.epic, required this.boardId})
+  EpicList(
+      {Key? key,
+      required this.epic,
+      required this.boardId,
+      required this.potentialUsers})
       : super(key: key);
 
   @override
@@ -20,12 +26,14 @@ class EpicList extends StatefulWidget {
 class _EpicList extends State<EpicList> {
   late Epic _epic;
   late String _boardId;
+  late List<PotentialUser> _potentialUsers;
 
   @override
   void initState() {
     super.initState();
     _epic = widget.epic;
     _boardId = widget.boardId;
+    _potentialUsers = widget.potentialUsers;
   }
 
   @override
@@ -46,7 +54,7 @@ class _EpicList extends State<EpicList> {
             padding: EdgeInsets.fromLTRB(15, 5, 15, 10),
             child: Row(
               children: [
-                StoryCard.epic(widget.boardId, _epic),
+                StoryCard.epic(widget.boardId, _epic, _potentialUsers),
                 SizedBox(width: 30),
                 ElevatedButton(onPressed: () {}, child: Text("Move Epic")),
                 ElevatedButton(
@@ -124,7 +132,7 @@ class _EpicList extends State<EpicList> {
     return DragAndDropItem(
       child: Container(
         padding: EdgeInsets.all(10),
-        child: StoryCard.story(widget.boardId, _epic.id, item),
+        child: StoryCard.story(widget.boardId, _epic.id, item, _potentialUsers),
       ),
     );
   }

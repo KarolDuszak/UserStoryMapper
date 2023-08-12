@@ -16,8 +16,6 @@ class FirebaseBoardApi extends IBoardApi {
   CollectionReference boardsRef =
       FirebaseFirestore.instance.collection('boards');
 
-  final _loadedData = StreamController<Board>();
-
   @override
   Future<void> createBoard(Board board) {
     return boardsRef
@@ -259,6 +257,10 @@ class FirebaseBoardApi extends IBoardApi {
         .indexWhere((element) => element.id == potentialUserId);
 
     if (uIndex != -1) {
+      throw UnimplementedError(
+          "Trzeba przejść po wszystkich epicach i story aby usunąć id tego potential Usera");
+      //Strukturę danych najpierw trzeba poprawić bo obecnie przechowujemy tam całe object potentialUser
+
       board.potentialUsers!
           .removeWhere((element) => element.id == potentialUserId);
       updateBoard(board);

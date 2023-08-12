@@ -15,10 +15,11 @@ class StoryCard extends StatefulWidget {
   final String id;
   final String title;
   final String description;
-  final List<PotentialUser>? potentialUsers;
+  final List<String> potentialUsers;
   final int votes;
   final Color? color;
   final bool isEpic;
+  final List<PotentialUser> availablePotUsers;
 
   StoryCard(
       {required this.boardId,
@@ -29,10 +30,12 @@ class StoryCard extends StatefulWidget {
       required this.potentialUsers,
       required this.votes,
       required this.isEpic,
-      required this.color})
+      required this.color,
+      required this.availablePotUsers})
       : super(key: Key(id));
 
-  StoryCard.epic(String boardId, Epic epic)
+  StoryCard.epic(
+      String boardId, Epic epic, List<PotentialUser> availablePotUsers)
       : boardId = boardId,
         epicId = "",
         id = epic.id,
@@ -41,9 +44,11 @@ class StoryCard extends StatefulWidget {
         potentialUsers = epic.potentialUsers,
         votes = epic.votes ?? 0,
         isEpic = true,
+        availablePotUsers = availablePotUsers,
         color = Colors.red[500];
 
-  StoryCard.story(String boardId, String epicId, Story story)
+  StoryCard.story(String boardId, String epicId, Story story,
+      List<PotentialUser> availablePotUsers)
       : boardId = boardId,
         epicId = epicId,
         id = story.id,
@@ -52,6 +57,7 @@ class StoryCard extends StatefulWidget {
         potentialUsers = story.potentialUsers,
         votes = story.votes ?? 0,
         isEpic = false,
+        availablePotUsers = availablePotUsers,
         color = Colors.amber[300];
 
   @override
@@ -64,7 +70,8 @@ class _StoryCard extends State<StoryCard> {
   late String id;
   late String title;
   late String description;
-  late List<PotentialUser>? potentialUsers;
+  late List<String> potentialUsers;
+  late List<PotentialUser> availablePotUsers;
   late int votes;
   late Color? color;
   late bool isEpic;
@@ -86,6 +93,7 @@ class _StoryCard extends State<StoryCard> {
     potentialUsers = widget.potentialUsers;
     votes = widget.votes;
     isEpic = widget.isEpic;
+    availablePotUsers = widget.availablePotUsers;
   }
 
   @override
@@ -188,7 +196,7 @@ class _StoryCard extends State<StoryCard> {
     var itemArray = List<Widget>.generate(
         length,
         (i) => Icon(Icons.person,
-            color: getColorFromLabel(potentialUsers?[i].color)));
+            color: getColorFromLabel(potentialUsers[i], availablePotUsers)));
 
     return Row(
         mainAxisAlignment: MainAxisAlignment.center, children: itemArray);

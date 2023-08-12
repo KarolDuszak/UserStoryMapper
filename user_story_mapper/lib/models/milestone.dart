@@ -28,12 +28,12 @@ class Milestone extends Equatable {
   @override
   List<Object?> get props => [id, description, title, epics];
 
-  static Milestone getEmptyObj(int num) {
+  static Milestone getEmptyObj(int num, List<String> potUsers) {
     return Milestone(
         id: Uuid().v4(),
         description: "NULL description",
         title: "NULL title",
-        epics: List.generate(3, (innerIndex) => Epic.getEmptyObj(innerIndex)));
+        epics: List.generate(3, (innerIndex) => Epic.getEmptyObj(innerIndex, potUsers)));
   }
 
   static Milestone createMvpMilestone() {

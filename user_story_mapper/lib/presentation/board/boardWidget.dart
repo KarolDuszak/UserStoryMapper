@@ -32,7 +32,7 @@ class _BoardList extends State<BoardList> {
     //Board board2 = Board.getEmptyObj(4);
     //FirebaseBoardApi().createBoard(board2);
     _boardStream =
-        FirebaseBoardApi().getBoard("8be2ec23-4de6-4a27-9b1b-0ce8590e5e05");
+        FirebaseBoardApi().getBoard("382d7a5d-2bb1-4a99-88e8-8d742bfcbe8e");
   }
 
   @override
@@ -250,7 +250,11 @@ class _BoardList extends State<BoardList> {
   }
 
   _buildItem(Epic item) {
-    return EpicList(epic: item, boardId: _board.id);
+    return EpicList(
+      epic: item,
+      boardId: _board.id,
+      potentialUsers: _board.potentialUsers,
+    );
   }
 
   _onItemReorder(

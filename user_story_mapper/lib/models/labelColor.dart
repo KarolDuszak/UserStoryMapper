@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:user_story_mapper/models/potentialUser.dart';
 
 enum ColorLabel {
   green,
@@ -8,7 +9,15 @@ enum ColorLabel {
   black,
 }
 
-Color? getColorFromLabel(ColorLabel? color) {
+Color? getColorFromLabel(String id, List<PotentialUser> potentialUsers) {
+  int uIndex = potentialUsers.indexWhere((element) => element.id == id);
+
+  if (uIndex == -1) {
+    return Colors.white;
+  }
+
+  var color = potentialUsers[uIndex].color;
+
   switch (color) {
     case ColorLabel.green:
       return Colors.green[500];

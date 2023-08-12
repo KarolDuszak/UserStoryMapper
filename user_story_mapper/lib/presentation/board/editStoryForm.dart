@@ -36,7 +36,7 @@ class EditStoryFormState extends State<EditStoryForm> {
     this.description.text = currentStory.description;
     this.title.text = currentStory.title;
     if (currentStory.potentialUsers!.length > 0) {
-      this.potentialUser.text = currentStory.potentialUsers![0].name;
+      this.potentialUser.text = currentStory.potentialUsers[0];
     } else {
       this.potentialUser.text = "None";
     }

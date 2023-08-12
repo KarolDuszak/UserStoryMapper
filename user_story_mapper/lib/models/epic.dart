@@ -14,7 +14,7 @@ class Epic extends Equatable {
       required this.description,
       required this.title,
       this.features,
-      this.potentialUsers,
+      required this.potentialUsers,
       this.votes});
 
   //Informations
@@ -22,7 +22,7 @@ class Epic extends Equatable {
   final String description;
   final String title;
   final List<List<Story>>? features;
-  final List<PotentialUser>? potentialUsers;
+  final List<String> potentialUsers;
   final int? votes;
 
   factory Epic.fromJson(Map<String, dynamic> json) => _$EpicFromJson(json);
@@ -32,20 +32,19 @@ class Epic extends Equatable {
   List<Object?> get props =>
       [id, description, title, features, potentialUsers, votes];
 
-  static Epic getEmptyObj(int num) {
+  static Epic getEmptyObj(int num, List<String> potUsers) {
     var uuid = Uuid();
     return Epic(
         id: uuid.v1(),
         description: "NULL description",
         title: "NULL title ${num}",
         votes: 3,
-        potentialUsers:
-            List.generate(1, (index) => PotentialUser.getEmptyObj()),
+        potentialUsers: potUsers,
         features: List.generate(
             5,
             (outerIndex) => List.generate(
                 4,
-                (innerindex) =>
-                    Story.getEmptyObj("${outerIndex},${innerindex}"))));
+                (innerindex) => Story.getEmptyObj(
+                    "${outerIndex},${innerindex}", potUsers))));
   }
 }

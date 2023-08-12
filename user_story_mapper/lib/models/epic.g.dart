@@ -11,9 +11,8 @@ Epic _$EpicFromJson(Map<String, dynamic> json) => Epic(
       description: json['description'] as String,
       title: json['title'] as String,
       features: Util.decodeMapToMatrixOfStories(json['features']),
-      potentialUsers: (json['potentialUsers'] as List<dynamic>?)
-          ?.map((e) => PotentialUser.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      potentialUsers:
+          (json['potentialUsers'] as List<dynamic>).map((e) => e.toString()).toList(),
       votes: json['votes'] as int?,
     );
 
@@ -22,7 +21,6 @@ Map<String, dynamic> _$EpicToJson(Epic instance) => <String, dynamic>{
       'description': instance.description,
       'title': instance.title,
       'features': Util.encodeMatrixOfStoriesToMap(instance.features),
-      'potentialUsers':
-          instance.potentialUsers?.map((e) => e.toJson()).toList(),
+      'potentialUsers': instance.potentialUsers.map((e) => e).toList(),
       'votes': instance.votes,
     };

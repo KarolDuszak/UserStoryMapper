@@ -11,8 +11,8 @@ Board _$BoardFromJson(Map<String, dynamic> json) => Board(
       creatorId: json['creatorId'] as String,
       description: json['description'] as String?,
       title: json['title'] as String?,
-      potentialUsers: (json['potentialUsers'] as List<dynamic>?)
-          ?.map((e) => PotentialUser.fromJson(e as Map<String, dynamic>))
+      potentialUsers: (json['potentialUsers'] as List<dynamic>)
+          .map((e) => PotentialUser.fromJson(e as Map<String, dynamic>))
           .toList(),
       milestones: (json['milestones'] as List<dynamic>)
           .map((e) => Milestone.fromJson(e as Map<String, dynamic>))
@@ -34,8 +34,7 @@ Map<String, dynamic> _$BoardToJson(Board instance) => <String, dynamic>{
       'creatorId': instance.creatorId,
       'description': instance.description,
       'title': instance.title,
-      'potentialUsers':
-          instance.potentialUsers?.map((e) => e.toJson()).toList(),
+      'potentialUsers': instance.potentialUsers.map((e) => e.toJson()).toList(),
       'milestones': instance.milestones.map((e) => e.toJson()).toList(),
       'roleLabels': instance.roleLabels?.map((e) => e.toJson()).toList(),
       'members': instance.members?.map((e) => e.toJson()).toList(),

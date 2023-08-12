@@ -28,12 +28,12 @@ class PotentialUser extends Equatable {
 
   static PotentialUser createNew() {
     return PotentialUser(
-        id: Uuid().v4(), color: ColorLabel.grey, name: "", description: "");
+        id: Uuid().v1(), color: ColorLabel.grey, name: "", description: "");
   }
 
   static PotentialUser getEmptyObj() {
     return PotentialUser(
-        id: Uuid().v4(),
+        id: Uuid().v1(),
         color: ColorLabel.blue,
         name: "NULL name",
         description: "NULL description");

@@ -34,7 +34,7 @@ class Board extends Equatable {
   final String? description;
   final String? title;
   //Interaction
-  final List<PotentialUser>? potentialUsers;
+  final List<PotentialUser> potentialUsers;
   final List<Milestone> milestones;
   final List<RoleLabel>? roleLabels;
   final List<Member>? members;
@@ -59,15 +59,19 @@ class Board extends Equatable {
       ];
 
   static Board getEmptyObj(int num) {
+    var potUsers = List<PotentialUser>.generate(
+        3, (innerIndex) => PotentialUser.getEmptyObj());
+    List<String> potUsersIds = [];
+    potUsers.forEach((element) => potUsersIds.add(element.id));
+
     return Board(
       id: Uuid().v4(),
       creatorId: "NULL creatorId",
       description: "NULL description",
       title: "NULL title",
-      potentialUsers:
-          List<PotentialUser>.filled(3, PotentialUser.getEmptyObj()),
-      milestones:
-          List.generate(2, (innerIndex) => Milestone.getEmptyObj(innerIndex)),
+      potentialUsers: potUsers,
+      milestones: List.generate(
+          2, (innerIndex) => Milestone.getEmptyObj(innerIndex, potUsersIds)),
       roleLabels: List<RoleLabel>.filled(2, RoleLabel.getEmptyObj()),
       members: List<Member>.filled(2, Member.getEmptyObj()),
       votesNumber: 5,

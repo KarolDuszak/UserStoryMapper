@@ -22,7 +22,7 @@ class Story extends Equatable {
   final String description;
   final String title;
   //Interaction
-  final List<PotentialUser>? potentialUsers;
+  final List<String> potentialUsers;
   final int? votes;
 
   factory Story.fromJson(Map<String, dynamic> json) => _$StoryFromJson(json);
@@ -32,15 +32,14 @@ class Story extends Equatable {
   List<Object?> get props =>
       [id, creatorId, description, title, potentialUsers, votes];
 
-  static Story getEmptyObj(String num) {
+  static Story getEmptyObj(String num, List<String> potUsers) {
     var uuid = Uuid().v1();
     return Story(
         id: uuid,
         creatorId: "NULL creatorId",
         description: "NULL description",
         title: "${num} Very long title sadasdasda sadasdasdasd asdasdasdasd ",
-        potentialUsers:
-            List<PotentialUser>.filled(6, PotentialUser.getEmptyObj()),
+        potentialUsers: potUsers,
         votes: 4);
   }
 
@@ -62,8 +61,7 @@ class Story extends Equatable {
         creatorId: "NULL creatorId",
         description: "NULL description",
         title: "${uuid} short title",
-        potentialUsers:
-            List<PotentialUser>.filled(3, PotentialUser.getEmptyObj()),
+        potentialUsers: [],
         votes: 4);
   }
 }
