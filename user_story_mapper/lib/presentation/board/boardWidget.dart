@@ -225,7 +225,8 @@ class _BoardList extends State<BoardList> {
       style: ElevatedButton.styleFrom(primary: Colors.green[700]),
       onPressed: () {
         _board.potentialUsers!.add(PotentialUser.createNew());
-        
+        Navigator.of(context).pop();
+        showEditPotentialUserDialog(context);
       },
     );
 
