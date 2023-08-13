@@ -65,7 +65,12 @@ class _EditPotentialUser extends State<EditPotentialUser> {
                 (ColorLabel color) {
                   return DropdownMenuItem<ColorLabel>(
                     value: color,
-                    child: Text(color.name),
+                    child: Text(
+                      color.name,
+                      style: TextStyle(
+                          color: getColorFromLabel(color),
+                          backgroundColor: Colors.white70),
+                    ),
                   );
                 },
               ).toList(),

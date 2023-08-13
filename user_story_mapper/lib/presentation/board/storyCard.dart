@@ -196,7 +196,8 @@ class _StoryCard extends State<StoryCard> {
     var itemArray = List<Widget>.generate(
         length,
         (i) => Icon(Icons.person,
-            color: getColorFromLabel(potentialUsers[i], availablePotUsers)));
+            color: getColorFromPotentialUser(
+                potentialUsers[i], availablePotUsers)));
 
     return Row(
         mainAxisAlignment: MainAxisAlignment.center, children: itemArray);

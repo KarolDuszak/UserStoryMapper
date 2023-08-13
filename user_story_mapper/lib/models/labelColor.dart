@@ -9,7 +9,8 @@ enum ColorLabel {
   black,
 }
 
-Color? getColorFromLabel(String id, List<PotentialUser> potentialUsers) {
+Color? getColorFromPotentialUser(
+    String id, List<PotentialUser> potentialUsers) {
   int uIndex = potentialUsers.indexWhere((element) => element.id == id);
 
   if (uIndex == -1) {
@@ -17,8 +18,11 @@ Color? getColorFromLabel(String id, List<PotentialUser> potentialUsers) {
   }
 
   var color = potentialUsers[uIndex].color;
+  return getColorFromLabel(color);
+}
 
-  switch (color) {
+Color? getColorFromLabel(ColorLabel label) {
+  switch (label) {
     case ColorLabel.green:
       return Colors.green[500];
     case ColorLabel.purple:
