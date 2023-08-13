@@ -266,16 +266,16 @@ class _StoryCard extends State<StoryCard> {
       title: Text("Edit User Story: ${title}"),
       content: Container(
         child: EditStoryForm(
-          boardId,
-          epicId,
-          Story(
-              id: id,
-              creatorId: "TO BE PASSED WHEN USERS WILL LOGIN",
-              title: title,
-              description: description,
-              potentialUsers: potentialUsers,
-              votes: votes),
-        ),
+            boardId,
+            epicId,
+            Story(
+                id: id,
+                creatorId: "TO BE PASSED WHEN USERS WILL LOGIN",
+                title: title,
+                description: description,
+                potentialUsers: potentialUsers,
+                votes: votes),
+            availablePotUsers),
       ),
       actions: [
         cancelButton,
