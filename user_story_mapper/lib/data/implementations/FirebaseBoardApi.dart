@@ -1,15 +1,12 @@
 import 'dart:async';
-import 'dart:html';
 
 import 'package:user_story_mapper/data/interfaces/IBoardApi.dart';
 import 'package:user_story_mapper/models/board.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:user_story_mapper/models/epic.dart';
+import 'package:user_story_mapper/models/milestone.dart';
 import 'package:user_story_mapper/models/potentialUser.dart';
 import 'package:user_story_mapper/models/story.dart';
-
-import '../../models/milestone.dart';
 
 class FirebaseBoardApi extends IBoardApi {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -253,15 +250,28 @@ class FirebaseBoardApi extends IBoardApi {
     var data = snapshot.data() as Map<String, dynamic>;
     Board board = Board.fromJson(data);
 
-    int uIndex = board.potentialUsers!
+    int uIndex = board.potentialUsers
         .indexWhere((element) => element.id == potentialUserId);
 
     if (uIndex != -1) {
-      throw UnimplementedError(
-          "Trzeba przejść po wszystkich epicach i story aby usunąć id tego potential Usera");
-      //Strukturę danych najpierw trzeba poprawić bo obecnie przechowujemy tam całe object potentialUser
+      for (int i = 0; i < board.milestones.length; i++) {
+        for (int j = 0; j < board.milestones[i].epics.length; j++) {
+          board.milestones[i].epics[j].potentialUsers
+              .removeWhere((id) => id == potentialUserId);
+          for (int k = 0;
+              k < board.milestones[i].epics[j].features!.length;
+              k++) {
+            for (int l = 0;
+                l < board.milestones[i].epics[j].features![k].length;
+                l++) {
+              board.milestones[i].epics[j].features![k][l].potentialUsers
+                  .removeWhere((id) => id == potentialUserId);
+            }
+          }
+        }
+      }
 
-      board.potentialUsers!
+      board.potentialUsers
           .removeWhere((element) => element.id == potentialUserId);
       updateBoard(board);
       return;
@@ -278,22 +288,23 @@ class FirebaseBoardApi extends IBoardApi {
     var data = snapshot.data() as Map<String, dynamic>;
     Board board = Board.fromJson(data);
 
-    if (board.potentialUsers!.length == 0) {
-      board.potentialUsers!.add(potentialUser);
+    if (board.potentialUsers.isEmpty) {
+      board.potentialUsers.add(potentialUser);
       updateBoard(board);
       return;
     }
 
-    int uIndex = board.potentialUsers!
+    int uIndex = board.potentialUsers
         .indexWhere((element) => element.id == potentialUser.id);
 
     if (uIndex == -1) {
-      board.potentialUsers!.add(potentialUser);
+      board.potentialUsers.add(potentialUser);
       updateBoard(board);
       return;
     }
 
-    board.potentialUsers!.insert(uIndex, potentialUser);
+    board.potentialUsers.removeAt(uIndex);
+    board.potentialUsers.insert(uIndex, potentialUser);
     updateBoard(board);
   }
 

@@ -24,14 +24,14 @@ class _EditPotentialUser extends State<EditPotentialUser> {
   final description = TextEditingController();
   final name = TextEditingController();
   //Jak z tego zrobić color picker?
-  late Color pickerColor;
+  late ColorLabel pickerColor;
 
   _EditPotentialUser(String boardId, PotentialUser potentialUser) {
     this.potentialUser = potentialUser;
     this.boardId = boardId;
     description.text = potentialUser.description;
     name.text = potentialUser.name;
-    pickerColor = Colors.red;
+    pickerColor = potentialUser.color;
   }
 
   @override
@@ -54,13 +54,22 @@ class _EditPotentialUser extends State<EditPotentialUser> {
                   labelText: "Description"),
               controller: description,
             ),
-            /*ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-                      pickerColor as MaterialPropertyResolver<Color?>),
-                ),
-                onPressed: () {},
-                child: Text("Selected Color")),*/
+            DropdownButtonFormField<ColorLabel>(
+              value: pickerColor,
+              onChanged: ((newValue) {
+                setState(() {
+                  pickerColor = newValue ?? ColorLabel.grey;
+                });
+              }),
+              items: ColorLabel.values.map<DropdownMenuItem<ColorLabel>>(
+                (ColorLabel color) {
+                  return DropdownMenuItem<ColorLabel>(
+                    value: color,
+                    child: Text(color.name),
+                  );
+                },
+              ).toList(),
+            ),
             Row(
               children: [
                 ElevatedButton(
@@ -69,7 +78,7 @@ class _EditPotentialUser extends State<EditPotentialUser> {
                           boardId,
                           PotentialUser(
                               id: potentialUser.id,
-                              color: potentialUser.color,
+                              color: pickerColor,
                               name: name.text,
                               description: description.text));
                     },
@@ -80,6 +89,7 @@ class _EditPotentialUser extends State<EditPotentialUser> {
                       setState(() {
                         description.text = potentialUser.description;
                         name.text = potentialUser.name;
+                        pickerColor = potentialUser.color;
                       });
                     },
                     child: Text("Reset")),

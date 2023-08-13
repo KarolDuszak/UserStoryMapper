@@ -255,8 +255,8 @@ class _StoryCard extends State<StoryCard> {
       child: Text("Cancel"),
       style: ElevatedButton.styleFrom(primary: Colors.green[700]),
       onPressed: () {
-        isEditMode = false;
         Navigator.of(context).pop();
+        isEditMode = false;
       },
     );
 

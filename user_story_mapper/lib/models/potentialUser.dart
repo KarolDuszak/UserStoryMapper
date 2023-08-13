@@ -15,7 +15,7 @@ class PotentialUser extends Equatable {
       required this.description});
 
   final String id;
-  final ColorLabel color;
+  late final ColorLabel color;
   final String name;
   final String description;
 

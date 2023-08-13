@@ -31,8 +31,9 @@ class _BoardList extends State<BoardList> {
     //For testing porporse
     //Board board2 = Board.getEmptyObj(4);
     //FirebaseBoardApi().createBoard(board2);
-    _boardStream =
-        FirebaseBoardApi().getBoard("382d7a5d-2bb1-4a99-88e8-8d742bfcbe8e");
+    //var boId = board2.id;
+    var boId = "dfe27c17-ef21-43dd-b44f-9c1fb802fccd";
+    _boardStream = FirebaseBoardApi().getBoard(boId);
   }
 
   @override
@@ -224,7 +225,7 @@ class _BoardList extends State<BoardList> {
       child: Text("Add"),
       style: ElevatedButton.styleFrom(primary: Colors.green[700]),
       onPressed: () {
-        _board.potentialUsers!.add(PotentialUser.createNew());
+        _board.potentialUsers.add(PotentialUser.createNew());
         Navigator.of(context).pop();
         showEditPotentialUserDialog(context);
       },
