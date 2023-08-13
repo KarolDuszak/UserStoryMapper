@@ -1,6 +1,7 @@
 import 'dart:js_interop';
 
 import 'package:flutter/material.dart';
+import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:user_story_mapper/data/implementations/FirebaseBoardApi.dart';
 import 'package:user_story_mapper/models/potentialUser.dart';
 import 'package:user_story_mapper/models/story.dart';
@@ -33,7 +34,7 @@ class EditStoryFormState extends State<EditStoryForm> {
   //Story
   final description = TextEditingController();
   final title = TextEditingController();
-  List<PotentialUser> availableUsers = [];
+  late List<PotentialUser> availableUsers = [];
 
   EditStoryFormState(String boardId, String epicId, Story order,
       List<PotentialUser> availableUsers) {
@@ -51,9 +52,12 @@ class EditStoryFormState extends State<EditStoryForm> {
 
   @override
   Widget build(BuildContext context) {
-    List<PotentialUser> selected = [];
-    //List<PotentialUser> selected =
-    //    getPotentialUsersFromIds(availableUsers, currentStory.potentialUsers);
+    //List<PotentialUser> selected = [];
+    final _items = availableUsers
+        .map((potUser) => MultiSelectItem<PotentialUser>(potUser, potUser.name))
+        .toList();
+    List<PotentialUser> selected =
+        getPotentialUsersFromIds(availableUsers, currentStory.potentialUsers);
     return Form(
       key: _formKey,
       child: SingleChildScrollView(
@@ -78,21 +82,17 @@ class EditStoryFormState extends State<EditStoryForm> {
                 labelText: "Description",
               ),
             ),
-            //TODO: Selecting potential user should work as multi select
-            // dropdown list or multiple checkboxes
-            DropDownMultiSelect<PotentialUser>(
-              decoration: new InputDecoration(
-                icon: Icon(Icons.supervised_user_circle_rounded),
-                labelText: "Potential Users",
+            MultiSelectDialogField<PotentialUser>(
+              items: _items,
+              initialValue: selected,
+              title: Text("Potential Users"),
+              buttonIcon: Icon(Icons.supervised_user_circle_rounded),
+              buttonText: Text(
+                "Select potential Users",
               ),
-              onChanged: (List<PotentialUser> x) {
-                setState(() {
-                  selected = x;
-                });
+              onConfirm: (result) {
+                selected = result;
               },
-              options: availableUsers,
-              selectedValues: selected,
-              whenEmpty: "Select potential Users for this story",
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -103,7 +103,7 @@ class EditStoryFormState extends State<EditStoryForm> {
                       creatorId: currentStory.creatorId,
                       description: description.text,
                       title: title.text,
-                      potentialUsers: currentStory.potentialUsers,
+                      potentialUsers: selected.map((e) => e.id).toList(),
                       votes: currentStory.votes);
 
                   if (epicId != "") {
@@ -122,9 +122,9 @@ class EditStoryFormState extends State<EditStoryForm> {
   }
 }
 
-getPotentialUsersFromIds(
+List<PotentialUser> getPotentialUsersFromIds(
     List<PotentialUser> availablePotUsers, List<String> potentialUsers) {
-  var result = [];
+  List<PotentialUser> result = [];
   for (String u in potentialUsers) {
     var user = availablePotUsers.firstWhere((element) => element.id == u);
     if (!user.isNull) {
