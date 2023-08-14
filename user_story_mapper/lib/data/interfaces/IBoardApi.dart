@@ -8,11 +8,16 @@ import '../../models/story.dart';
 
 abstract class IBoardApi {
   Stream getBoard(String boardId);
+  Future<Board> getBoardObject(String boardId);
   Future<void> createBoard(Board board);
   Future<void> updateBoard(Board board);
   Future<void> deleteBoard(String boardId);
+  Future<void> moveEpic(String boardId, String epicId, int mIndex, int eIndex);
+  Future<void> moveFeature(
+      String boardId, String epicId, int mIndex, int eIndex, int fIndex);
 
-  Future<void> updateMilestoneProperties(String boardId, String milestoneId, String title, String description);
+  Future<void> updateMilestoneProperties(
+      String boardId, String milestoneId, String title, String description);
 
   Future<void> createEpic(String boardId, int milestoneIndex, Epic epic);
   Future<void> updateEpic(String boardId, Epic epic);

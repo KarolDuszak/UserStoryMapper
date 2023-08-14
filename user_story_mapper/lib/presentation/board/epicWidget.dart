@@ -6,7 +6,9 @@ import 'package:user_story_mapper/data/implementations/FirebaseBoardApi.dart';
 import 'package:user_story_mapper/models/potentialUser.dart';
 import 'package:user_story_mapper/models/story.dart';
 import 'package:user_story_mapper/presentation/board/storyCard.dart';
+import '../../models/board.dart';
 import '../../models/epic.dart';
+import '../../utils/utils.dart';
 
 class EpicList extends StatefulWidget {
   final Epic epic;
@@ -57,7 +59,11 @@ class _EpicList extends State<EpicList> {
               children: [
                 StoryCard.epic(widget.boardId, _epic, _potentialUsers),
                 SizedBox(width: 30),
-                ElevatedButton(onPressed: () {}, child: Text("Move Epic")),
+                ElevatedButton(
+                    onPressed: () {
+                      showMoveEpicDialog(context, _boardId, _epic);
+                    },
+                    child: Text("Move Epic")),
                 ElevatedButton(
                   onPressed: () {
                     FirebaseBoardApi().updateEpic(_boardId, _epic);
@@ -259,6 +265,125 @@ class _EpicList extends State<EpicList> {
       ],
     );
     // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  showMoveEpicDialog(BuildContext context, String boardId, Epic epic) async {
+    Board board = await FirebaseBoardApi().getBoardObject(boardId);
+
+    List<int> epicPosition = Util.getEpicPosition(board, epic.id);
+    int milestoneSelect = epicPosition[0];
+    int epicSelect = epicPosition[1];
+    List<int> listEpics = List<int>.generate(
+        board.milestones[milestoneSelect].epics.length, (i) => i);
+
+    // set up the buttons
+    Widget cancelButton = ElevatedButton(
+      child: Text("Close"),
+      style: ElevatedButton.styleFrom(primary: Colors.red[700]),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+
+    Widget saveButton = ElevatedButton(
+      child: Text("Save"),
+      style: ElevatedButton.styleFrom(primary: Colors.green[700]),
+      onPressed: () {
+        FirebaseBoardApi()
+            .moveEpic(boardId, _epic.id, milestoneSelect, epicSelect);
+        Navigator.of(context).pop();
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Move Epic: ${epic.title}"),
+      content: Column(
+        children: [
+          DropdownButtonFormField(
+            value: milestoneSelect,
+            decoration: const InputDecoration(
+                labelText: "Milestone Position",
+                hintText: "Select milestone index where epic should be moved"),
+            onChanged: ((newValue) {
+              setState(() {
+                milestoneSelect = newValue!;
+                epicSelect = board.milestones[milestoneSelect].epics.length;
+                listEpics = List<int>.generate(
+                    board.milestones[milestoneSelect].epics.length + 1,
+                    (i) => i);
+              });
+            }),
+            items: List<int>.generate(board.milestones.length, (index) => index)
+                .toList()
+                .map<DropdownMenuItem<int>>(
+              (int mIndex) {
+                return DropdownMenuItem<int>(
+                  value: mIndex,
+                  child: Text(
+                    mIndex.toString(),
+                  ),
+                );
+              },
+            ).toList(),
+          ),
+          SizedBox(
+            height: 5,
+          ),
+          ElevatedButton(
+              onPressed: () => {
+                    Navigator.of(context).pop(),
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text(
+                                "Select position in milestone ${board.milestones[milestoneSelect].title}"),
+                            content: Column(
+                              children: [
+                                DropdownButtonFormField(
+                                  value: epicSelect,
+                                  decoration: const InputDecoration(
+                                      labelText: "Epic Position",
+                                      hintText:
+                                          "Select index where epic should be moved"),
+                                  onChanged: ((newValue) {
+                                    setState(() {
+                                      epicSelect = newValue!;
+                                    });
+                                  }),
+                                  items: listEpics.map<DropdownMenuItem<int>>(
+                                    (int i) {
+                                      return DropdownMenuItem<int>(
+                                        value: i,
+                                        child: Text(
+                                          i.toString(),
+                                        ),
+                                      );
+                                    },
+                                  ).toList(),
+                                ),
+                              ],
+                            ),
+                            actions: [saveButton, cancelButton],
+                          );
+                        }),
+                  },
+              child: Text("Next")),
+        ],
+      ),
+      actions: [
+        cancelButton,
+      ],
+    );
+    // show the dialog
+    // ignore: use_build_context_synchronously
     showDialog(
       context: context,
       builder: (BuildContext context) {

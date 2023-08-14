@@ -31,6 +31,15 @@ class FirebaseBoardApi extends IBoardApi {
   }
 
   @override
+  Future<Board> getBoardObject(String boardId) async {
+    var snapshot = await boardsRef.doc(boardId).get();
+
+    var data = snapshot.data() as Map<String, dynamic>;
+    Board board = Board.fromJson(data);
+    return board;
+  }
+
+  @override
   Stream getBoard(String boardId) {
     Stream documentStream = FirebaseFirestore.instance
         .collection('boards')
@@ -52,10 +61,7 @@ class FirebaseBoardApi extends IBoardApi {
   @override
   Future<void> updateMilestoneProperties(String boardId, String milestoneId,
       String title, String description) async {
-    var snapshot = await boardsRef.doc(boardId).get();
-
-    var data = snapshot.data() as Map<String, dynamic>;
-    Board board = Board.fromJson(data);
+    Board board = await getBoardObject(boardId);
 
     var mIndex =
         board.milestones.indexWhere((element) => element.id == milestoneId);
@@ -78,11 +84,43 @@ class FirebaseBoardApi extends IBoardApi {
   }
 
   @override
-  Future<void> createEpic(String boardId, int milestoneIndex, Epic epic) async {
-    var snapshot = await boardsRef.doc(boardId).get();
+  Future<void> moveEpic(
+      String boardId, String epicId, int mIndex, int eIndex) async {
+    Board board = await getBoardObject(boardId);
 
-    var data = snapshot.data() as Map<String, dynamic>;
-    Board board = Board.fromJson(data);
+    for (int m = 0; m < board.milestones.length; m++) {
+      int e = board.milestones[m].epics
+          .indexWhere((element) => element.id == epicId);
+
+      if (e == -1) {
+        continue;
+      }
+      Epic newEpic = board.milestones[m].epics[e];
+      board.milestones[m].epics.removeAt(e);
+      if (board.milestones[mIndex].epics.length <= eIndex) {
+        board.milestones[mIndex].epics.add(newEpic);
+      } else {
+        board.milestones[mIndex].epics.insert(eIndex, newEpic);
+      }
+      updateBoard(board);
+      return;
+    }
+
+    throw Exception(
+        "Could not move Epic ${epicId} to mileston nr. ${mIndex} position ${eIndex}");
+  }
+
+  @override
+  Future<void> moveFeature(
+      String boardId, String epicId, int mIndex, int eIndex, int fIndex) {
+    // TODO: implement moveFeature
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> createEpic(String boardId, int milestoneIndex, Epic epic) async {
+    Board board = await getBoardObject(boardId);
+
     board.milestones[milestoneIndex].epics.add(epic);
 
     updateBoard(board);
@@ -90,10 +128,7 @@ class FirebaseBoardApi extends IBoardApi {
 
   @override
   Future<void> updateEpic(String boardId, Epic epic) async {
-    var snapshot = await boardsRef.doc(boardId).get();
-
-    var data = snapshot.data() as Map<String, dynamic>;
-    Board board = Board.fromJson(data);
+    Board board = await getBoardObject(boardId);
 
     for (var m in board.milestones) {
       int index = m.epics.indexWhere((element) => element.id == epic.id);
@@ -113,10 +148,7 @@ class FirebaseBoardApi extends IBoardApi {
 
   @override
   Future<void> updateEpicProperties(String boardId, Story epic) async {
-    var snapshot = await boardsRef.doc(boardId).get();
-
-    var data = snapshot.data() as Map<String, dynamic>;
-    Board board = Board.fromJson(data);
+    Board board = await getBoardObject(boardId);
 
     for (var m in board.milestones) {
       int index = m.epics.indexWhere((element) => element.id == epic.id);
@@ -144,10 +176,7 @@ class FirebaseBoardApi extends IBoardApi {
 
   @override
   Future<void> deleteEpic(String boardId, String epicId) async {
-    var snapshot = await boardsRef.doc(boardId).get();
-
-    var data = snapshot.data() as Map<String, dynamic>;
-    Board board = Board.fromJson(data);
+    Board board = await getBoardObject(boardId);
 
     for (var m in board.milestones) {
       int index = m.epics.indexWhere((element) => element.id == epicId);
@@ -167,10 +196,8 @@ class FirebaseBoardApi extends IBoardApi {
   @override
   Future<void> createStory(
       String boardId, String epicId, int featureIndex, Story story) async {
-    var snapshot = await boardsRef.doc(boardId).get();
+    Board board = await getBoardObject(boardId);
 
-    var data = snapshot.data() as Map<String, dynamic>;
-    Board board = Board.fromJson(data);
     for (var m in board.milestones) {
       int eIndex = m.epics.indexWhere((element) => element.id == epicId);
       if (eIndex == -1) {
@@ -196,9 +223,7 @@ class FirebaseBoardApi extends IBoardApi {
 
   @override
   Future<void> updateStory(String boardId, String epicId, Story story) async {
-    var snapshot = await boardsRef.doc(boardId).get();
-    var data = snapshot.data() as Map<String, dynamic>;
-    Board board = Board.fromJson(data);
+    Board board = await getBoardObject(boardId);
 
     for (var m in board.milestones) {
       int eIndex = m.epics.indexWhere((element) => element.id == epicId);
@@ -236,9 +261,7 @@ class FirebaseBoardApi extends IBoardApi {
   @override
   Future<void> deleteStory(
       String boardId, String epicId, String storyId) async {
-    var snapshot = await boardsRef.doc(boardId).get();
-    var data = snapshot.data() as Map<String, dynamic>;
-    Board board = Board.fromJson(data);
+    Board board = await getBoardObject(boardId);
 
     for (var m in board.milestones) {
       int eIndex = m.epics.indexWhere((element) => element.id == epicId);
@@ -274,9 +297,7 @@ class FirebaseBoardApi extends IBoardApi {
   @override
   Future<void> deletePotentialUser(
       String boardId, String potentialUserId) async {
-    var snapshot = await boardsRef.doc(boardId).get();
-    var data = snapshot.data() as Map<String, dynamic>;
-    Board board = Board.fromJson(data);
+    Board board = await getBoardObject(boardId);
 
     int uIndex = board.potentialUsers
         .indexWhere((element) => element.id == potentialUserId);
@@ -311,22 +332,15 @@ class FirebaseBoardApi extends IBoardApi {
 
   @override
   Future<List<PotentialUser>> getAvailablePotentialUsers(String boardId) async {
-    var boardDoc = await FirebaseFirestore.instance
-        .collection('boards')
-        .doc(boardId)
-        .get();
+    Board board = await getBoardObject(boardId);
 
-    var data = boardDoc.data() as Map<String, dynamic>;
-    Board board = Board.fromJson(data);
     return board.potentialUsers;
   }
 
   @override
   Future<void> updatePotentialUser(
       String boardId, PotentialUser potentialUser) async {
-    var snapshot = await boardsRef.doc(boardId).get();
-    var data = snapshot.data() as Map<String, dynamic>;
-    Board board = Board.fromJson(data);
+    Board board = await getBoardObject(boardId);
 
     if (board.potentialUsers.isEmpty) {
       board.potentialUsers.add(potentialUser);

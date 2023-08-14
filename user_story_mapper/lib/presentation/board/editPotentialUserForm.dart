@@ -56,6 +56,8 @@ class _EditPotentialUser extends State<EditPotentialUser> {
             ),
             DropdownButtonFormField<ColorLabel>(
               value: pickerColor,
+              decoration: const InputDecoration(
+                  labelText: "Color", hintText: "Select color"),
               onChanged: ((newValue) {
                 setState(() {
                   pickerColor = newValue ?? ColorLabel.grey;

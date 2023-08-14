@@ -1,3 +1,5 @@
+import '../models/board.dart';
+import '../models/epic.dart';
 import '../models/story.dart';
 
 class Util {
@@ -19,7 +21,6 @@ class Util {
 
   static Map<String, dynamic> encodeMatrixOfStoriesToMap(
       List<List<Story>>? features) {
-        
     Map<String, Map<String, dynamic>> result = {};
     int index = 0;
     for (List<Story> row in features!) {
@@ -33,5 +34,18 @@ class Util {
       index++;
     }
     return result;
+  }
+
+  static List<int> getEpicPosition(Board board, String epicId) {
+    for (int mIndex = 0; mIndex < board.milestones.length; mIndex++) {
+      int eIndex = board.milestones[mIndex].epics
+          .indexWhere((element) => element.id == epicId);
+
+      if (eIndex != -1) {
+        return [mIndex, eIndex];
+      }
+    }
+
+    throw Exception("Epic ${epicId} not found in board ${board.id}");
   }
 }
