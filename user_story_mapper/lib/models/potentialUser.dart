@@ -1,3 +1,5 @@
+import 'dart:js_interop';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -38,4 +40,17 @@ class PotentialUser extends Equatable {
         name: "NULL name",
         description: "NULL description");
   }
+}
+
+
+List<PotentialUser> getPotentialUsersFromIds(
+    List<PotentialUser> availablePotUsers, List<String> potentialUsers) {
+  List<PotentialUser> result = [];
+  for (String u in potentialUsers) {
+    PotentialUser user = availablePotUsers.firstWhere((element) => element.id == u);
+    if (!user.isNull) {
+      result.add(user);
+    }
+  }
+  return result;
 }

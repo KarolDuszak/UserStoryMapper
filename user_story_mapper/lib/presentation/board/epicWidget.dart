@@ -1,6 +1,7 @@
 import 'package:drag_and_drop_lists/drag_and_drop_list_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:drag_and_drop_lists/drag_and_drop_lists.dart';
+import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:user_story_mapper/data/implementations/FirebaseBoardApi.dart';
 import 'package:user_story_mapper/models/potentialUser.dart';
 import 'package:user_story_mapper/models/story.dart';
@@ -183,10 +184,23 @@ class _EpicList extends State<EpicList> {
     return maxLen;
   }
 
-  showAddStoryDialog(BuildContext context, int listIndex) {
+  showAddStoryDialog(BuildContext context, int listIndex) async {
     final description = TextEditingController();
     final title = TextEditingController();
+    List<PotentialUser> availableUsers = [];
 
+    await FirebaseBoardApi().getAvailablePotentialUsers(_boardId).then(
+          (value) => setState(
+            () {
+              availableUsers = value;
+            },
+          ),
+        );
+
+    final _items = availableUsers
+        .map((potUser) => MultiSelectItem<PotentialUser>(potUser, potUser.name))
+        .toList();
+    List<PotentialUser> selected = [];
     // set up the buttons
     Widget cancelButton = ElevatedButton(
       child: Text("Cancel"),
@@ -200,8 +214,12 @@ class _EpicList extends State<EpicList> {
       child: Text("Add"),
       style: ElevatedButton.styleFrom(primary: Colors.green[700]),
       onPressed: () {
-        FirebaseBoardApi().createStory(_boardId, _epic.id, listIndex,
-            Story.createStory(title.text, description.text));
+        FirebaseBoardApi().createStory(
+            _boardId,
+            _epic.id,
+            listIndex,
+            Story.createStory(title.text, description.text,
+                selected.map((e) => e.id).toList()));
         Navigator.of(context).pop();
       },
     );
@@ -219,7 +237,19 @@ class _EpicList extends State<EpicList> {
             TextField(
               decoration: InputDecoration(label: Text("Description")),
               controller: description,
-            )
+            ),
+            MultiSelectDialogField<PotentialUser>(
+              items: _items,
+              initialValue: selected,
+              title: Text("Potential Users"),
+              buttonIcon: Icon(Icons.supervised_user_circle_rounded),
+              buttonText: Text(
+                "Select potential Users",
+              ),
+              onConfirm: (result) {
+                selected = result;
+              },
+            ),
           ],
         ),
       ),

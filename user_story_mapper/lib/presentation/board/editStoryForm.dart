@@ -117,15 +117,3 @@ class EditStoryFormState extends State<EditStoryForm> {
     );
   }
 }
-
-List<PotentialUser> getPotentialUsersFromIds(
-    List<PotentialUser> availablePotUsers, List<String> potentialUsers) {
-  List<PotentialUser> result = [];
-  for (String u in potentialUsers) {
-    var user = availablePotUsers.firstWhere((element) => element.id == u);
-    if (!user.isNull) {
-      result.add(user);
-    }
-  }
-  return result;
-}
