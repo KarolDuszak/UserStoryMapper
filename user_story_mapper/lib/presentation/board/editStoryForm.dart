@@ -5,23 +5,19 @@ import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:user_story_mapper/data/implementations/FirebaseBoardApi.dart';
 import 'package:user_story_mapper/models/potentialUser.dart';
 import 'package:user_story_mapper/models/story.dart';
-import 'package:multiselect/multiselect.dart';
 
 class EditStoryForm extends StatefulWidget {
   late Story currentStory;
   late String boardId;
   late String epicId;
-  late List<PotentialUser> availableUsers;
   @override
   EditStoryFormState createState() =>
-      EditStoryFormState(boardId, epicId, currentStory, availableUsers);
+      EditStoryFormState(boardId, epicId, currentStory);
 
-  EditStoryForm(String boardId, String epicId, Story story,
-      List<PotentialUser> availableUsers) {
+  EditStoryForm(String boardId, String epicId, Story story) {
     this.boardId = boardId;
     this.epicId = epicId;
     this.currentStory = story;
-    this.availableUsers = availableUsers;
   }
 }
 
@@ -30,29 +26,29 @@ class EditStoryFormState extends State<EditStoryForm> {
   late Story currentStory;
   late String boardId;
   late String epicId;
+  List<PotentialUser> availableUsers = [];
 
   //Story
   final description = TextEditingController();
   final title = TextEditingController();
-  late List<PotentialUser> availableUsers = [];
 
-  EditStoryFormState(String boardId, String epicId, Story order,
-      List<PotentialUser> availableUsers) {
+  EditStoryFormState(String boardId, String epicId, Story order) {
     this.currentStory = order;
     this.boardId = boardId;
     this.epicId = epicId;
-    this.description.text = currentStory.description;
-    this.title.text = currentStory.title;
-    if (currentStory.potentialUsers!.length > 0) {
-      this.availableUsers = availableUsers;
-    } else {
-      this.availableUsers = [];
-    }
+    description.text = currentStory.description;
+    title.text = currentStory.title;
+    FirebaseBoardApi().getAvailablePotentialUsers(boardId).then(
+          (value) => setState(
+            () {
+              availableUsers = value;
+            },
+          ),
+        );
   }
 
   @override
   Widget build(BuildContext context) {
-    //List<PotentialUser> selected = [];
     final _items = availableUsers
         .map((potUser) => MultiSelectItem<PotentialUser>(potUser, potUser.name))
         .toList();

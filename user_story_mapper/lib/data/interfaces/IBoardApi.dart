@@ -24,6 +24,7 @@ abstract class IBoardApi {
 
   Future<void> updatePotentialUser(String boardId, PotentialUser potentialUser);
   Future<void> deletePotentialUser(String boardId, String potentialUserId);
+  Future<List<PotentialUser>> getAvailablePotentialUsers(String boardId);
 
   Future<void> voteForEpic(String boardId, String milestoneId, String epicId);
   Future<void> unvoteForEpic(String boardId, String milestoneId, String epicId);

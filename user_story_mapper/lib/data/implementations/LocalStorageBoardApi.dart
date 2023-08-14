@@ -170,4 +170,10 @@ class LocalStorageBoardApi extends IBoardApi {
     // TODO: implement deleteStory
     throw UnimplementedError();
   }
+  
+  @override
+  Future<List<PotentialUser>> getAvailablePotentialUsers(String boardId) {
+    // TODO: implement getAvailablePotentialUsers
+    throw UnimplementedError();
+  }
 }

@@ -102,8 +102,8 @@ class FirebaseBoardApi extends IBoardApi {
             description: epic.description,
             title: epic.title,
             features: prevEpic.features,
-            potentialUsers: prevEpic.potentialUsers,
-            votes: prevEpic.votes);
+            potentialUsers: epic.potentialUsers,
+            votes: epic.votes);
         board.milestones[mIndex].epics.removeAt(index);
         board.milestones[mIndex].epics.insert(index, newEpic);
         updateBoard(board);
@@ -279,6 +279,18 @@ class FirebaseBoardApi extends IBoardApi {
 
     throw Exception(
         "Could not find potential user with if ${potentialUserId} in database");
+  }
+
+  @override
+  Future<List<PotentialUser>> getAvailablePotentialUsers(String boardId) async {
+    var boardDoc = await FirebaseFirestore.instance
+        .collection('boards')
+        .doc(boardId)
+        .get();
+
+    var data = boardDoc.data() as Map<String, dynamic>;
+    Board board = Board.fromJson(data);
+    return board.potentialUsers;
   }
 
   @override

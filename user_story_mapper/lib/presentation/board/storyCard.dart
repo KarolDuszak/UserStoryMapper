@@ -174,7 +174,7 @@ class _StoryCard extends State<StoryCard> {
                   SizedBox(
                       width: 140,
                       child: Row(
-                        children: [rowBuilder(potentialUsers?.length ?? 0)],
+                        children: [rowBuilder(potentialUsers.length)],
                       )),
                   SizedBox(
                       child: Text("+" + votes.toString(),
@@ -208,7 +208,9 @@ class _StoryCard extends State<StoryCard> {
       child: Text("Cancel"),
       style: ElevatedButton.styleFrom(primary: Colors.green[700]),
       onPressed: () {
-        isEditMode = false;
+        setState(() {
+          isEditMode = false;
+        });
         Navigator.of(context).pop();
       },
     );
@@ -221,7 +223,9 @@ class _StoryCard extends State<StoryCard> {
         } else {
           FirebaseBoardApi().deleteStory(boardId, epicId, id);
         }
-        isEditMode = false;
+        setState(() {
+          isEditMode = false;
+        });
         Navigator.of(context).pop();
       },
     );
@@ -253,11 +257,13 @@ class _StoryCard extends State<StoryCard> {
   showEditStoryDialog(BuildContext context) {
     // set up the buttons
     Widget cancelButton = ElevatedButton(
-      child: Text("Cancel"),
+      child: Text("Close"),
       style: ElevatedButton.styleFrom(primary: Colors.green[700]),
       onPressed: () {
+        setState(() {
+          isEditMode = false;
+        });
         Navigator.of(context).pop();
-        isEditMode = false;
       },
     );
 
@@ -274,8 +280,7 @@ class _StoryCard extends State<StoryCard> {
                 title: title,
                 description: description,
                 potentialUsers: potentialUsers,
-                votes: votes),
-            availablePotUsers),
+                votes: votes)),
       ),
       actions: [
         cancelButton,
