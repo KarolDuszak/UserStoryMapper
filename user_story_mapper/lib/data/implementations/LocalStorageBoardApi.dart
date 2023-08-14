@@ -176,4 +176,10 @@ class LocalStorageBoardApi extends IBoardApi {
     // TODO: implement getAvailablePotentialUsers
     throw UnimplementedError();
   }
+  
+  @override
+  Future<void> updateMilestoneProperties(String boardId, String milestoneId, String title, String description) {
+    // TODO: implement updateMilestoneProperties
+    throw UnimplementedError();
+  }
 }

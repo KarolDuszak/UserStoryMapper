@@ -50,6 +50,34 @@ class FirebaseBoardApi extends IBoardApi {
   }
 
   @override
+  Future<void> updateMilestoneProperties(String boardId, String milestoneId,
+      String title, String description) async {
+    var snapshot = await boardsRef.doc(boardId).get();
+
+    var data = snapshot.data() as Map<String, dynamic>;
+    Board board = Board.fromJson(data);
+
+    var mIndex =
+        board.milestones.indexWhere((element) => element.id == milestoneId);
+
+    if (mIndex == -1) {
+      throw Exception(
+          "Cound not find milestone ${title} with id ${milestoneId}");
+    }
+
+    Milestone newMilestone = Milestone(
+        id: board.milestones[mIndex].id,
+        title: title,
+        description: description,
+        epics: board.milestones[mIndex].epics);
+
+    board.milestones.removeAt(mIndex);
+    board.milestones.insert(mIndex, newMilestone);
+    updateBoard(board);
+    return;
+  }
+
+  @override
   Future<void> createEpic(String boardId, int milestoneIndex, Epic epic) async {
     var snapshot = await boardsRef.doc(boardId).get();
 

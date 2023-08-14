@@ -12,6 +12,8 @@ abstract class IBoardApi {
   Future<void> updateBoard(Board board);
   Future<void> deleteBoard(String boardId);
 
+  Future<void> updateMilestoneProperties(String boardId, String milestoneId, String title, String description);
+
   Future<void> createEpic(String boardId, int milestoneIndex, Epic epic);
   Future<void> updateEpic(String boardId, Epic epic);
   Future<void> updateEpicProperties(String boardId, Story epic);

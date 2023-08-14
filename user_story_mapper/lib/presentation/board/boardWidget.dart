@@ -123,7 +123,10 @@ class _BoardList extends State<BoardList> {
                 ElevatedButton(
                   child: const Text("Edit Milestone"),
                   style: ElevatedButton.styleFrom(primary: Colors.green[700]),
-                  onPressed: () async {},
+                  onPressed: () async {
+                    showEditMilestoneDialog(
+                        context, _board.id, _board.milestones[outerIndex]);
+                  },
                 ),
                 //TODO: Add new Epic to milestone
                 ElevatedButton(
@@ -293,4 +296,60 @@ class _BoardList extends State<BoardList> {
     }
     return (maxHeight + 1) * 170 + 100;
   }
+}
+
+showEditMilestoneDialog(
+    BuildContext context, String boardId, Milestone milestone) {
+  final description = TextEditingController();
+  final title = TextEditingController();
+  description.text = milestone.description;
+  title.text = milestone.title;
+  // set up the buttons
+  Widget cancelButton = ElevatedButton(
+    child: Text("Cancel"),
+    style: ElevatedButton.styleFrom(primary: Colors.red[700]),
+    onPressed: () {
+      Navigator.of(context).pop();
+    },
+  );
+
+  Widget addButton = ElevatedButton(
+    child: Text("Save"),
+    style: ElevatedButton.styleFrom(primary: Colors.green[700]),
+    onPressed: () {
+      FirebaseBoardApi().updateMilestoneProperties(
+          boardId, milestone.id, title.text, description.text);
+      Navigator.of(context).pop();
+    },
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("Edit Milestone ${milestone.title}"),
+    content: Container(
+      child: Column(
+        children: [
+          TextField(
+            decoration: InputDecoration(label: Text("Title")),
+            controller: title,
+          ),
+          TextField(
+            decoration: InputDecoration(label: Text("Description")),
+            controller: description,
+          ),
+        ],
+      ),
+    ),
+    actions: [
+      addButton,
+      cancelButton,
+    ],
+  );
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }
