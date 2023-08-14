@@ -20,6 +20,18 @@ class BoardList extends StatefulWidget {
   State createState() => _BoardList();
 }
 
+class MenuOptions {
+  static const String potentialUsers = 'Potential Users Menu';
+  static const String manageMembers = 'Members Menu';
+  static const String manageVoting = 'Voting Menu';
+
+  static const List<String> choices = <String>[
+    potentialUsers,
+    manageMembers,
+    manageVoting,
+  ];
+}
+
 class _BoardList extends State<BoardList> {
   late Board _board;
   late Stream _boardStream;
@@ -40,17 +52,39 @@ class _BoardList extends State<BoardList> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
-      floatingActionButton: FloatingActionButton.extended(
-        icon: const Icon(Icons.settings),
-        label: const Text("Open Settings"),
+      floatingActionButton: PopupMenuButton<String>(
+        onSelected: choiceAction,
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.blue,
+            borderRadius: BorderRadius.all(Radius.circular(15)),
+          ),
+          child: SizedBox(
+            height: 50,
+            width: 150,
+            child: Row(children: [
+              SizedBox(width: 3),
+              const Icon(
+                Icons.settings,
+                color: Colors.white,
+              ),
+              SizedBox(width: 3),
+              Text(
+                "Open Settings",
+                style: TextStyle(color: Colors.white, fontSize: 18),
+              )
+            ]),
+          ),
+        ),
         tooltip:
             "TODO: Add/Edit potentialUsers, members, roles, milestone, board data etc. Should be visible only for Admin of board",
-        onPressed: () {
-          showEditPotentialUserDialog(context);
-          //print("Add Milestone");
-          //_board.milestones
-          //    .add(Milestone.createNewMilestone("description", "title"));
-          //FirebaseBoardApi().updateBoard(_board);
+        itemBuilder: (BuildContext context) {
+          return MenuOptions.choices.map((String choice) {
+            return PopupMenuItem<String>(
+              value: choice,
+              child: Text(choice),
+            );
+          }).toList();
         },
       ),
       body: StreamBuilder(
@@ -251,6 +285,16 @@ class _BoardList extends State<BoardList> {
         return alert;
       },
     );
+  }
+
+  void choiceAction(String choice) {
+    if (choice == MenuOptions.potentialUsers) {
+      showEditPotentialUserDialog(context);
+    } else if (choice == MenuOptions.manageMembers) {
+      UnimplementedError("Member Menu not implemented");
+    } else if (choice == MenuOptions.manageVoting) {
+      UnimplementedError("Voting Menu not implemented");
+    }
   }
 
   _buildItem(Epic item) {
