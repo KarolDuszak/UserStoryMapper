@@ -197,8 +197,8 @@ class LocalStorageBoardApi extends IBoardApi {
   }
 
   @override
-  Future<void> moveFeature(
-      String boardId, String epicId, int mIndex, int eIndex, int fIndex) {
+  Future<void> moveFeature(String boardId, String epicId, int fOldIndex,
+      int mIndex, int eIndex, int fIndex) {
     // TODO: implement moveFeature
     throw UnimplementedError();
   }

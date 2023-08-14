@@ -14,7 +14,7 @@ abstract class IBoardApi {
   Future<void> deleteBoard(String boardId);
   Future<void> moveEpic(String boardId, String epicId, int mIndex, int eIndex);
   Future<void> moveFeature(
-      String boardId, String epicId, int mIndex, int eIndex, int fIndex);
+      String boardId, String epicId, int fOldIndex, int mIndex, int eIndex, int fIndex);
 
   Future<void> updateMilestoneProperties(
       String boardId, String milestoneId, String title, String description);

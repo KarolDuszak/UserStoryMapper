@@ -8,6 +8,8 @@ import 'package:user_story_mapper/models/milestone.dart';
 import 'package:user_story_mapper/models/potentialUser.dart';
 import 'package:user_story_mapper/models/story.dart';
 
+import '../../utils/utils.dart';
+
 class FirebaseBoardApi extends IBoardApi {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   CollectionReference boardsRef =
@@ -88,33 +90,39 @@ class FirebaseBoardApi extends IBoardApi {
       String boardId, String epicId, int mIndex, int eIndex) async {
     Board board = await getBoardObject(boardId);
 
-    for (int m = 0; m < board.milestones.length; m++) {
-      int e = board.milestones[m].epics
-          .indexWhere((element) => element.id == epicId);
+    List<int> position = Util.getEpicPosition(board, epicId);
 
-      if (e == -1) {
-        continue;
-      }
-      Epic newEpic = board.milestones[m].epics[e];
-      board.milestones[m].epics.removeAt(e);
-      if (board.milestones[mIndex].epics.length <= eIndex) {
-        board.milestones[mIndex].epics.add(newEpic);
-      } else {
-        board.milestones[mIndex].epics.insert(eIndex, newEpic);
-      }
-      updateBoard(board);
-      return;
+    Epic newEpic = board.milestones[position[0]].epics[position[1]];
+    board.milestones[position[0]].epics.removeAt(position[1]);
+    if (board.milestones[mIndex].epics.length <= eIndex) {
+      board.milestones[mIndex].epics.add(newEpic);
+    } else {
+      board.milestones[mIndex].epics.insert(eIndex, newEpic);
     }
-
-    throw Exception(
-        "Could not move Epic ${epicId} to mileston nr. ${mIndex} position ${eIndex}");
+    updateBoard(board);
+    return;
   }
 
   @override
-  Future<void> moveFeature(
-      String boardId, String epicId, int mIndex, int eIndex, int fIndex) {
-    // TODO: implement moveFeature
-    throw UnimplementedError();
+  Future<void> moveFeature(String boardId, String epicId, int fOldIndex,
+      int mIndex, int eIndex, int fIndex) async {
+    Board board = await getBoardObject(boardId);
+
+    List<int> ePosition = Util.getEpicPosition(board, epicId);
+
+    List<Story> newFeature =
+        board.milestones[ePosition[0]].epics[ePosition[1]].features![fOldIndex];
+    board.milestones[ePosition[0]].epics[ePosition[1]].features!
+        .removeAt(fOldIndex);
+
+    if (board.milestones[mIndex].epics[eIndex].features!.length <= fIndex) {
+      board.milestones[mIndex].epics[eIndex].features!.add(newFeature);
+    } else {
+      board.milestones[mIndex].epics[eIndex].features!
+          .insert(fIndex, newFeature);
+    }
+    updateBoard(board);
+    return;
   }
 
   @override

@@ -63,13 +63,7 @@ class _EpicList extends State<EpicList> {
                     onPressed: () {
                       showMoveEpicDialog(context, _boardId, _epic);
                     },
-                    child: Text("Move Epic")),
-                ElevatedButton(
-                  onPressed: () {
-                    FirebaseBoardApi().updateEpic(_boardId, _epic);
-                  },
-                  child: Text("Test api"),
-                ),
+                    child: Text("Move Epic"))
               ],
             ),
           ),
@@ -130,8 +124,11 @@ class _EpicList extends State<EpicList> {
                 child: Text("Add Story"))),
         header: Container(
             alignment: Alignment.center,
-            child:
-                ElevatedButton(onPressed: () {}, child: Text("Move feature"))),
+            child: ElevatedButton(
+                onPressed: () {
+                  showMoveFeatureDialog(context, _boardId, _epic, outerIndex);
+                },
+                child: Text("Move feature"))),
         children: featureList);
   }
 
@@ -369,6 +366,186 @@ class _EpicList extends State<EpicList> {
                                     },
                                   ).toList(),
                                 ),
+                              ],
+                            ),
+                            actions: [saveButton, cancelButton],
+                          );
+                        }),
+                  },
+              child: Text("Next")),
+        ],
+      ),
+      actions: [
+        cancelButton,
+      ],
+    );
+    // show the dialog
+    // ignore: use_build_context_synchronously
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  showMoveFeatureDialog(
+      BuildContext context, String boardId, Epic epic, int fIndex) async {
+    Board board = await FirebaseBoardApi().getBoardObject(boardId);
+
+    List<int> epicPosition = Util.getEpicPosition(board, epic.id);
+    int milestoneSelect = epicPosition[0];
+    int epicSelect = epicPosition[1];
+    int featureSelect = fIndex;
+    List<int> listEpics = List<int>.generate(
+        board.milestones[milestoneSelect].epics.length, (i) => i);
+    List<int> listFeatures = List<int>.generate(
+        board.milestones[milestoneSelect].epics[epicSelect].features!.length,
+        (i) => i);
+    // set up the buttons
+    Widget cancelButton = ElevatedButton(
+      child: Text("Close"),
+      style: ElevatedButton.styleFrom(primary: Colors.red[700]),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+
+    Widget saveButton = ElevatedButton(
+      child: Text("Save"),
+      style: ElevatedButton.styleFrom(primary: Colors.green[700]),
+      onPressed: () {
+        FirebaseBoardApi().moveFeature(boardId, _epic.id, fIndex,
+            milestoneSelect, epicSelect, featureSelect);
+        Navigator.of(context).pop();
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: const Text("Move Feature"),
+      content: Column(
+        children: [
+          DropdownButtonFormField(
+            value: milestoneSelect,
+            decoration: const InputDecoration(
+                labelText: "Milestone Position",
+                hintText:
+                    "Select milestone index where feature should be moved"),
+            onChanged: ((newValue) {
+              setState(() {
+                milestoneSelect = newValue!;
+                epicSelect = 0;
+                listEpics = List<int>.generate(
+                    board.milestones[milestoneSelect].epics.length, (i) => i);
+                featureSelect = board
+                        .milestones[milestoneSelect].epics[0].features!.length +
+                    1;
+              });
+            }),
+            items: List<int>.generate(board.milestones.length, (index) => index)
+                .toList()
+                .map<DropdownMenuItem<int>>(
+              (int mIndex) {
+                return DropdownMenuItem<int>(
+                  value: mIndex,
+                  child: Text(
+                    mIndex.toString(),
+                  ),
+                );
+              },
+            ).toList(),
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          ElevatedButton(
+              onPressed: () => {
+                    Navigator.of(context).pop(),
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text(
+                                "Select position in milestone ${board.milestones[milestoneSelect].title}"),
+                            content: Column(
+                              children: [
+                                DropdownButtonFormField(
+                                  value: epicSelect,
+                                  decoration: const InputDecoration(
+                                      labelText: "Epic Position",
+                                      hintText:
+                                          "Select index of epic where feature should be moved"),
+                                  onChanged: ((newValue) {
+                                    setState(() {
+                                      epicSelect = newValue!;
+                                      featureSelect = board
+                                          .milestones[milestoneSelect]
+                                          .epics[epicSelect]
+                                          .features!
+                                          .length;
+                                      listFeatures = List<int>.generate(
+                                          featureSelect + 1, (i) => i);
+                                    });
+                                  }),
+                                  items: listEpics.map<DropdownMenuItem<int>>(
+                                    (int i) {
+                                      return DropdownMenuItem<int>(
+                                        value: i,
+                                        child: Text(
+                                          i.toString(),
+                                        ),
+                                      );
+                                    },
+                                  ).toList(),
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                ElevatedButton(
+                                  onPressed: () => {
+                                    Navigator.of(context).pop(),
+                                    showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: Text(
+                                                "Select position in epic ${board.milestones[milestoneSelect].epics[epicSelect].title}"),
+                                            content: Column(
+                                              children: [
+                                                DropdownButtonFormField(
+                                                  value: featureSelect,
+                                                  decoration: const InputDecoration(
+                                                      labelText:
+                                                          "Feature Position",
+                                                      hintText:
+                                                          "Select index where feature should be moved"),
+                                                  onChanged: ((newValue) {
+                                                    setState(() {
+                                                      featureSelect = newValue!;
+                                                    });
+                                                  }),
+                                                  items: listFeatures.map<
+                                                      DropdownMenuItem<int>>(
+                                                    (int i) {
+                                                      return DropdownMenuItem<
+                                                          int>(
+                                                        value: i,
+                                                        child: Text(
+                                                          i.toString(),
+                                                        ),
+                                                      );
+                                                    },
+                                                  ).toList(),
+                                                )
+                                              ],
+                                            ),
+                                            actions: [saveButton, cancelButton],
+                                          );
+                                        }),
+                                  },
+                                  child: Text("Next"),
+                                )
                               ],
                             ),
                             actions: [saveButton, cancelButton],
