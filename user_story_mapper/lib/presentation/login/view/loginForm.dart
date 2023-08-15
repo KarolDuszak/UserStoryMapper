@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:user_story_mapper/presentation/login/cubit/loginCubit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:user_story_mapper/presentation/signUp/view/signUpPage.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});
@@ -133,6 +134,8 @@ class _GoogleLoginButton extends StatelessWidget {
 class _SignUpButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return TextButton(onPressed: () => {}, child: Text("Create Account"));
+    return TextButton(
+        onPressed: () => Navigator.of(context).push<void>(SignUpPage.route()),
+        child: Text("Create Account"));
   }
 }
