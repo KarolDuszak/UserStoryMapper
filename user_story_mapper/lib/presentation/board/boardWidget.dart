@@ -1,13 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:drag_and_drop_lists/drag_and_drop_lists.dart';
-import 'package:user_story_mapper/models/board.dart';
-import 'package:user_story_mapper/models/potentialUser.dart';
+import 'package:user_story_mapper/models/boardModels/board.dart';
+import 'package:user_story_mapper/models/boardModels/potentialUser.dart';
 import 'package:user_story_mapper/presentation/board/epicWidget.dart';
 import 'package:uuid/uuid.dart';
 import '../../data/implementations/FirebaseBoardApi.dart';
-import '../../models/milestone.dart';
-import '../../models/epic.dart';
+import '../../models/boardModels/milestone.dart';
+import '../../models/boardModels/epic.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'dart:math';
 

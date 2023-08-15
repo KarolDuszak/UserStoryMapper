@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:user_story_mapper/models/labelColor.dart';
+import 'package:user_story_mapper/models/boardModels/labelColor.dart';
 
 part 'roleLabel.g.dart';
 

@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:user_story_mapper/models/board.dart';
-import 'package:user_story_mapper/models/boardInvitation.dart';
+import 'package:user_story_mapper/models/boardModels/board.dart';
+import 'package:user_story_mapper/models/boardModels/boardInvitation.dart';
 
 part 'user.g.dart';
 

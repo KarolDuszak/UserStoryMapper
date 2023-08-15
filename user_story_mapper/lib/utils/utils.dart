@@ -1,6 +1,5 @@
-import '../models/board.dart';
-import '../models/epic.dart';
-import '../models/story.dart';
+import '../models/boardModels/board.dart';
+import '../models/boardModels/story.dart';
 
 class Util {
   static List<List<Story>> decodeMapToMatrixOfStories(

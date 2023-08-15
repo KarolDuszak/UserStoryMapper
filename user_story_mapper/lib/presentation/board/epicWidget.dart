@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:drag_and_drop_lists/drag_and_drop_lists.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:user_story_mapper/data/implementations/FirebaseBoardApi.dart';
-import 'package:user_story_mapper/models/potentialUser.dart';
-import 'package:user_story_mapper/models/story.dart';
+import 'package:user_story_mapper/models/boardModels/potentialUser.dart';
+import 'package:user_story_mapper/models/boardModels/story.dart';
 import 'package:user_story_mapper/presentation/board/storyCard.dart';
-import '../../models/board.dart';
-import '../../models/epic.dart';
+import '../../models/boardModels/board.dart';
+import '../../models/boardModels/epic.dart';
 import '../../utils/utils.dart';
 
 class EpicList extends StatefulWidget {

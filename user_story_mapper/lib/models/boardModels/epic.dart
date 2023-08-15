@@ -2,8 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:user_story_mapper/utils/utils.dart';
 import 'package:uuid/uuid.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:user_story_mapper/models/potentialUser.dart';
-import 'package:user_story_mapper/models/story.dart';
+import 'package:user_story_mapper/models/boardModels/story.dart';
 
 part 'epic.g.dart';
 

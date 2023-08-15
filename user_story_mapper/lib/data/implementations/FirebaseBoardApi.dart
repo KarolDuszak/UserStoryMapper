@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import 'package:user_story_mapper/data/interfaces/IBoardApi.dart';
-import 'package:user_story_mapper/models/board.dart';
+import 'package:user_story_mapper/models/boardModels/board.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:user_story_mapper/models/epic.dart';
-import 'package:user_story_mapper/models/milestone.dart';
-import 'package:user_story_mapper/models/potentialUser.dart';
-import 'package:user_story_mapper/models/story.dart';
+import 'package:user_story_mapper/models/boardModels/epic.dart';
+import 'package:user_story_mapper/models/boardModels/milestone.dart';
+import 'package:user_story_mapper/models/boardModels/potentialUser.dart';
+import 'package:user_story_mapper/models/boardModels/story.dart';
 
 import '../../utils/utils.dart';
 

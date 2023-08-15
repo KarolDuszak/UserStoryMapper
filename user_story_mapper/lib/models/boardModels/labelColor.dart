@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:user_story_mapper/models/potentialUser.dart';
+import 'package:user_story_mapper/models/boardModels/potentialUser.dart';
 
 enum ColorLabel {
   green,

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:user_story_mapper/models/roleLabel.dart';
+import 'package:user_story_mapper/models/boardModels/roleLabel.dart';
 
 part 'member.g.dart';
 

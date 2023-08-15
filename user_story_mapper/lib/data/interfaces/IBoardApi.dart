@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:user_story_mapper/models/milestone.dart';
-import 'package:user_story_mapper/models/potentialUser.dart';
+import 'package:user_story_mapper/models/boardModels/milestone.dart';
+import 'package:user_story_mapper/models/boardModels/potentialUser.dart';
 
-import '../../models/board.dart';
-import '../../models/epic.dart';
-import '../../models/story.dart';
+import '../../models/boardModels/board.dart';
+import '../../models/boardModels/epic.dart';
+import '../../models/boardModels/story.dart';
 
 abstract class IBoardApi {
   Stream getBoard(String boardId);
@@ -13,8 +13,8 @@ abstract class IBoardApi {
   Future<void> updateBoard(Board board);
   Future<void> deleteBoard(String boardId);
   Future<void> moveEpic(String boardId, String epicId, int mIndex, int eIndex);
-  Future<void> moveFeature(
-      String boardId, String epicId, int fOldIndex, int mIndex, int eIndex, int fIndex);
+  Future<void> moveFeature(String boardId, String epicId, int fOldIndex,
+      int mIndex, int eIndex, int fIndex);
 
   Future<void> updateMilestoneProperties(
       String boardId, String milestoneId, String title, String description);

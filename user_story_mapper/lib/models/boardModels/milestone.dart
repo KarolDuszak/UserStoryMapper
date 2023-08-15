@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:user_story_mapper/models/epic.dart';
+import 'package:user_story_mapper/models/boardModels/epic.dart';
 import 'package:uuid/uuid.dart';
 
 part 'milestone.g.dart';

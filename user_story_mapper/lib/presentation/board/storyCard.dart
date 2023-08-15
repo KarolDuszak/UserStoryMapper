@@ -1,12 +1,11 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:user_story_mapper/data/implementations/FirebaseBoardApi.dart';
-import 'package:user_story_mapper/models/labelColor.dart';
-import 'package:user_story_mapper/models/potentialUser.dart';
-import 'package:user_story_mapper/models/story.dart';
+import 'package:user_story_mapper/models/boardModels/labelColor.dart';
+import 'package:user_story_mapper/models/boardModels/potentialUser.dart';
+import 'package:user_story_mapper/models/boardModels/story.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
-import '../../models/epic.dart';
+import '../../models/boardModels/epic.dart';
 import 'editStoryForm.dart';
 
 class StoryCard extends StatefulWidget {

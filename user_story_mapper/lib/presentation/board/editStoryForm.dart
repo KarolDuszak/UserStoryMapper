@@ -1,10 +1,8 @@
-import 'dart:js_interop';
-
 import 'package:flutter/material.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:user_story_mapper/data/implementations/FirebaseBoardApi.dart';
-import 'package:user_story_mapper/models/potentialUser.dart';
-import 'package:user_story_mapper/models/story.dart';
+import 'package:user_story_mapper/models/boardModels/potentialUser.dart';
+import 'package:user_story_mapper/models/boardModels/story.dart';
 
 class EditStoryForm extends StatefulWidget {
   late Story currentStory;

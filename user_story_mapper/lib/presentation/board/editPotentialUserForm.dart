@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:user_story_mapper/data/implementations/FirebaseBoardApi.dart';
-import 'package:user_story_mapper/models/potentialUser.dart';
+import 'package:user_story_mapper/models/boardModels/potentialUser.dart';
 
-import '../../models/labelColor.dart';
+import '../../models/boardModels/labelColor.dart';
 
 class EditPotentialUser extends StatefulWidget {
   final PotentialUser potentialUser;

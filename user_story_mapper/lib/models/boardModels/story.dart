@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:user_story_mapper/models/potentialUser.dart';
 
 import 'package:uuid/uuid.dart';
 
@@ -43,7 +42,8 @@ class Story extends Equatable {
         votes: 4);
   }
 
-  static Story createStory(String title, String description, List<String> potUsers) {
+  static Story createStory(
+      String title, String description, List<String> potUsers) {
     var uuid = Uuid().v1();
     return Story(
         id: uuid,
