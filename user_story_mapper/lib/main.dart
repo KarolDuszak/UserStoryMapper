@@ -1,14 +1,32 @@
 import 'dart:ui';
 
+import 'package:authentication_repository/authentication_repository.dart';
+import 'package:bloc/bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:user_story_mapper/models/epic.dart';
+import 'package:user_story_mapper/models/boardModels/epic.dart';
+import 'package:user_story_mapper/presentation/app/bloc_observer.dart';
+import 'package:user_story_mapper/presentation/app/view/app.dart';
 import 'package:user_story_mapper/presentation/board/epicWidget.dart';
 import 'package:user_story_mapper/presentation/board/boardWidget.dart';
 
 import 'firebase_options.dart';
 
-void main() async {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = const AppBlocObserver();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  final authenticationRepository = AuthenticationRepository();
+  await authenticationRepository.user.first;
+
+  runApp(App(authenticationRepository: authenticationRepository));
+}
+
+/*void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -40,3 +58,4 @@ class ReorderableApp extends StatelessWidget {
     );
   }
 }
+*/

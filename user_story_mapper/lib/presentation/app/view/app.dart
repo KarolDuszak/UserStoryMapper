@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/app_bloc.dart';
+import '../app.dart';
 
 class App extends StatelessWidget {
   const App({
@@ -29,8 +29,6 @@ class App extends StatelessWidget {
 
 class AppView extends StatelessWidget {
   const AppView({super.key});
-
-  get onGenerateAppViewPages => null;
 
   @override
   Widget build(BuildContext context) {

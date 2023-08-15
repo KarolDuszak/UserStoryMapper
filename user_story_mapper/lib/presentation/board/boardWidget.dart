@@ -14,6 +14,8 @@ import 'potentialUserPanelWidget.dart';
 class BoardList extends StatefulWidget {
   const BoardList({Key? key}) : super(key: key);
 
+  static Page<void> page() => const MaterialPage<void>(child: BoardList());
+
   @override
   State createState() => _BoardList();
 }
