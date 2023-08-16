@@ -122,7 +122,7 @@ class _BoardList extends State<BoardList> {
                         return Container(
                             decoration: const BoxDecoration(
                                 border: Border(bottom: BorderSide())),
-                            child: _buildList(index));
+                            child: _buildList(index, user.id));
                       },
                     ),
                   ),
@@ -138,7 +138,7 @@ class _BoardList extends State<BoardList> {
     );
   }
 
-  _buildList(int outerIndex) {
+  _buildList(int outerIndex, String userId) {
     var milestone = _board.milestones[outerIndex];
     return ConstrainedBox(
       constraints: BoxConstraints(maxHeight: _getMaxHeightInMilestone()),
@@ -198,7 +198,7 @@ class _BoardList extends State<BoardList> {
                 return Container(
                     decoration: const BoxDecoration(
                         border: Border(right: BorderSide())),
-                    child: _buildItem(milestone.epics[index]));
+                    child: _buildItem(milestone.epics[index], userId));
               },
             ),
           ),
@@ -214,7 +214,7 @@ class _BoardList extends State<BoardList> {
       child: Text("Cancel"),
       style: ElevatedButton.styleFrom(primary: Colors.red[700]),
       onPressed: () {
-        Navigator.of(context).pop();
+        Navigator.of(context, rootNavigator: true).pop();
       },
     );
     Widget deleteButton = ElevatedButton(
@@ -232,7 +232,7 @@ class _BoardList extends State<BoardList> {
               potentialUsers: [],
               votes: 0),
         );
-        Navigator.of(context).pop();
+        Navigator.of(context, rootNavigator: true).pop();
       },
     );
 
@@ -271,7 +271,7 @@ class _BoardList extends State<BoardList> {
       child: Text("Close"),
       style: ElevatedButton.styleFrom(primary: Colors.red[700]),
       onPressed: () {
-        Navigator.of(context).pop();
+        Navigator.of(context, rootNavigator: true).pop();
       },
     );
     Widget addButton = ElevatedButton(
@@ -279,7 +279,7 @@ class _BoardList extends State<BoardList> {
       style: ElevatedButton.styleFrom(primary: Colors.green[700]),
       onPressed: () {
         _board.potentialUsers.add(PotentialUser.createNew());
-        Navigator.of(context).pop();
+        Navigator.of(context, rootNavigator: true).pop();
         showEditPotentialUserDialog(context);
       },
     );
@@ -313,18 +313,18 @@ class _BoardList extends State<BoardList> {
     }
   }
 
-  _buildItem(Epic item) {
+  _buildItem(Epic item, String userId) {
     return EpicList(
       epic: item,
       boardId: _board.id,
       potentialUsers: _board.potentialUsers,
+      userId: userId,
     );
   }
 
   _onItemReorder(
       int oldItemIndex, int oldListIndex, int newItemIndex, int newListIndex) {
     setState(() {
-      // = _epic[oldListIndex].stories[oldItemIndex];
       var movedItem =
           _board.milestones[oldListIndex].epics.removeAt(oldItemIndex);
       _board.milestones[newListIndex].epics.insert(newItemIndex, movedItem);
@@ -369,7 +369,7 @@ showEditMilestoneDialog(
     child: Text("Cancel"),
     style: ElevatedButton.styleFrom(primary: Colors.red[700]),
     onPressed: () {
-      Navigator.of(context).pop();
+      Navigator.of(context, rootNavigator: true).pop();
     },
   );
 
@@ -379,7 +379,7 @@ showEditMilestoneDialog(
     onPressed: () {
       FirebaseBoardApi().updateMilestoneProperties(
           boardId, milestone.id, title.text, description.text);
-      Navigator.of(context).pop();
+      Navigator.of(context, rootNavigator: true).pop();
     },
   );
 

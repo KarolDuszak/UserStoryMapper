@@ -210,7 +210,7 @@ class _StoryCard extends State<StoryCard> {
         setState(() {
           isEditMode = false;
         });
-        Navigator.of(context).pop();
+        Navigator.of(context, rootNavigator: true).pop();
       },
     );
     Widget deleteButton = ElevatedButton(
@@ -225,7 +225,7 @@ class _StoryCard extends State<StoryCard> {
         setState(() {
           isEditMode = false;
         });
-        Navigator.of(context).pop();
+        Navigator.of(context, rootNavigator: true).pop();
       },
     );
 
@@ -262,7 +262,7 @@ class _StoryCard extends State<StoryCard> {
         setState(() {
           isEditMode = false;
         });
-        Navigator.of(context).pop();
+        Navigator.of(context, rootNavigator: true).pop();
       },
     );
 

@@ -42,12 +42,12 @@ class Story extends Equatable {
         votes: 4);
   }
 
-  static Story createStory(
-      String title, String description, List<String> potUsers) {
+  static Story createStory(String title, String description,
+      List<String> potUsers, String creatorId) {
     var uuid = Uuid().v1();
     return Story(
         id: uuid,
-        creatorId: "NULL creatorId",
+        creatorId: creatorId,
         description: description,
         title: title,
         potentialUsers: potUsers,

@@ -12,6 +12,7 @@ import '../../utils/utils.dart';
 
 class EpicList extends StatefulWidget {
   final Epic epic;
+  final String userId;
   final String boardId;
   final List<PotentialUser> potentialUsers;
 
@@ -19,6 +20,7 @@ class EpicList extends StatefulWidget {
       {Key? key,
       required this.epic,
       required this.boardId,
+      required this.userId,
       required this.potentialUsers})
       : super(key: key);
 
@@ -30,11 +32,13 @@ class _EpicList extends State<EpicList> {
   late Epic _epic;
   late String _boardId;
   late List<PotentialUser> _potentialUsers;
+  late String _userId;
 
   @override
   void initState() {
     super.initState();
     _epic = widget.epic;
+    _userId = widget.userId;
     _boardId = widget.boardId;
     _potentialUsers = widget.potentialUsers;
   }
@@ -209,7 +213,7 @@ class _EpicList extends State<EpicList> {
       child: Text("Cancel"),
       style: ElevatedButton.styleFrom(primary: Colors.red[700]),
       onPressed: () {
-        Navigator.of(context).pop();
+        Navigator.of(context, rootNavigator: true).pop();
       },
     );
 
@@ -222,8 +226,8 @@ class _EpicList extends State<EpicList> {
             _epic.id,
             listIndex,
             Story.createStory(title.text, description.text,
-                selected.map((e) => e.id).toList()));
-        Navigator.of(context).pop();
+                selected.map((e) => e.id).toList(), _userId));
+        Navigator.of(context, rootNavigator: true).pop();
       },
     );
 
@@ -284,7 +288,7 @@ class _EpicList extends State<EpicList> {
       child: Text("Close"),
       style: ElevatedButton.styleFrom(primary: Colors.red[700]),
       onPressed: () {
-        Navigator.of(context).pop();
+        Navigator.of(context, rootNavigator: true).pop();
       },
     );
 
@@ -294,7 +298,7 @@ class _EpicList extends State<EpicList> {
       onPressed: () {
         FirebaseBoardApi()
             .moveEpic(boardId, _epic.id, milestoneSelect, epicSelect);
-        Navigator.of(context).pop();
+        Navigator.of(context, rootNavigator: true).pop();
       },
     );
 
@@ -335,7 +339,7 @@ class _EpicList extends State<EpicList> {
           ),
           ElevatedButton(
               onPressed: () => {
-                    Navigator.of(context).pop(),
+                    Navigator.of(context, rootNavigator: true).pop(),
                     showDialog(
                         context: context,
                         builder: (BuildContext context) {
@@ -407,7 +411,7 @@ class _EpicList extends State<EpicList> {
       child: Text("Close"),
       style: ElevatedButton.styleFrom(primary: Colors.red[700]),
       onPressed: () {
-        Navigator.of(context).pop();
+        Navigator.of(context, rootNavigator: true).pop();
       },
     );
 
@@ -417,7 +421,7 @@ class _EpicList extends State<EpicList> {
       onPressed: () {
         FirebaseBoardApi().moveFeature(boardId, _epic.id, fIndex,
             milestoneSelect, epicSelect, featureSelect);
-        Navigator.of(context).pop();
+        Navigator.of(context, rootNavigator: true).pop();
       },
     );
 
@@ -461,7 +465,7 @@ class _EpicList extends State<EpicList> {
           ),
           ElevatedButton(
               onPressed: () => {
-                    Navigator.of(context).pop(),
+                    Navigator.of(context, rootNavigator: true).pop(),
                     showDialog(
                         context: context,
                         builder: (BuildContext context) {
