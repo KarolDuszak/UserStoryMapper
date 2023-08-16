@@ -15,7 +15,6 @@ dependencies:
   flutter:
     sdk: flutter
   google_sign_in: ^6.1.0
-  meta: ^1.8.0
 
 dev_dependencies:
   firebase_auth_platform_interface: ^6.15.0

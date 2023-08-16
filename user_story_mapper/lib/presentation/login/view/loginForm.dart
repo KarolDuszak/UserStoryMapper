@@ -38,8 +38,6 @@ class LoginForm extends StatelessWidget {
                 const SizedBox(height: 8),
                 _LoginButton(),
                 const SizedBox(height: 8),
-                _GoogleLoginButton(),
-                const SizedBox(height: 4),
                 _SignUpButton(),
               ],
             ),
@@ -107,26 +105,6 @@ class _LoginButton extends StatelessWidget {
                 child: const Text('Login'),
               );
       },
-    );
-  }
-}
-
-class _GoogleLoginButton extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return ElevatedButton.icon(
-      onPressed: () => context.read<LoginCubit>().LogInWithGoogle(),
-      icon: const Icon(FontAwesomeIcons.google, color: Colors.white),
-      label: const Text(
-        "SIGN IN WITH GOOGLE",
-        style: TextStyle(color: Colors.white),
-      ),
-      style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
-          ),
-          backgroundColor: theme.colorScheme.secondary),
     );
   }
 }

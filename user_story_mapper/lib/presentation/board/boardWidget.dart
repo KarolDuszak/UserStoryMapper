@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:user_story_mapper/models/boardModels/board.dart';
 import 'package:user_story_mapper/models/boardModels/potentialUser.dart';
@@ -8,13 +10,21 @@ import '../../models/boardModels/milestone.dart';
 import '../../models/boardModels/epic.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'dart:math';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:user_story_mapper/presentation/app/app.dart';
 
 import 'potentialUserPanelWidget.dart';
 
 class BoardList extends StatefulWidget {
-  const BoardList({Key? key}) : super(key: key);
+  const BoardList({Key? key, required this.boardId}) : super(key: key);
 
-  static Page<void> page() => const MaterialPage<void>(child: BoardList());
+  final String boardId;
+
+  static Page<void> page(String boardId) => MaterialPage<void>(
+        child: BoardList(
+          boardId: boardId,
+        ),
+      );
 
   @override
   State createState() => _BoardList();
@@ -43,78 +53,87 @@ class _BoardList extends State<BoardList> {
     //For testing porporse
     //Board board2 = Board.getEmptyObj(4);
     //FirebaseBoardApi().createBoard(board2);
-    //var boId = board2.id;
-    var boId = "dfe27c17-ef21-43dd-b44f-9c1fb802fccd";
-    _boardStream = FirebaseBoardApi().getBoard(boId);
+
+    _boardStream = FirebaseBoardApi().getBoard(widget.boardId);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
-      floatingActionButton: PopupMenuButton<String>(
-        onSelected: choiceAction,
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.blue,
-            borderRadius: BorderRadius.all(Radius.circular(15)),
-          ),
-          child: SizedBox(
-            height: 50,
-            width: 150,
-            child: Row(children: [
-              SizedBox(width: 3),
-              const Icon(
-                Icons.settings,
-                color: Colors.white,
-              ),
-              SizedBox(width: 3),
-              Text(
-                "Open Settings",
-                style: TextStyle(color: Colors.white, fontSize: 18),
-              )
-            ]),
-          ),
-        ),
-        tooltip:
-            "TODO: Add/Edit potentialUsers, members, roles, milestone, board data etc. Should be visible only for Admin of board",
-        itemBuilder: (BuildContext context) {
-          return MenuOptions.choices.map((String choice) {
-            return PopupMenuItem<String>(
-              value: choice,
-              child: Text(choice),
-            );
-          }).toList();
+    final user = context.select((AppBloc bloc) => bloc.state.user);
+    return MaterialApp(
+      scrollBehavior: MaterialScrollBehavior().copyWith(
+        dragDevices: {
+          PointerDeviceKind.mouse,
+          PointerDeviceKind.touch,
+          PointerDeviceKind.stylus,
+          PointerDeviceKind.unknown
         },
       ),
-      body: StreamBuilder(
-        key: Key("${Random().nextDouble()}"),
-        stream: _boardStream,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            _board = Board.fromJson(snapshot.data.data());
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: _board.milestones.length,
-                    itemBuilder: (context, index) {
-                      return Container(
-                          decoration: const BoxDecoration(
-                              border: Border(bottom: BorderSide())),
-                          child: _buildList(index));
-                    },
-                  ),
+      home: Scaffold(
+        floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+        floatingActionButton: PopupMenuButton<String>(
+          onSelected: choiceAction,
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.blue,
+              borderRadius: BorderRadius.all(Radius.circular(15)),
+            ),
+            child: SizedBox(
+              height: 50,
+              width: 155,
+              child: Row(children: [
+                SizedBox(width: 3),
+                const Icon(
+                  Icons.settings,
+                  color: Colors.white,
                 ),
-              ],
-            );
-          }
-          return Container(
-              alignment: Alignment.center, child: CircularProgressIndicator());
-        },
+                SizedBox(width: 3),
+                Text(
+                  "Board Settings",
+                  style: TextStyle(color: Colors.white, fontSize: 18),
+                )
+              ]),
+            ),
+          ),
+          itemBuilder: (BuildContext context) {
+            return MenuOptions.choices.map((String choice) {
+              return PopupMenuItem<String>(
+                value: choice,
+                child: Text(choice),
+              );
+            }).toList();
+          },
+        ),
+        body: StreamBuilder(
+          key: Key("${Random().nextDouble()}"),
+          stream: _boardStream,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              _board = Board.fromJson(snapshot.data.data());
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: _board.milestones.length,
+                      itemBuilder: (context, index) {
+                        return Container(
+                            decoration: const BoxDecoration(
+                                border: Border(bottom: BorderSide())),
+                            child: _buildList(index));
+                      },
+                    ),
+                  ),
+                ],
+              );
+            }
+            return Container(
+                alignment: Alignment.center,
+                child: CircularProgressIndicator());
+          },
+        ),
       ),
     );
   }
@@ -153,7 +172,6 @@ class _BoardList extends State<BoardList> {
                     ),
                   ),
                 ),
-                //TODO: Implement edit milestone dialog where data can be modified
                 ElevatedButton(
                   child: const Text("Edit Milestone"),
                   style: ElevatedButton.styleFrom(primary: Colors.green[700]),
@@ -162,7 +180,6 @@ class _BoardList extends State<BoardList> {
                         context, _board.id, _board.milestones[outerIndex]);
                   },
                 ),
-                //TODO: Add new Epic to milestone
                 ElevatedButton(
                   child: const Text("Add New Epic"),
                   style: ElevatedButton.styleFrom(primary: Colors.red[700]),
@@ -185,7 +202,6 @@ class _BoardList extends State<BoardList> {
               },
             ),
           ),
-          //TODO: Add epic button
         ],
       ),
     );

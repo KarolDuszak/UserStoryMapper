@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:meta/meta.dart';
 import 'package:cache/cache.dart';
 
 class AuthenticationRepository {
@@ -38,24 +37,6 @@ class AuthenticationRepository {
       throw SignUpWithEmailAndPasswordFailure.fromCode(e.code);
     } catch (_) {
       throw const SignUpWithEmailAndPasswordFailure();
-    }
-  }
-
-  Future<void> logInWithGoogle() async {
-    try {
-      late final firebase_auth.AuthCredential credential;
-
-      final googleProvider = firebase_auth.GoogleAuthProvider();
-      final userCredential =
-          await _firebaseAuth.signInWithPopup(googleProvider);
-
-      credential = userCredential.credential!;
-
-      await _firebaseAuth.signInWithCredential(credential);
-    } on firebase_auth.FirebaseAuthException catch (e) {
-      throw LogInWithGoogleFailure.fromCode(e.code);
-    } catch (_) {
-      throw const LogInWithGoogleFailure();
     }
   }
 
