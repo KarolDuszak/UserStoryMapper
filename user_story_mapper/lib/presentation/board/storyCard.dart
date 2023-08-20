@@ -176,9 +176,23 @@ class _StoryCard extends State<StoryCard> {
                         children: [rowBuilder(potentialUsers.length)],
                       )),
                   SizedBox(
-                      child: Text("+${votes.length}",
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(fontWeight: FontWeight.bold)))
+                    height: 30,
+                    width: 40,
+                    child: TextButton(
+                      onPressed: () {
+                        print("clicked vote");
+                      },
+                      style: TextButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        foregroundColor: Colors.black,
+                        elevation: 0,
+                        textStyle: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      child: Text(
+                        "+${votes.length}",
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),
