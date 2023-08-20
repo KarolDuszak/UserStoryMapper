@@ -46,4 +46,13 @@ class Epic extends Equatable {
                 (innerindex) => Story.getEmptyObj(
                     "${outerIndex},${innerindex}", potUsers))));
   }
+
+  static Epic assignVotes(Epic epic, List<String> votes) {
+    return Epic(
+        id: epic.id,
+        description: epic.description,
+        title: epic.title,
+        potentialUsers: epic.potentialUsers,
+        votes: votes);
+  }
 }

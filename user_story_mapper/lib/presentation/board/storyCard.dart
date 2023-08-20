@@ -19,6 +19,7 @@ class StoryCard extends StatefulWidget {
   final Color? color;
   final bool isEpic;
   final List<PotentialUser> availablePotUsers;
+  final String userId;
 
   StoryCard(
       {required this.boardId,
@@ -30,11 +31,12 @@ class StoryCard extends StatefulWidget {
       required this.votes,
       required this.isEpic,
       required this.color,
-      required this.availablePotUsers})
+      required this.availablePotUsers,
+      required this.userId})
       : super(key: Key(id));
 
-  StoryCard.epic(
-      String boardId, Epic epic, List<PotentialUser> availablePotUsers)
+  StoryCard.epic(String boardId, Epic epic,
+      List<PotentialUser> availablePotUsers, String userId)
       : boardId = boardId,
         epicId = "",
         id = epic.id,
@@ -44,10 +46,11 @@ class StoryCard extends StatefulWidget {
         votes = epic.votes,
         isEpic = true,
         availablePotUsers = availablePotUsers,
+        userId = userId,
         color = Colors.red[500];
 
   StoryCard.story(String boardId, String epicId, Story story,
-      List<PotentialUser> availablePotUsers)
+      List<PotentialUser> availablePotUsers, String user)
       : boardId = boardId,
         epicId = epicId,
         id = story.id,
@@ -57,6 +60,7 @@ class StoryCard extends StatefulWidget {
         votes = story.votes,
         isEpic = false,
         availablePotUsers = availablePotUsers,
+        userId = user,
         color = Colors.amber[300];
 
   @override
@@ -75,6 +79,7 @@ class _StoryCard extends State<StoryCard> {
   late Color? color;
   late bool isEpic;
   late bool isEditMode = false;
+  late String userId;
 
   @override
   void initState() {
@@ -93,6 +98,7 @@ class _StoryCard extends State<StoryCard> {
     votes = widget.votes;
     isEpic = widget.isEpic;
     availablePotUsers = widget.availablePotUsers;
+    userId = widget.userId;
   }
 
   @override
@@ -127,11 +133,6 @@ class _StoryCard extends State<StoryCard> {
                 },
                 child: Icon(Icons.edit)),
             ElevatedButton(
-                //TO DO
-                onPressed: () =>
-                    print("b2 here vote option should be provided"),
-                child: Icon(Icons.save)),
-            ElevatedButton(
                 onPressed: () {
                   showDeleteConfirmDialog(context);
                 },
@@ -143,6 +144,21 @@ class _StoryCard extends State<StoryCard> {
   }
 
   getDefaultCard() {
+    ButtonStyle voteStyle = TextButton.styleFrom(
+      backgroundColor: Colors.transparent,
+      foregroundColor: Colors.black,
+      elevation: 0,
+      textStyle: TextStyle(fontWeight: FontWeight.bold),
+    );
+
+    if (votes.contains(userId)) {
+      voteStyle = TextButton.styleFrom(
+        backgroundColor: Color.fromARGB(197, 1, 248, 236),
+        foregroundColor: Colors.black,
+        elevation: 0,
+        textStyle: TextStyle(fontWeight: FontWeight.bold),
+      );
+    }
     return SizedBox(
       width: 180,
       height: 150,
@@ -180,14 +196,10 @@ class _StoryCard extends State<StoryCard> {
                     width: 40,
                     child: TextButton(
                       onPressed: () {
-                        print("clicked vote");
+                        FirebaseBoardApi()
+                            .voteForStory(boardId, epicId, id, userId);
                       },
-                      style: TextButton.styleFrom(
-                        backgroundColor: Colors.transparent,
-                        foregroundColor: Colors.black,
-                        elevation: 0,
-                        textStyle: TextStyle(fontWeight: FontWeight.bold),
-                      ),
+                      style: voteStyle,
                       child: Text(
                         "+${votes.length}",
                       ),

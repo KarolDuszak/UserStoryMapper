@@ -61,7 +61,7 @@ class _EpicList extends State<EpicList> {
             padding: EdgeInsets.fromLTRB(15, 5, 15, 10),
             child: Row(
               children: [
-                StoryCard.epic(widget.boardId, _epic, _potentialUsers),
+                StoryCard.epic(_boardId, _epic, _potentialUsers, _userId),
                 SizedBox(width: 30),
                 ElevatedButton(
                     onPressed: () {
@@ -140,7 +140,8 @@ class _EpicList extends State<EpicList> {
     return DragAndDropItem(
       child: Container(
         padding: EdgeInsets.all(10),
-        child: StoryCard.story(widget.boardId, _epic.id, item, _potentialUsers),
+        child: StoryCard.story(
+            widget.boardId, _epic.id, item, _potentialUsers, widget.userId),
       ),
     );
   }

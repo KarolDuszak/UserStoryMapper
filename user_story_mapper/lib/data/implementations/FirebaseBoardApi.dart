@@ -371,33 +371,55 @@ class FirebaseBoardApi extends IBoardApi {
   }
 
   @override
-  Future<void> unvoteForEpic(
-      String boardId, String milestoneId, String epicId) {
-    // TODO: implement unvoteForEpic
-    // Tip for implementation https://fireship.io/snippets/firestore-increment-tips/
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<void> unvoteForStory(
-      String boardId, String milestoneId, String epicId, String storyId) {
-    // TODO: implement unvoteForStory
-    // Tip for implementation https://fireship.io/snippets/firestore-increment-tips/
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<void> voteForEpic(String boardId, String milestoneId, String epicId) {
+  Future<void> voteForEpic(String boardId, String epicId, String userId) {
     // TODO: implement voteForEpic
-    // Tip for implementation https://fireship.io/snippets/firestore-increment-tips/
     throw UnimplementedError();
   }
 
   @override
   Future<void> voteForStory(
-      String boardId, String milestoneId, String epicId, String storyId) {
-    // TODO: implement voteForStory
-    // Tip for implementation https://fireship.io/snippets/firestore-increment-tips/
-    throw UnimplementedError();
+      String boardId, String epicId, String storyId, String userId) async {
+    Board board = await getBoardObject(boardId);
+
+    for (var m in board.milestones) {
+      int eIndex = m.epics.indexWhere((element) => element.id == epicId);
+      if (eIndex == -1) {
+        continue;
+      }
+
+      int mIndex = board.milestones.indexWhere((element) => element.id == m.id);
+      for (List<Story> feature
+          in board.milestones[mIndex].epics[eIndex].features!) {
+        int sIndex = feature.indexWhere((element) => element.id == storyId);
+
+        if (sIndex == -1) {
+          continue;
+        }
+        int? fIndex = board.milestones[mIndex].epics[eIndex].features
+            ?.indexWhere((element) => element.first.id == feature.first.id);
+
+        if (fIndex == -1) {
+          throw Exception("For some reason feature not found");
+        }
+        Story oldStory =
+            board.milestones[mIndex].epics[eIndex].features![fIndex!][sIndex];
+        List<String> votes = oldStory.votes;
+
+        if (votes.contains(userId)) {
+          votes.removeWhere((element) => element == userId);
+        } else {
+          votes.add(userId);
+        }
+        Story newStory = Story.assignVotes(oldStory, votes);
+        board.milestones[mIndex].epics[eIndex].features?[fIndex]
+            .removeAt(sIndex);
+        board.milestones[mIndex].epics[eIndex].features?[fIndex]
+            .insert(sIndex, newStory);
+        updateBoard(board);
+        return;
+      }
+    }
+
+    throw Exception("Could not find story to update in database");
   }
 }

@@ -33,12 +33,9 @@ abstract class IBoardApi {
   Future<void> deletePotentialUser(String boardId, String potentialUserId);
   Future<List<PotentialUser>> getAvailablePotentialUsers(String boardId);
 
-  Future<void> voteForEpic(String boardId, String milestoneId, String epicId);
-  Future<void> unvoteForEpic(String boardId, String milestoneId, String epicId);
+  Future<void> voteForEpic(String boardId, String epicId, String userId);
   Future<void> voteForStory(
-      String boardId, String milestoneId, String epicId, String storyId);
-  Future<void> unvoteForStory(
-      String boardId, String milestoneId, String epicId, String storyId);
+      String boardId, String epicId, String storyId, String userId);
 }
 
 class BoardNotFoundException implements Exception {}

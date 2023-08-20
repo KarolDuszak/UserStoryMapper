@@ -54,14 +54,13 @@ class Story extends Equatable {
         votes: []);
   }
 
-  static Story getEmptyObj2() {
-    var uuid = Uuid().v1();
+  static Story assignVotes(Story story, List<String> votes) {
     return Story(
-        id: uuid,
-        creatorId: "NULL creatorId",
-        description: "NULL description",
-        title: "${uuid} short title",
-        potentialUsers: [],
-        votes: []);
+        id: story.id,
+        creatorId: story.creatorId,
+        description: story.description,
+        title: story.title,
+        potentialUsers: story.potentialUsers,
+        votes: votes);
   }
 }
