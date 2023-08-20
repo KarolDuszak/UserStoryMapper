@@ -51,7 +51,7 @@ class _BoardList extends State<BoardList> {
     super.initState();
     //TODO to remove before deployment
     //For testing porporse
-    //Board board2 = Board.getEmptyObj(4);
+    //Board board2 = Board.getEmptyObj(4, "R5fruaScbIOydsmeWgxUk9YmU9z1");
     //FirebaseBoardApi().createBoard(board2);
 
     _boardStream = FirebaseBoardApi().getBoard(widget.boardId);

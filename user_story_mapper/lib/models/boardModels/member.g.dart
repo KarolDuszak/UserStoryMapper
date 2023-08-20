@@ -7,17 +7,12 @@ part of 'member.dart';
 // **************************************************************************
 
 Member _$MemberFromJson(Map<String, dynamic> json) => Member(
-      id: json['id'] as String,
-      role: json['role'] as String,
-      voterRemaining: json['voterRemaining'] as int?,
-      roleLabel: json['roleLabel'] == null
-          ? null
-          : RoleLabel.fromJson(json['roleLabel'] as Map<String, dynamic>),
-    );
+    id: json['id'] as String,
+    role: json['role'] as String,
+    voterRemaining: json['voterRemaining'] as int?);
 
 Map<String, dynamic> _$MemberToJson(Member instance) => <String, dynamic>{
       'id': instance.id,
       'role': instance.role,
-      'voterRemaining': instance.voterRemaining,
-      'roleLabel': instance.roleLabel?.toJson(),
+      'voterRemaining': instance.voterRemaining
     };

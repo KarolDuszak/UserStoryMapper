@@ -36,14 +36,4 @@ class User extends Equatable {
 
   @override
   List<Object?> get props => [id, email, name, invitationsToBoard, boards];
-
-  static User getEmptyObj(int num) {
-    return User(
-        id: "NULL",
-        email: "NULL email",
-        name: "NULL email",
-        invitationsToBoard:
-            List<BoardInvitation>.filled(2, BoardInvitation.getEmptyObj()),
-        boards: List<Board>.filled(3, Board.getEmptyObj(num)));
-  }
 }
