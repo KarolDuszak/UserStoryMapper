@@ -15,7 +15,7 @@ class StoryCard extends StatefulWidget {
   final String title;
   final String description;
   final List<String> potentialUsers;
-  final int votes;
+  final List<String> votes;
   final Color? color;
   final bool isEpic;
   final List<PotentialUser> availablePotUsers;
@@ -41,7 +41,7 @@ class StoryCard extends StatefulWidget {
         title = epic.title,
         description = epic.description,
         potentialUsers = epic.potentialUsers,
-        votes = epic.votes ?? 0,
+        votes = epic.votes,
         isEpic = true,
         availablePotUsers = availablePotUsers,
         color = Colors.red[500];
@@ -54,7 +54,7 @@ class StoryCard extends StatefulWidget {
         title = story.title,
         description = story.description,
         potentialUsers = story.potentialUsers,
-        votes = story.votes ?? 0,
+        votes = story.votes,
         isEpic = false,
         availablePotUsers = availablePotUsers,
         color = Colors.amber[300];
@@ -71,7 +71,7 @@ class _StoryCard extends State<StoryCard> {
   late String description;
   late List<String> potentialUsers;
   late List<PotentialUser> availablePotUsers;
-  late int votes;
+  late List<String> votes;
   late Color? color;
   late bool isEpic;
   late bool isEditMode = false;
@@ -176,7 +176,7 @@ class _StoryCard extends State<StoryCard> {
                         children: [rowBuilder(potentialUsers.length)],
                       )),
                   SizedBox(
-                      child: Text("+" + votes.toString(),
+                      child: Text("+${votes.length}",
                           textAlign: TextAlign.center,
                           style: const TextStyle(fontWeight: FontWeight.bold)))
                 ],

@@ -22,7 +22,7 @@ class Story extends Equatable {
   final String title;
   //Interaction
   final List<String> potentialUsers;
-  final int? votes;
+  final List<String> votes;
 
   factory Story.fromJson(Map<String, dynamic> json) => _$StoryFromJson(json);
   Map<String, dynamic> toJson() => _$StoryToJson(this);
@@ -39,7 +39,7 @@ class Story extends Equatable {
         description: "NULL description",
         title: "${num} Very long title sadasdasda sadasdasdasd asdasdasdasd ",
         potentialUsers: potUsers,
-        votes: 4);
+        votes: []);
   }
 
   static Story createStory(String title, String description,
@@ -51,7 +51,7 @@ class Story extends Equatable {
         description: description,
         title: title,
         potentialUsers: potUsers,
-        votes: 0);
+        votes: []);
   }
 
   static Story getEmptyObj2() {
@@ -62,6 +62,6 @@ class Story extends Equatable {
         description: "NULL description",
         title: "${uuid} short title",
         potentialUsers: [],
-        votes: 4);
+        votes: []);
   }
 }

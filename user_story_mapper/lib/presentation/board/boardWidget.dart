@@ -230,7 +230,7 @@ class _BoardList extends State<BoardList> {
               title: title.text,
               features: [],
               potentialUsers: [],
-              votes: 0),
+              votes: []),
         );
         Navigator.of(context, rootNavigator: true).pop();
       },

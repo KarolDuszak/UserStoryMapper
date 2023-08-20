@@ -5,37 +5,36 @@ import 'package:user_story_mapper/models/boardModels/potentialUser.dart';
 import 'package:user_story_mapper/models/boardModels/story.dart';
 
 class EditStoryForm extends StatefulWidget {
-  late Story currentStory;
-  late String boardId;
-  late String epicId;
+  late final Story currentCard;
+  late final String boardId;
+  late final String epicId;
   @override
   EditStoryFormState createState() =>
-      EditStoryFormState(boardId, epicId, currentStory);
+      EditStoryFormState(boardId, epicId, currentCard);
 
   EditStoryForm(String boardId, String epicId, Story story) {
     this.boardId = boardId;
     this.epicId = epicId;
-    this.currentStory = story;
+    this.currentCard = story;
   }
 }
 
 class EditStoryFormState extends State<EditStoryForm> {
   final _formKey = GlobalKey<FormState>();
-  late Story currentStory;
+  late Story currentCard;
   late String boardId;
   late String epicId;
   List<PotentialUser> availableUsers = [];
 
-  //Story
   final description = TextEditingController();
   final title = TextEditingController();
 
   EditStoryFormState(String boardId, String epicId, Story order) {
-    this.currentStory = order;
+    this.currentCard = order;
     this.boardId = boardId;
     this.epicId = epicId;
-    description.text = currentStory.description;
-    title.text = currentStory.title;
+    description.text = currentCard.description;
+    title.text = currentCard.title;
     FirebaseBoardApi().getAvailablePotentialUsers(boardId).then(
           (value) => setState(
             () {
@@ -51,7 +50,7 @@ class EditStoryFormState extends State<EditStoryForm> {
         .map((potUser) => MultiSelectItem<PotentialUser>(potUser, potUser.name))
         .toList();
     List<PotentialUser> selected =
-        getPotentialUsersFromIds(availableUsers, currentStory.potentialUsers);
+        getPotentialUsersFromIds(availableUsers, currentCard.potentialUsers);
     return Form(
       key: _formKey,
       child: SingleChildScrollView(
@@ -92,18 +91,18 @@ class EditStoryFormState extends State<EditStoryForm> {
               padding: const EdgeInsets.symmetric(vertical: 16.0),
               child: ElevatedButton(
                 onPressed: () async {
-                  Story newStory = Story(
-                      id: currentStory.id,
-                      creatorId: currentStory.creatorId,
+                  Story newCard = Story(
+                      id: currentCard.id,
+                      creatorId: currentCard.creatorId,
                       description: description.text,
                       title: title.text,
                       potentialUsers: selected.map((e) => e.id).toList(),
-                      votes: currentStory.votes);
+                      votes: currentCard.votes);
 
                   if (epicId != "") {
-                    FirebaseBoardApi().updateStory(boardId, epicId, newStory);
+                    FirebaseBoardApi().updateStory(boardId, epicId, newCard);
                   } else {
-                    FirebaseBoardApi().updateEpicProperties(boardId, newStory);
+                    FirebaseBoardApi().updateEpicProperties(boardId, newCard);
                   }
                 },
                 child: const Text("Confirm"),

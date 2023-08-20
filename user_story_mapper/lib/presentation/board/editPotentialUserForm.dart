@@ -56,6 +56,7 @@ class _EditPotentialUser extends State<EditPotentialUser> {
             ),
             DropdownButtonFormField<ColorLabel>(
               value: pickerColor,
+              icon: Icon(Icons.color_lens),
               decoration: const InputDecoration(
                   labelText: "Color", hintText: "Select color"),
               onChanged: ((newValue) {

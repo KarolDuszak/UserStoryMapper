@@ -14,7 +14,7 @@ Story _$StoryFromJson(Map<String, dynamic> json) => Story(
       potentialUsers: (json['potentialUsers'] as List<dynamic>)
           .map((e) => e.toString())
           .toList(),
-      votes: json['votes'] as int?,
+      votes: (json['votes'] as List<dynamic>).map((e) => e.toString()).toList(),
     );
 
 Map<String, dynamic> _$StoryToJson(Story instance) => <String, dynamic>{
@@ -22,6 +22,6 @@ Map<String, dynamic> _$StoryToJson(Story instance) => <String, dynamic>{
       'creatorId': instance.creatorId,
       'description': instance.description,
       'title': instance.title,
-      'potentialUsers': instance.potentialUsers?.map((e) => e).toList(),
-      'votes': instance.votes,
+      'potentialUsers': instance.potentialUsers.map((e) => e).toList(),
+      'votes': instance.votes.map((e) => e).toList(),
     };

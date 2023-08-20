@@ -14,7 +14,7 @@ class Epic extends Equatable {
       required this.title,
       this.features,
       required this.potentialUsers,
-      this.votes});
+      required this.votes});
 
   //Informations
   final String id;
@@ -22,7 +22,7 @@ class Epic extends Equatable {
   final String title;
   final List<List<Story>>? features;
   final List<String> potentialUsers;
-  final int? votes;
+  final List<String> votes;
 
   factory Epic.fromJson(Map<String, dynamic> json) => _$EpicFromJson(json);
   Map<String, dynamic> toJson() => _$EpicToJson(this);
@@ -37,7 +37,7 @@ class Epic extends Equatable {
         id: uuid.v1(),
         description: "NULL description",
         title: "NULL title ${num}",
-        votes: 3,
+        votes: [],
         potentialUsers: potUsers,
         features: List.generate(
             5,
