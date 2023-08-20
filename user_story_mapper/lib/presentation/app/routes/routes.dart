@@ -10,7 +10,7 @@ List<Page<dynamic>> onGenerateAppViewPages(
 ) {
   switch (state) {
     case AppStatus.authenticated:
-      return [BoardList.page("ffb2bc82-4e89-4f7d-a6d2-197d4e4bed9d")];
+      return [BoardList.page("9e464b6f-8434-4003-8827-de33ea629dae")];
     case AppStatus.unauthenticated:
       return [LoginPage.page()];
   }

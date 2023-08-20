@@ -307,7 +307,8 @@ class _BoardList extends State<BoardList> {
     if (choice == MenuOptions.potentialUsers) {
       showEditPotentialUserDialog(context);
     } else if (choice == MenuOptions.manageMembers) {
-      UnimplementedError("Member Menu not implemented");
+      Board board2 = Board.getEmptyObj(4, "R5fruaScbIOydsmeWgxUk9YmU9z1");
+      FirebaseBoardApi().createBoard(board2);
     } else if (choice == MenuOptions.manageVoting) {
       UnimplementedError("Voting Menu not implemented");
     }

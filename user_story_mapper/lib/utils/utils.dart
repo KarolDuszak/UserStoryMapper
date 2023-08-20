@@ -1,4 +1,5 @@
 import '../models/boardModels/board.dart';
+import '../models/boardModels/member.dart';
 import '../models/boardModels/story.dart';
 
 class Util {
@@ -31,6 +32,24 @@ class Util {
         jIndex++;
       }
       index++;
+    }
+    return result;
+  }
+
+  static List<Member> decodeMapToMebmers(Map<String, dynamic> json) {
+    final map = Map<String, dynamic>.from(json);
+    List<Member> result = [];
+
+    map.forEach((stringIndex, value) {
+      result.add(Member.fromJson(value));
+    });
+    return result;
+  }
+
+  static Map<String, dynamic> encodeMembersToMap(List<Member> members) {
+    Map<String, dynamic> result = {};
+    for (Member member in members) {
+      result.addEntries([MapEntry(member.id, member.toJson())]);
     }
     return result;
   }

@@ -5,6 +5,8 @@ import 'package:user_story_mapper/models/boardModels/milestone.dart';
 import 'package:user_story_mapper/models/boardModels/member.dart';
 import 'package:uuid/uuid.dart';
 
+import '../../utils/utils.dart';
+
 part 'board.g.dart';
 
 @JsonSerializable(explicitToJson: true)
@@ -30,7 +32,7 @@ class Board extends Equatable {
   //Interaction
   final List<PotentialUser> potentialUsers;
   final List<Milestone> milestones;
-  final List<Member>? members;
+  final List<Member> members;
   final int? votesNumber;
   final DateTime? timer;
 
@@ -64,13 +66,14 @@ class Board extends Equatable {
       potentialUsers: potUsers,
       milestones: List.generate(
           2, (innerIndex) => Milestone.getEmptyObj(innerIndex, potUsersIds)),
-      members: List<Member>.filled(2, Member.getEmptyObj()),
+      members: [Member(id: userId, role: 'Admin', voterRemaining: 5)],
       votesNumber: 5,
       timer: DateTime.now(),
     );
   }
 
-  static Board addNewBoard(String creatorId, String title, String description) {
+  static Board addNewBoard(
+      String creatorId, String title, String description, String userId) {
     return Board(
       id: Uuid().v4(),
       creatorId: creatorId,
@@ -78,7 +81,7 @@ class Board extends Equatable {
       description: description,
       milestones: [Milestone.createMvpMilestone()],
       potentialUsers: [],
-      members: [],
+      members: [Member(id: userId, role: 'Admin', voterRemaining: 5)],
       votesNumber: 5,
       timer: DateTime.now(),
     );
