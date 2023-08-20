@@ -371,9 +371,29 @@ class FirebaseBoardApi extends IBoardApi {
   }
 
   @override
-  Future<void> voteForEpic(String boardId, String epicId, String userId) {
-    // TODO: implement voteForEpic
-    throw UnimplementedError();
+  Future<void> voteForEpic(String boardId, String epicId, String userId) async {
+    Board board = await getBoardObject(boardId);
+
+    for (var m in board.milestones) {
+      int index = m.epics.indexWhere((element) => element.id == epicId);
+
+      if (index != -1) {
+        int mIndex =
+            board.milestones.indexWhere((element) => element.id == m.id);
+
+        if (board.milestones[mIndex].epics[index].votes.contains(userId)) {
+          board.milestones[mIndex].epics[index].votes
+              .removeWhere((element) => element == userId);
+        } else {
+          board.milestones[mIndex].epics[index].votes.add(userId);
+        }
+
+        updateBoard(board);
+        return;
+      }
+    }
+
+    throw Exception("Could not find epic to vote");
   }
 
   @override
@@ -401,25 +421,22 @@ class FirebaseBoardApi extends IBoardApi {
         if (fIndex == -1) {
           throw Exception("For some reason feature not found");
         }
-        Story oldStory =
-            board.milestones[mIndex].epics[eIndex].features![fIndex!][sIndex];
-        List<String> votes = oldStory.votes;
 
-        if (votes.contains(userId)) {
-          votes.removeWhere((element) => element == userId);
+        if (board
+            .milestones[mIndex].epics[eIndex].features![fIndex!][sIndex].votes
+            .contains(userId)) {
+          board.milestones[mIndex].epics[eIndex].features![fIndex][sIndex].votes
+              .removeWhere((element) => element == userId);
         } else {
-          votes.add(userId);
+          board
+              .milestones[mIndex].epics[eIndex].features![fIndex!][sIndex].votes
+              .add(userId);
         }
-        Story newStory = Story.assignVotes(oldStory, votes);
-        board.milestones[mIndex].epics[eIndex].features?[fIndex]
-            .removeAt(sIndex);
-        board.milestones[mIndex].epics[eIndex].features?[fIndex]
-            .insert(sIndex, newStory);
         updateBoard(board);
         return;
       }
     }
 
-    throw Exception("Could not find story to update in database");
+    throw Exception("Could not find story to vote in database");
   }
 }

@@ -196,8 +196,12 @@ class _StoryCard extends State<StoryCard> {
                     width: 40,
                     child: TextButton(
                       onPressed: () {
-                        FirebaseBoardApi()
-                            .voteForStory(boardId, epicId, id, userId);
+                        if (isEpic) {
+                          FirebaseBoardApi().voteForEpic(boardId, id, userId);
+                        } else {
+                          FirebaseBoardApi()
+                              .voteForStory(boardId, epicId, id, userId);
+                        }
                       },
                       style: voteStyle,
                       child: Text(
