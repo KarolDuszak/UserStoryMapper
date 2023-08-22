@@ -61,6 +61,14 @@ class AuthenticationRepository {
       throw LogOutFailure();
     }
   }
+
+  Future deleteAccount(String email, String password) async {
+    try {
+      _firebaseAuth.currentUser!.delete();
+    } catch (e) {
+      print(e);
+    }
+  }
 }
 
 extension on firebase_auth.User {
