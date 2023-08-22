@@ -7,7 +7,9 @@ import 'package:user_story_mapper/models/boardModels/epic.dart';
 import 'package:user_story_mapper/models/boardModels/milestone.dart';
 import 'package:user_story_mapper/models/boardModels/potentialUser.dart';
 import 'package:user_story_mapper/models/boardModels/story.dart';
+import 'package:user_story_mapper/models/userModels/boardInvitation.dart';
 
+import '../../models/boardModels/member.dart';
 import '../../utils/utils.dart';
 
 class FirebaseBoardApi extends IBoardApi {
@@ -438,5 +440,45 @@ class FirebaseBoardApi extends IBoardApi {
     }
 
     throw Exception("Could not find story to vote in database");
+  }
+
+  @override
+  Future<void> cancelInvitation(String reciever, String boardId) async {
+    CollectionReference invitationRef =
+        FirebaseFirestore.instance.collection('boardInvitations');
+
+    Board board = await getBoardObject(boardId);
+    board.members.removeWhere((element) => element.id == reciever);
+
+    invitationRef
+        .doc(reciever)
+        .collection('invitations')
+        .doc(boardId)
+        .delete()
+        .then((value) => updateBoard(board).then((value) =>
+            print("Invitation for ${reciever} to $boardId canceled")))
+        .onError((error, stackTrace) => print(error));
+  }
+
+  @override
+  Future<void> inviteToBoard(BoardInvitation invitation, Member member) async {
+    CollectionReference invitationRef =
+        FirebaseFirestore.instance.collection('boardInvitations');
+    Board board = await getBoardObject(invitation.id);
+
+    board.members.add(member);
+
+    invitationRef
+        .doc(invitation.reciever)
+        .collection('invitations')
+        .doc(invitation.id)
+        .set(invitation.toJson())
+        .then(
+          (value) => updateBoard(board).then(
+            (value) => print(
+                "Invitation for ${invitation.reciever} to ${invitation.id} sent"),
+          ),
+        )
+        .onError((error, stackTrace) => print(error));
   }
 }

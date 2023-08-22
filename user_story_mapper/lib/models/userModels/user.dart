@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:user_story_mapper/models/boardModels/board.dart';
-import 'package:user_story_mapper/models/boardModels/boardInvitation.dart';
+import 'package:user_story_mapper/models/userModels/boardInvitation.dart';
 
 part 'user.g.dart';
 
@@ -11,19 +10,16 @@ class User extends Equatable {
       {required this.id,
       required this.email,
       required this.name,
-      required this.invitationsToBoard,
       required this.boards});
 
   //Informations
   final String id;
   final String email;
   final String name;
-  final List<BoardInvitation> invitationsToBoard;
-  final List<Board> boards;
+  final List<String> boards;
 
   /// Empty user which represents an unauthenticated user.
-  static const empty =
-      User(id: '', email: '', name: '', invitationsToBoard: [], boards: []);
+  static const empty = User(id: '', email: '', name: '', boards: []);
 
   /// Convenience getter to determine whether the current user is empty.
   bool get isEmpty => this == User.empty;
@@ -35,5 +31,5 @@ class User extends Equatable {
   Map<String, dynamic> toJson() => _$UserToJson(this);
 
   @override
-  List<Object?> get props => [id, email, name, invitationsToBoard, boards];
+  List<Object?> get props => [id, email, name, boards];
 }

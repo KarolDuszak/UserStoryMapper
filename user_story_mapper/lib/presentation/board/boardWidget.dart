@@ -2,7 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:user_story_mapper/models/boardModels/board.dart';
+import 'package:user_story_mapper/models/boardModels/member.dart';
 import 'package:user_story_mapper/models/boardModels/potentialUser.dart';
+import 'package:user_story_mapper/models/userModels/boardInvitation.dart';
 import 'package:user_story_mapper/presentation/board/epicWidget.dart';
 import 'package:uuid/uuid.dart';
 import '../../data/implementations/FirebaseBoardApi.dart';
@@ -45,6 +47,7 @@ class MenuOptions {
 class _BoardList extends State<BoardList> {
   late Board _board;
   late Stream _boardStream;
+  late dynamic user;
 
   @override
   void initState() {
@@ -59,7 +62,7 @@ class _BoardList extends State<BoardList> {
 
   @override
   Widget build(BuildContext context) {
-    final user = context.select((AppBloc bloc) => bloc.state.user);
+    user = context.select((AppBloc bloc) => bloc.state.user);
     return MaterialApp(
       scrollBehavior: MaterialScrollBehavior().copyWith(
         dragDevices: {
@@ -307,10 +310,19 @@ class _BoardList extends State<BoardList> {
     if (choice == MenuOptions.potentialUsers) {
       showEditPotentialUserDialog(context);
     } else if (choice == MenuOptions.manageMembers) {
-      Board board2 = Board.getEmptyObj(4, "R5fruaScbIOydsmeWgxUk9YmU9z1");
-      FirebaseBoardApi().createBoard(board2);
+      String userId = "g5xfMJRI7kbcZ0qVWzuE1QkdXl22";
+      BoardInvitation invitation =
+          BoardInvitation.newInvitation(_board.id, "Message", userId, user.id);
+      FirebaseBoardApi().inviteToBoard(
+          invitation,
+          Member(
+              id: userId, role: 'Admin', voterRemaining: _board.votesNumber));
     } else if (choice == MenuOptions.manageVoting) {
-      UnimplementedError("Voting Menu not implemented");
+      String userId = "g5xfMJRI7kbcZ0qVWzuE1QkdXl22";
+      FirebaseBoardApi().cancelInvitation(userId, _board.id);
+
+      //Board board2 = Board.getEmptyObj(4, "R5fruaScbIOydsmeWgxUk9YmU9z1");
+      //FirebaseBoardApi().createBoard(board2);
     }
   }
 

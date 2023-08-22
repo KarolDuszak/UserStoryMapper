@@ -4,7 +4,9 @@ import 'package:user_story_mapper/models/boardModels/potentialUser.dart';
 
 import '../../models/boardModels/board.dart';
 import '../../models/boardModels/epic.dart';
+import '../../models/boardModels/member.dart';
 import '../../models/boardModels/story.dart';
+import '../../models/userModels/boardInvitation.dart';
 
 abstract class IBoardApi {
   Stream getBoard(String boardId);
@@ -36,6 +38,9 @@ abstract class IBoardApi {
   Future<void> voteForEpic(String boardId, String epicId, String userId);
   Future<void> voteForStory(
       String boardId, String epicId, String storyId, String userId);
+
+  Future<void> inviteToBoard(BoardInvitation invitation, Member member);
+  Future<void> cancelInvitation(String reciever, String boardId);
 }
 
 class BoardNotFoundException implements Exception {}

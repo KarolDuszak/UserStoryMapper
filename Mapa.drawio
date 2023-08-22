@@ -124,9 +124,6 @@
                 <mxCell id="52" value="Opis sesji" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
                     <mxGeometry x="3600" y="830" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="53" value="Planowane kamienie milowe" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="3600" y="1010" width="190" height="150" as="geometry"/>
-                </mxCell>
                 <mxCell id="54" value="Moderator sesji ma możliwość zaproszenia innych użytkowników do boardu" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
                     <mxGeometry x="3820" y="470" width="190" height="150" as="geometry"/>
                 </mxCell>
@@ -175,7 +172,7 @@
                 <mxCell id="70" value="Zakończenie timera jest sygnalizowane dźwiękowo" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
                     <mxGeometry x="4490" y="830" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="71" value="Każdy poza widzem może utworzyć nowy epic (czerwona kartka)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#E3E3E3;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
+                <mxCell id="71" value="Każdy poza widzem może utworzyć nowy epic (czerwona kartka)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60A917;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
                     <mxGeometry x="5140" y="470" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="72" value="Uczestnicy sesji mogą utowrzyć mapę" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e51400;fontColor=#000000;strokeColor=#B20000;fontStyle=1" parent="1" vertex="1">
@@ -187,7 +184,7 @@
                 <mxCell id="76" value="Jest możliwość dodania nowego epica pomiedzy inne epici" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
                     <mxGeometry x="5160" y="1390" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="77" value="Każdy poza widzem może utworzyć nowe story (żółta kartka) do danego epicu" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#E3E3E3;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
+                <mxCell id="77" value="Każdy poza widzem może utworzyć nowe story (żółta kartka) do danego epicu" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60A917;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
                     <mxGeometry x="5360" y="470" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="78" value="Dodanie karteczki story tworzy nowy wiersz" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60A917;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
@@ -206,7 +203,7 @@
                     <mxGeometry x="5582.5" y="840" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="83" value="Każda karteczka zawiera Tytuł" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60A917;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="5582.5" y="470" width="190" height="150" as="geometry"/>
+                    <mxGeometry x="5582.5" y="460" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="84" value="Dla każdego użytkownika można zdefiniować inny kolor" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60A917;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
                     <mxGeometry x="5806" y="650" width="190" height="150" as="geometry"/>

@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:uuid/uuid.dart';
 
 part 'boardInvitation.g.dart';
 
@@ -6,25 +7,34 @@ part 'boardInvitation.g.dart';
 class BoardInvitation {
   BoardInvitation(
       {required this.id,
-      required this.boardInformation,
-      required this.userId,
+      required this.message,
+      required this.reciever,
       required this.inviterId});
 
   //Informations
   String id;
-  String boardInformation;
-  String userId;
+  String message;
+  String reciever;
   String inviterId;
 
   factory BoardInvitation.fromJson(Map<String, dynamic> json) =>
       _$BoardInvitationFromJson(json);
   Map<String, dynamic> toJson() => _$BoardInvitationToJson(this);
 
+  static BoardInvitation newInvitation(
+      String boardId, String message, String reviever, String inviterId) {
+    return BoardInvitation(
+        id: boardId,
+        message: message,
+        reciever: reviever,
+        inviterId: inviterId);
+  }
+
   static BoardInvitation getEmptyObj() {
     return BoardInvitation(
         id: "NULL",
-        boardInformation: "NULL boardInformation",
-        userId: "NULL title",
+        message: "NULL boardInformation",
+        reciever: "NULL title",
         inviterId: "NULL inviterId");
   }
 }
