@@ -15,6 +15,7 @@ import 'dart:math';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_story_mapper/presentation/app/app.dart';
 
+import '../app/routes/navMenu.dart';
 import 'potentialUserPanelWidget.dart';
 
 class BoardList extends StatefulWidget {
@@ -52,11 +53,6 @@ class _BoardList extends State<BoardList> {
   @override
   void initState() {
     super.initState();
-    //TODO to remove before deployment
-    //For testing porporse
-    //Board board2 = Board.getEmptyObj(4, "R5fruaScbIOydsmeWgxUk9YmU9z1");
-    //FirebaseBoardApi().createBoard(board2);
-
     _boardStream = FirebaseBoardApi().getBoard(widget.boardId);
   }
 
@@ -73,6 +69,8 @@ class _BoardList extends State<BoardList> {
         },
       ),
       home: Scaffold(
+        drawer: NavMenu(),
+        appBar: AppBar(title:const Center(child: Text("User Story Mapper"))),
         floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
         floatingActionButton: PopupMenuButton<String>(
           onSelected: choiceAction,

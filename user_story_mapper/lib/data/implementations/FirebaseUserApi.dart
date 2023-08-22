@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:user_story_mapper/data/interfaces/IUserApi.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:user_story_mapper/models/userModels/boardInvitation.dart';
 import 'package:user_story_mapper/models/userModels/user.dart';
 
 class FirebaseUserApi extends IUserApi {
@@ -21,7 +22,8 @@ class FirebaseUserApi extends IUserApi {
     return userRef
         .doc(user.id)
         .set(user.toJson())
-        .then((value) => print("User created"));
+        .then((value) => print("User created"))
+        .onError((error, stackTrace) => print(error));
   }
 
   @override
@@ -31,5 +33,19 @@ class FirebaseUserApi extends IUserApi {
         .delete()
         .then((value) => print("Account successfully deleted"))
         .onError((error, stackTrace) => print(error));
+  }
+
+  @override
+  Future<void> updateUser(User user) {
+    return userRef
+        .doc(user.id)
+        .set(user.toJson())
+        .then((value) => print("User ${user.id} updated"))
+        .onError((error, stackTrace) => print(error));
+  }
+
+  @override
+  Future<List<BoardInvitation>> getUsersInvitations(User user) async {
+    return await List<BoardInvitation>.empty();
   }
 }
