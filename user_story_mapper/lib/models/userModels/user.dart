@@ -16,7 +16,7 @@ class User extends Equatable {
   final String id;
   final String email;
   final String name;
-  final List<String> boards;
+  final List<String>? boards;
 
   /// Empty user which represents an unauthenticated user.
   static const empty = User(id: '', email: '', name: '', boards: []);

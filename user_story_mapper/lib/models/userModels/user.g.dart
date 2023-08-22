@@ -10,12 +10,13 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
       id: json['id'] as String,
       email: json['email'] as String,
       name: json['name'] as String,
-      boards: (json['boards'] as List<String>).map((e) => e).toList(),
+      boards:
+          (json['boards'] as List<dynamic>).map((e) => e.toString()).toList(),
     );
 
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'id': instance.id,
       'email': instance.email,
       'name': instance.name,
-      'boards': instance.boards.map((e) => e).toList(),
+      'boards': instance.boards?.map((e) => e).toList(),
     };
