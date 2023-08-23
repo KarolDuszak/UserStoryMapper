@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_story_mapper/data/implementations/FirebaseUserApi.dart';
+import 'package:user_story_mapper/models/userModels/boardInvitation.dart';
 import 'package:user_story_mapper/presentation/app/app.dart';
 import 'package:user_story_mapper/presentation/board/boardWidget.dart';
 
@@ -37,6 +38,7 @@ class _ProfilePage extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
+      key: const Key("user_profile"),
       future: FirebaseFirestore.instance
           .collection("users")
           .doc(widget.userId)
@@ -127,7 +129,8 @@ class _ProfilePage extends State<ProfilePage> {
                     },
                     child: Text("Open board"),
                   ),
-                  Expanded(
+                  buildListView(),
+                  /*Expanded(
                     child: !user.boards.isNull && user.boards!.isNotEmpty
                         ? ListView.builder(
                             itemCount: user.boards!.length,
@@ -140,10 +143,8 @@ class _ProfilePage extends State<ProfilePage> {
                               );
                             },
                           )
-                        : Container(
-                            child: Text("No board invitation found"),
-                          ),
-                  ),
+                        : const Text("No board invitation found"),
+                  ),*/
                 ],
               ),
             ),
@@ -156,11 +157,37 @@ class _ProfilePage extends State<ProfilePage> {
     );
   }
 
-  _buildList(String boardId) {
+  Widget buildListView() {
+    return FutureBuilder<List<BoardInvitation>>(
+      key: const Key("invitations_list"),
+      future: FirebaseUserApi().getUsersInvitations(widget.userId, ""),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          List<BoardInvitation>? data = snapshot.data;
+
+          return Container(
+            decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: !data.isNull && data!.isNotEmpty ? data.length : 0,
+              itemBuilder: (context, index) {
+                return _buildList(data![index]);
+              },
+            ),
+          );
+        }
+        return Container(
+            alignment: Alignment.center, child: CircularProgressIndicator());
+      },
+    );
+  }
+
+  _buildList(BoardInvitation invitation) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(boardId),
+        Text(
+            "Invitation Message: ${invitation.message}, Board Id: ${invitation.id}"),
         const SizedBox(width: 8),
         ElevatedButton(
           style: ElevatedButton.styleFrom(primary: Colors.green[700]),
