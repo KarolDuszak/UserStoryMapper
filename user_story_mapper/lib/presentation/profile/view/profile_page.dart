@@ -192,8 +192,9 @@ class _ProfilePage extends State<ProfilePage> {
         ElevatedButton(
           style: ElevatedButton.styleFrom(primary: Colors.green[700]),
           onPressed: () {
+            FirebaseUserApi()
+                .acceptBoardInvitation(widget.userId, invitation.id);
             setState(() {});
-            //FirebaseUserApi().acceptBoardInvitation();
           },
           child: Text("Accept"),
         ),
@@ -201,6 +202,8 @@ class _ProfilePage extends State<ProfilePage> {
         ElevatedButton(
           style: ElevatedButton.styleFrom(primary: Colors.red[700]),
           onPressed: () {
+            FirebaseUserApi()
+                .declineBoardInvitation(widget.userId, invitation.id);
             setState(() {});
           },
           child: Text("Decline"),

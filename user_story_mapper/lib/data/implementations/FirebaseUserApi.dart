@@ -62,4 +62,16 @@ class FirebaseUserApi extends IUserApi {
     }
     return result;
   }
+
+  @override
+  Future<void> acceptBoardInvitation(String userId, String boardId) {
+    // TODO: implement acceptBoardInvitation
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> declineBoardInvitation(String userId, String boardId) {
+    // TODO: implement declineBoardInvitation
+    throw UnimplementedError();
+  }
 }
