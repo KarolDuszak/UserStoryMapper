@@ -1,3 +1,5 @@
+import 'dart:js_interop';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -26,7 +28,7 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePage extends State<ProfilePage> {
   final userName = TextEditingController();
-
+  late User user;
   @override
   void initState() {
     super.initState();
@@ -44,7 +46,7 @@ class _ProfilePage extends State<ProfilePage> {
         if (snapshot.connectionState == ConnectionState.done) {
           Map<String, dynamic> data =
               snapshot.data!.data() as Map<String, dynamic>;
-          final user = User.fromJson(data);
+          user = User.fromJson(data);
           userName.text = user.name;
           return Scaffold(
             drawer: NavMenu(),
@@ -108,7 +110,7 @@ class _ProfilePage extends State<ProfilePage> {
                               );
                             },
                             child: const Text("Update Profile"),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -124,7 +126,24 @@ class _ProfilePage extends State<ProfilePage> {
                       );
                     },
                     child: Text("Open board"),
-                  )
+                  ),
+                  Expanded(
+                    child: !user.boards.isNull && user.boards!.isNotEmpty
+                        ? ListView.builder(
+                            itemCount: user.boards!.length,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                decoration: const BoxDecoration(
+                                  border: Border(bottom: BorderSide()),
+                                ),
+                                child: _buildList(user.boards![index]),
+                              );
+                            },
+                          )
+                        : Container(
+                            child: Text("No board invitation found"),
+                          ),
+                  ),
                 ],
               ),
             ),
@@ -134,6 +153,32 @@ class _ProfilePage extends State<ProfilePage> {
         return Container(
             alignment: Alignment.center, child: CircularProgressIndicator());
       },
+    );
+  }
+
+  _buildList(String boardId) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(boardId),
+        const SizedBox(width: 8),
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(primary: Colors.green[700]),
+          onPressed: () {
+            setState(() {});
+            //FirebaseUserApi().acceptBoardInvitation();
+          },
+          child: Text("Accept"),
+        ),
+        const SizedBox(width: 8),
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(primary: Colors.red[700]),
+          onPressed: () {
+            setState(() {});
+          },
+          child: Text("Decline"),
+        ),
+      ],
     );
   }
 }
