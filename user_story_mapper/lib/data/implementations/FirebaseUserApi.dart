@@ -45,7 +45,11 @@ class FirebaseUserApi extends IUserApi {
   }
 
   @override
-  Future<List<BoardInvitation>> getUsersInvitations(User user) async {
+  Future<List<BoardInvitation>> getUsersInvitations(String userId, String userEmail) async {
+    CollectionReference inviteRef = FirebaseFirestore.instance.collection('boardInvitations');
+    var snapshot = await inviteRef.doc(userId).collection('invitations').get();
+
+    var data = snapshot.docs as List<Map<String, dynamic>>;
     return await List<BoardInvitation>.empty();
   }
 }
