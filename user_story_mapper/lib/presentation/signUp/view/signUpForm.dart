@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:user_story_mapper/presentation/home/home.dart';
 import 'package:user_story_mapper/presentation/signUp/cubit/signUpCubit.dart';
 
 class SignUpForm extends StatelessWidget {
@@ -52,7 +53,16 @@ class _SignUpButton extends StatelessWidget {
             : ElevatedButton(
                 key: const Key('signUpForm_continue_raisedButton'),
                 onPressed: state.isValid
-                    ? () => context.read<SignUpCubit>().signUpFormSubmitted()
+                    ? () => context
+                        .read<SignUpCubit>()
+                        .signUpFormSubmitted()
+                        .then((value) => {
+                              if (state.status == FormzSubmissionStatus.success)
+                                {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => HomePage()))
+                                }
+                            })
                     : null,
                 child: const Text("Sign Up"),
               );

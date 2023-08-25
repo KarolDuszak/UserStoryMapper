@@ -10,4 +10,5 @@ abstract class IUserApi {
       String userId, String userEmail);
   Future<void> acceptBoardInvitation(String userId, String boardId);
   Future<void> declineBoardInvitation(String userId, String boardId);
+  Future<void> deleteBoardInvitation(String userId, String boardId);
 }

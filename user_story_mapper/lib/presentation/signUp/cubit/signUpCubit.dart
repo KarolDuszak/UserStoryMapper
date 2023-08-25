@@ -1,9 +1,11 @@
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
+import 'package:user_story_mapper/data/implementations/FirebaseUserApi.dart';
 import 'package:user_story_mapper/models/authModels/email.dart';
 import 'package:user_story_mapper/models/authModels/password.dart';
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc/bloc.dart';
+import 'package:user_story_mapper/models/userModels/user.dart' as FSUser;
 import 'package:user_story_mapper/presentation/signUp/confirmPassword.dart';
 
 part 'signUpState.dart';
@@ -53,8 +55,11 @@ class SignUpCubit extends Cubit<SignUpState> {
     if (!state.isValid) return;
     emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
     try {
-      await _authenticationRepository.signUp(
+      var result = await _authenticationRepository.signUp(
           email: state.email.value, password: state.password.value);
+      await FirebaseUserApi().createUser(FSUser.User(
+          id: result.id, email: result.email!, name: "", boards: const []));
+      emit(state.copyWith(status: FormzSubmissionStatus.success));
     } on SignUpWithEmailAndPasswordFailure catch (e) {
       emit(
         state.copyWith(

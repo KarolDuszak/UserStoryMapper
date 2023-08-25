@@ -29,10 +29,11 @@ class AuthenticationRepository {
     return _cache.read<User>(key: userCacheKey) ?? User.empty;
   }
 
-  Future<void> signUp({required String email, required String password}) async {
+  Future<User> signUp({required String email, required String password}) async {
     try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
+      var authData = await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
+      return User(id: authData.user!.uid, email: authData.user?.email);
     } on firebase_auth.FirebaseAuthException catch (e) {
       throw SignUpWithEmailAndPasswordFailure.fromCode(e.code);
     } catch (_) {

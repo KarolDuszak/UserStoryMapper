@@ -1,9 +1,13 @@
 import 'dart:async';
+import 'dart:js_interop';
 
+import 'package:user_story_mapper/data/implementations/FirebaseBoardApi.dart';
 import 'package:user_story_mapper/data/interfaces/IUserApi.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:user_story_mapper/models/userModels/boardInvitation.dart';
 import 'package:user_story_mapper/models/userModels/user.dart';
+
+import '../../models/boardModels/board.dart';
 
 class FirebaseUserApi extends IUserApi {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -64,14 +68,34 @@ class FirebaseUserApi extends IUserApi {
   }
 
   @override
-  Future<void> acceptBoardInvitation(String userId, String boardId) {
-    // TODO: implement acceptBoardInvitation
-    throw UnimplementedError();
+  Future<void> acceptBoardInvitation(String userId, String boardId) async {
+    User user = await getUser(userId);
+
+    if (!user.boards.isNull) {
+      user.boards!.add(boardId);
+    } else {
+      user.boards = [boardId];
+    }
+    updateUser(user);
+    deleteBoardInvitation(userId, boardId);
   }
 
   @override
-  Future<void> declineBoardInvitation(String userId, String boardId) {
-    // TODO: implement declineBoardInvitation
-    throw UnimplementedError();
+  Future<void> declineBoardInvitation(String userId, String boardId) async {
+    Board board = await FirebaseBoardApi().getBoardObject(boardId);
+    board.members.removeWhere((element) => element.id == userId);
+    FirebaseBoardApi().updateBoard(board);
+    deleteBoardInvitation(userId, boardId);
+  }
+
+  @override
+  Future<void> deleteBoardInvitation(String userId, String boardId) async {
+    CollectionReference inviteRef =
+        FirebaseFirestore.instance.collection('boardInvitations');
+    return await inviteRef
+        .doc(userId)
+        .collection('invitations')
+        .doc(boardId)
+        .delete();
   }
 }
