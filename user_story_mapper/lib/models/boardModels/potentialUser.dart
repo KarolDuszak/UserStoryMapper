@@ -32,22 +32,14 @@ class PotentialUser extends Equatable {
     return PotentialUser(
         id: Uuid().v1(), color: ColorLabel.grey, name: "", description: "");
   }
-
-  static PotentialUser getEmptyObj() {
-    return PotentialUser(
-        id: Uuid().v1(),
-        color: ColorLabel.blue,
-        name: "NULL name",
-        description: "NULL description");
-  }
 }
-
 
 List<PotentialUser> getPotentialUsersFromIds(
     List<PotentialUser> availablePotUsers, List<String> potentialUsers) {
   List<PotentialUser> result = [];
   for (String u in potentialUsers) {
-    PotentialUser user = availablePotUsers.firstWhere((element) => element.id == u);
+    PotentialUser user =
+        availablePotUsers.firstWhere((element) => element.id == u);
     if (!user.isNull) {
       result.add(user);
     }

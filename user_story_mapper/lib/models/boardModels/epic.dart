@@ -31,22 +31,6 @@ class Epic extends Equatable {
   List<Object?> get props =>
       [id, description, title, features, potentialUsers, votes];
 
-  static Epic getEmptyObj(int num, List<String> potUsers) {
-    var uuid = Uuid();
-    return Epic(
-        id: uuid.v1(),
-        description: "NULL description",
-        title: "NULL title ${num}",
-        votes: [],
-        potentialUsers: potUsers,
-        features: List.generate(
-            5,
-            (outerIndex) => List.generate(
-                4,
-                (innerindex) => Story.getEmptyObj(
-                    "${outerIndex},${innerindex}", potUsers))));
-  }
-
   static Epic assignVotes(Epic epic, List<String> votes) {
     return Epic(
         id: epic.id,

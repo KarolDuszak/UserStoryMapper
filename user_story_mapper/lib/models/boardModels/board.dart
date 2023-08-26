@@ -52,33 +52,6 @@ class Board extends Equatable {
         timer
       ];
 
-  static Board getEmptyObj(int num, String userId) {
-    var potUsers = List<PotentialUser>.generate(
-        3, (innerIndex) => PotentialUser.getEmptyObj());
-    List<String> potUsersIds = [];
-    potUsers.forEach((element) => potUsersIds.add(element.id));
-
-    return Board(
-      id: Uuid().v4(),
-      creatorId: userId,
-      description: "NULL description",
-      title: "NULL title",
-      potentialUsers: potUsers,
-      milestones: List.generate(
-          2, (innerIndex) => Milestone.getEmptyObj(innerIndex, potUsersIds)),
-      members: [
-        Member(
-            id: userId,
-            role: 'Admin',
-            name: "Admin",
-            votesUsed: 0,
-            invitationAccepted: true)
-      ],
-      votesNumber: 5,
-      timer: DateTime.now(),
-    );
-  }
-
   static Board addNewBoard(String creatorId, String title, String description) {
     return Board(
       id: Uuid().v4(),

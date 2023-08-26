@@ -24,13 +24,4 @@ class Member extends Equatable {
 
   @override
   List<Object?> get props => [id, role, name, votesUsed, invitationAccepted];
-
-  static Member getEmptyObj() {
-    return Member(
-        id: "NULL",
-        role: "NULL email",
-        name: "NULL Name",
-        votesUsed: 0,
-        invitationAccepted: false);
-  }
 }

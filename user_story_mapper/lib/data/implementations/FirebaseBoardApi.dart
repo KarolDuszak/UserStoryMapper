@@ -66,6 +66,14 @@ class FirebaseBoardApi extends IBoardApi {
   }
 
   @override
+  Future<void> createMilestone(String boardId, Milestone milestone) async {
+    Board board = await getBoardObject(boardId);
+
+    board.milestones.add(milestone);
+    updateBoard(board);
+  }
+
+  @override
   Future<void> updateMilestoneProperties(String boardId, String milestoneId,
       String title, String description) async {
     Board board = await getBoardObject(boardId);

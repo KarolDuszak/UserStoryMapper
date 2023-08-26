@@ -37,12 +37,12 @@ class BoardList extends StatefulWidget {
 class MenuOptions {
   static const String potentialUsers = 'Potential Users Menu';
   static const String manageMembers = 'Members Menu';
-  static const String manageVoting = 'Voting Menu';
+  static const String addMilestone = 'Add Milestone';
 
   static const List<String> choices = <String>[
     potentialUsers,
     manageMembers,
-    manageVoting,
+    addMilestone,
   ];
 }
 
@@ -268,6 +268,58 @@ class _BoardList extends State<BoardList> {
     );
   }
 
+  showAddMilestoneDialog(BuildContext context) {
+    final description = TextEditingController();
+    final title = TextEditingController();
+    Widget cancelButton = ElevatedButton(
+      child: Text("Cancel"),
+      style: ElevatedButton.styleFrom(primary: Colors.red[700]),
+      onPressed: () {
+        Navigator.of(context, rootNavigator: true).pop();
+      },
+    );
+    Widget createButton = ElevatedButton(
+      child: Text("Create"),
+      style: ElevatedButton.styleFrom(primary: Colors.green[700]),
+      onPressed: () {
+        FirebaseBoardApi().createMilestone(
+          _board.id,
+          Milestone.createNewMilestone(description.text, title.text)
+        );
+        Navigator.of(context, rootNavigator: true).pop();
+      },
+    );
+
+    AlertDialog alert = AlertDialog(
+      title: Text("Create new Milestone"),
+      content: Container(
+        child: Column(
+          children: [
+            TextField(
+              decoration: InputDecoration(label: Text("Title")),
+              controller: title,
+            ),
+            TextField(
+              decoration: InputDecoration(label: Text("Description")),
+              controller: description,
+            )
+          ],
+        ),
+      ),
+      actions: [
+        createButton,
+        cancelButton,
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
   showEditPotentialUserDialog(BuildContext context) {
     List<PotentialUser> potUsers = _board.potentialUsers;
 
@@ -310,7 +362,6 @@ class _BoardList extends State<BoardList> {
 
     Widget closeButton = ElevatedButton(
       child: Text("Close"),
-      
       style: ElevatedButton.styleFrom(primary: Colors.red[700]),
       onPressed: () {
         Navigator.of(context, rootNavigator: true).pop();
@@ -366,9 +417,8 @@ class _BoardList extends State<BoardList> {
       showEditPotentialUserDialog(context);
     } else if (choice == MenuOptions.manageMembers) {
       showManageMembersDialog(context);
-    } else if (choice == MenuOptions.manageVoting) {
-      String userId = "g5xfMJRI7kbcZ0qVWzuE1QkdXl22";
-      FirebaseBoardApi().cancelInvitation(userId, _board.id);
+    } else if (choice == MenuOptions.addMilestone) {
+      showAddMilestoneDialog(context);
     }
   }
 

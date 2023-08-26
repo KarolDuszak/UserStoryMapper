@@ -18,6 +18,7 @@ abstract class IBoardApi {
   Future<void> moveFeature(String boardId, String epicId, int fOldIndex,
       int mIndex, int eIndex, int fIndex);
 
+  Future<void> createMilestone(String boardId, Milestone milestone);
   Future<void> updateMilestoneProperties(
       String boardId, String milestoneId, String title, String description);
 

@@ -31,17 +31,6 @@ class Story extends Equatable {
   List<Object?> get props =>
       [id, creatorId, description, title, potentialUsers, votes];
 
-  static Story getEmptyObj(String num, List<String> potUsers) {
-    var uuid = Uuid().v1();
-    return Story(
-        id: uuid,
-        creatorId: "NULL creatorId",
-        description: "NULL description",
-        title: "${num} Very long title sadasdasda sadasdasdasd asdasdasdasd ",
-        potentialUsers: potUsers,
-        votes: []);
-  }
-
   static Story createStory(String title, String description,
       List<String> potUsers, String creatorId) {
     var uuid = Uuid().v1();
