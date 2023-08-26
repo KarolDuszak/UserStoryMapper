@@ -117,34 +117,8 @@ class _ProfilePage extends State<ProfilePage> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => BoardList(
-                              boardId: "9e464b6f-8434-4003-8827-de33ea629dae"),
-                        ),
-                      );
-                    },
-                    child: Text("Open board"),
-                  ),
+                  const SizedBox(height: 50),
                   buildListView(),
-                  /*Expanded(
-                    child: !user.boards.isNull && user.boards!.isNotEmpty
-                        ? ListView.builder(
-                            itemCount: user.boards!.length,
-                            itemBuilder: (context, index) {
-                              return Container(
-                                decoration: const BoxDecoration(
-                                  border: Border(bottom: BorderSide()),
-                                ),
-                                child: _buildList(user.boards![index]),
-                              );
-                            },
-                          )
-                        : const Text("No board invitation found"),
-                  ),*/
                 ],
               ),
             ),
@@ -165,6 +139,11 @@ class _ProfilePage extends State<ProfilePage> {
         if (snapshot.connectionState == ConnectionState.done) {
           List<BoardInvitation>? data = snapshot.data;
 
+          if (data.isNull || data!.isEmpty) {
+            return Container(
+              child: Text("No board invitations found"),
+            );
+          }
           return Container(
             decoration: BoxDecoration(border: Border.all(color: Colors.black)),
             child: ListView.builder(

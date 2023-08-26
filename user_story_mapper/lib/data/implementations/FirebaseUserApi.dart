@@ -4,6 +4,7 @@ import 'dart:js_interop';
 import 'package:user_story_mapper/data/implementations/FirebaseBoardApi.dart';
 import 'package:user_story_mapper/data/interfaces/IUserApi.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:user_story_mapper/models/userModels/boardData.dart';
 import 'package:user_story_mapper/models/userModels/boardInvitation.dart';
 import 'package:user_story_mapper/models/userModels/user.dart';
 
@@ -70,11 +71,12 @@ class FirebaseUserApi extends IUserApi {
   @override
   Future<void> acceptBoardInvitation(String userId, String boardId) async {
     User user = await getUser(userId);
-
+    Board board = await FirebaseBoardApi().getBoardObject(boardId);
+    
     if (!user.boards.isNull) {
-      user.boards!.add(boardId);
+      user.boards.add(BoardData(boardId: boardId, name: board.title, description: board.description));
     } else {
-      user.boards = [boardId];
+      user.boards = [BoardData(boardId: boardId, name: board.title, description: board.description)];
     }
     updateUser(user);
     deleteBoardInvitation(userId, boardId);

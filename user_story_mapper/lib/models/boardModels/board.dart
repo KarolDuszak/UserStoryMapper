@@ -27,8 +27,8 @@ class Board extends Equatable {
   final String creatorId;
   final List<String> roles =
       List<String>.from(<String>["Admin", "Member", "Visitor"]);
-  final String? description;
-  final String? title;
+  final String description;
+  final String title;
   //Interaction
   final List<PotentialUser> potentialUsers;
   final List<Milestone> milestones;

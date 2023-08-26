@@ -9,8 +9,8 @@ part of 'board.dart';
 Board _$BoardFromJson(Map<String, dynamic> json) => Board(
       id: json['id'] as String,
       creatorId: json['creatorId'] as String,
-      description: json['description'] as String?,
-      title: json['title'] as String?,
+      description: json['description'] as String,
+      title: json['title'] as String,
       potentialUsers: (json['potentialUsers'] as List<dynamic>)
           .map((e) => PotentialUser.fromJson(e as Map<String, dynamic>))
           .toList(),

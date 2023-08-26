@@ -1,5 +1,3 @@
-// GENERATED CODE - DO NOT MODIFY BY HAND
-
 part of 'user.dart';
 
 // **************************************************************************
@@ -10,13 +8,14 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
       id: json['id'] as String,
       email: json['email'] as String,
       name: json['name'] as String,
-      boards:
-          (json['boards'] as List<dynamic>).map((e) => e.toString()).toList(),
+      boards: (json['boards'] as List<dynamic>)
+          .map((e) => BoardData.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'id': instance.id,
       'email': instance.email,
       'name': instance.name,
-      'boards': instance.boards?.map((e) => e).toList(),
+      'boards': instance.boards.map((e) => e.toJson()).toList(),
     };
