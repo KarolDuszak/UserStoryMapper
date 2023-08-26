@@ -72,12 +72,10 @@ class FirebaseUserApi extends IUserApi {
   Future<void> acceptBoardInvitation(String userId, String boardId) async {
     User user = await getUser(userId);
     Board board = await FirebaseBoardApi().getBoardObject(boardId);
-    
-    if (!user.boards.isNull) {
-      user.boards.add(BoardData(boardId: boardId, name: board.title, description: board.description));
-    } else {
-      user.boards = [BoardData(boardId: boardId, name: board.title, description: board.description)];
-    }
+
+    user.boards.add(BoardData(
+        boardId: boardId, name: board.title, description: board.description));
+
     updateUser(user);
     deleteBoardInvitation(userId, boardId);
   }
@@ -99,5 +97,13 @@ class FirebaseUserApi extends IUserApi {
         .collection('invitations')
         .doc(boardId)
         .delete();
+  }
+
+  @override
+  Future<void> addBoardToUser(String userId, Board board) async {
+    User user = await getUser(userId);
+    user.boards.add(BoardData(
+        boardId: board.id, name: board.title, description: board.description));
+    return await updateUser(user);
   }
 }

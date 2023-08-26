@@ -72,8 +72,7 @@ class Board extends Equatable {
     );
   }
 
-  static Board addNewBoard(
-      String creatorId, String title, String description, String userId) {
+  static Board addNewBoard(String creatorId, String title, String description) {
     return Board(
       id: Uuid().v4(),
       creatorId: creatorId,
@@ -81,7 +80,7 @@ class Board extends Equatable {
       description: description,
       milestones: [Milestone.createMvpMilestone()],
       potentialUsers: [],
-      members: [Member(id: userId, role: 'Admin', voterRemaining: 5)],
+      members: [Member(id: creatorId, role: 'Admin', voterRemaining: 5)],
       votesNumber: 5,
       timer: DateTime.now(),
     );

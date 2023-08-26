@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:user_story_mapper/data/implementations/FirebaseUserApi.dart';
 import 'package:user_story_mapper/data/interfaces/IBoardApi.dart';
 import 'package:user_story_mapper/models/boardModels/board.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -19,10 +20,12 @@ class FirebaseBoardApi extends IBoardApi {
 
   @override
   Future<void> createBoard(Board board) {
-    return boardsRef
+    boardsRef
         .doc(board.id)
         .set(board.toJson())
         .then((value) => print("Board Created"));
+
+    return FirebaseUserApi().addBoardToUser(board.creatorId, board);
   }
 
   @override
