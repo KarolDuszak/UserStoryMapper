@@ -12,6 +12,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Icon(Icons.flutter_dash),
       appBar: AppBar(title: const Center(child: Text("Login"))),
       body: Padding(
         padding: const EdgeInsets.all(8),

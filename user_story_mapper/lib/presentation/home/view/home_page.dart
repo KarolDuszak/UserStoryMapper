@@ -12,9 +12,9 @@ import '../../../models/userModels/user.dart';
 import '../../app/routes/navMenu.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key});
 
-  static Page<void> page() => MaterialPage<void>(
+  static Page<void> page() => const MaterialPage<void>(
         child: HomePage(),
       );
 
@@ -44,7 +44,23 @@ class _HomePage extends State<HomePage> {
           return Scaffold(
             drawer: NavMenu(),
             appBar: AppBar(title: Center(child: Text("User Story Mapper"))),
-            body: buildListView(context, user),
+            body:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              buildListView(context, user),
+              SizedBox(height: 20),
+              Container(
+                decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.all(Radius.circular(50))),
+                child: IconButton(
+                  onPressed: () {
+                    showCreateNewBoard(context, user.id);
+                  },
+                  icon: Icon(Icons.add),
+                  color: Colors.white,
+                ),
+              )
+            ]),
           );
         }
         return Container(
@@ -59,30 +75,12 @@ class _HomePage extends State<HomePage> {
       return const Center(child: Text("Boards not found"));
     }
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        ListView.builder(
-          shrinkWrap: true,
-          itemCount: user.boards.length,
-          itemBuilder: (context, index) {
-            return _buildList(context, user, user.boards[index]);
-          },
-        ),
-        SizedBox(height: 20),
-        Container(
-          decoration: BoxDecoration(
-              color: Colors.blue,
-              borderRadius: BorderRadius.all(Radius.circular(50))),
-          child: IconButton(
-            onPressed: () {
-              showCreateNewBoard(context, user.id);
-            },
-            icon: Icon(Icons.add),
-            color: Colors.white,
-          ),
-        )
-      ],
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: user.boards.length,
+      itemBuilder: (context, index) {
+        return _buildList(context, user, user.boards[index]);
+      },
     );
   }
 

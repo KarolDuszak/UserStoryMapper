@@ -18,6 +18,10 @@ class SignUpForm extends StatelessWidget {
               SnackBar(content: Text(state.errorMessage ?? 'SignUp Failure')),
             );
         }
+        if (state.status.isSuccess) {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => HomePage()));
+        }
       },
       child: Align(
         alignment: const Alignment(0, -1 / 3),
@@ -53,16 +57,7 @@ class _SignUpButton extends StatelessWidget {
             : ElevatedButton(
                 key: const Key('signUpForm_continue_raisedButton'),
                 onPressed: state.isValid
-                    ? () => context
-                        .read<SignUpCubit>()
-                        .signUpFormSubmitted()
-                        .then((value) => {
-                              if (state.status == FormzSubmissionStatus.success)
-                                {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => HomePage()))
-                                }
-                            })
+                    ? () => context.read<SignUpCubit>().signUpFormSubmitted()
                     : null,
                 child: const Text("Sign Up"),
               );

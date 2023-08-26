@@ -4,6 +4,8 @@ import 'package:formz/formz.dart';
 import 'package:user_story_mapper/presentation/login/cubit/loginCubit.dart';
 import 'package:user_story_mapper/presentation/signUp/view/signUpPage.dart';
 
+import '../../home/view/home_page.dart';
+
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});
 
@@ -19,6 +21,10 @@ class LoginForm extends StatelessWidget {
                 content: Text(state.errorMessage ?? 'Authentication Failure'),
               ),
             );
+        }
+        if (state.status.isSuccess) {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => HomePage()));
         }
       },
       child: Align(
