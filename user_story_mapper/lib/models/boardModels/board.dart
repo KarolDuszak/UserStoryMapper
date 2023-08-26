@@ -66,7 +66,14 @@ class Board extends Equatable {
       potentialUsers: potUsers,
       milestones: List.generate(
           2, (innerIndex) => Milestone.getEmptyObj(innerIndex, potUsersIds)),
-      members: [Member(id: userId, role: 'Admin', voterRemaining: 5)],
+      members: [
+        Member(
+            id: userId,
+            role: 'Admin',
+            name: "Admin",
+            votesUsed: 0,
+            invitationAccepted: true)
+      ],
       votesNumber: 5,
       timer: DateTime.now(),
     );
@@ -80,7 +87,14 @@ class Board extends Equatable {
       description: description,
       milestones: [Milestone.createMvpMilestone()],
       potentialUsers: [],
-      members: [Member(id: creatorId, role: 'Admin', voterRemaining: 5)],
+      members: [
+        Member(
+            id: creatorId,
+            role: 'Admin',
+            name: "Owner",
+            votesUsed: 0,
+            invitationAccepted: true)
+      ],
       votesNumber: 5,
       timer: DateTime.now(),
     );

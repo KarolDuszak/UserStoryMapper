@@ -5,6 +5,7 @@ import 'package:user_story_mapper/models/boardModels/board.dart';
 import 'package:user_story_mapper/models/boardModels/member.dart';
 import 'package:user_story_mapper/models/boardModels/potentialUser.dart';
 import 'package:user_story_mapper/models/userModels/boardInvitation.dart';
+import 'package:user_story_mapper/presentation/board/editMemberForm.dart';
 import 'package:user_story_mapper/presentation/board/epicWidget.dart';
 import 'package:uuid/uuid.dart';
 import '../../data/implementations/FirebaseBoardApi.dart';
@@ -60,7 +61,7 @@ class _BoardList extends State<BoardList> {
   Widget build(BuildContext context) {
     user = context.select((AppBloc bloc) => bloc.state.user);
     return MaterialApp(
-      scrollBehavior: MaterialScrollBehavior().copyWith(
+      scrollBehavior: const MaterialScrollBehavior().copyWith(
         dragDevices: {
           PointerDeviceKind.mouse,
           PointerDeviceKind.touch,
@@ -75,16 +76,16 @@ class _BoardList extends State<BoardList> {
         floatingActionButton: PopupMenuButton<String>(
           onSelected: choiceAction,
           child: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.blue,
               borderRadius: BorderRadius.all(Radius.circular(15)),
             ),
-            child: SizedBox(
+            child: const SizedBox(
               height: 50,
               width: 155,
               child: Row(children: [
                 SizedBox(width: 3),
-                const Icon(
+                Icon(
                   Icons.settings,
                   color: Colors.white,
                 ),
@@ -132,7 +133,7 @@ class _BoardList extends State<BoardList> {
             }
             return Container(
                 alignment: Alignment.center,
-                child: CircularProgressIndicator());
+                child: const CircularProgressIndicator());
           },
         ),
       ),
@@ -268,6 +269,8 @@ class _BoardList extends State<BoardList> {
   }
 
   showEditPotentialUserDialog(BuildContext context) {
+    List<PotentialUser> potUsers = _board.potentialUsers;
+
     Widget closeButton = ElevatedButton(
       child: Text("Close"),
       style: ElevatedButton.styleFrom(primary: Colors.red[700]),
@@ -279,16 +282,70 @@ class _BoardList extends State<BoardList> {
       child: Text("Add"),
       style: ElevatedButton.styleFrom(primary: Colors.green[700]),
       onPressed: () {
-        _board.potentialUsers.add(PotentialUser.createNew());
+        potUsers.add(PotentialUser.createNew());
         Navigator.of(context, rootNavigator: true).pop();
         showEditPotentialUserDialog(context);
       },
     );
 
     AlertDialog alert = AlertDialog(
-      title: Text("Potential user menu"),
-      content: Container(
-        child: PotentialUserPanel(_board.id, _board.potentialUsers),
+      title: const Text("Potential user menu"),
+      content: PotentialUserPanel(_board.id, potUsers),
+      actions: [
+        addButton,
+        closeButton,
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  showManageMembersDialog(BuildContext context) {
+    List<Member> memberList = _board.members;
+
+    Widget closeButton = ElevatedButton(
+      child: Text("Close"),
+      
+      style: ElevatedButton.styleFrom(primary: Colors.red[700]),
+      onPressed: () {
+        Navigator.of(context, rootNavigator: true).pop();
+      },
+    );
+    Widget addButton = ElevatedButton(
+      child: Text("Add"),
+      style: ElevatedButton.styleFrom(primary: Colors.green[700]),
+      onPressed: () {
+        memberList.add(Member(
+            id: "",
+            role: "Visitor",
+            name: "",
+            votesUsed: 0,
+            invitationAccepted: false));
+        Navigator.of(context, rootNavigator: true).pop();
+        showManageMembersDialog(context);
+      },
+    );
+
+    AlertDialog alert = AlertDialog(
+      title: Text("Members menu"),
+      content: SizedBox(
+        width: double.maxFinite,
+        child: ListView.builder(
+          scrollDirection: Axis.vertical,
+          itemCount: memberList.length,
+          itemBuilder: (BuildContext ctxt, int index) {
+            return Center(
+                child: EditMemberForm(
+              boardId: _board.id,
+              member: memberList[index],
+            ));
+          },
+        ),
       ),
       actions: [
         addButton,
@@ -308,19 +365,10 @@ class _BoardList extends State<BoardList> {
     if (choice == MenuOptions.potentialUsers) {
       showEditPotentialUserDialog(context);
     } else if (choice == MenuOptions.manageMembers) {
-      String userId = "g5xfMJRI7kbcZ0qVWzuE1QkdXl22";
-      BoardInvitation invitation =
-          BoardInvitation.newInvitation(_board.id, "Message", userId, user.id);
-      FirebaseBoardApi().inviteToBoard(
-          invitation,
-          Member(
-              id: userId, role: 'Admin', voterRemaining: _board.votesNumber));
+      showManageMembersDialog(context);
     } else if (choice == MenuOptions.manageVoting) {
       String userId = "g5xfMJRI7kbcZ0qVWzuE1QkdXl22";
       FirebaseBoardApi().cancelInvitation(userId, _board.id);
-
-      //Board board2 = Board.getEmptyObj(4, "R5fruaScbIOydsmeWgxUk9YmU9z1");
-      //FirebaseBoardApi().createBoard(board2);
     }
   }
 

@@ -7,6 +7,7 @@ abstract class IUserApi {
   Future<User> getUser(String userId);
   Future<void> deleteUser(String userId);
   Future<void> updateUser(User user);
+  Future<void> addUserInvitation(BoardInvitation invitation);
   Future<List<BoardInvitation>> getUsersInvitations(
       String userId, String userEmail);
   Future<void> acceptBoardInvitation(String userId, String boardId);

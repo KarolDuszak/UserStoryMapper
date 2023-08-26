@@ -9,10 +9,14 @@ part of 'member.dart';
 Member _$MemberFromJson(Map<String, dynamic> json) => Member(
     id: json['id'] as String,
     role: json['role'] as String,
-    voterRemaining: json['voterRemaining'] as int?);
+    name: json['name'] as String,
+    votesUsed: json['votesUsed'] as int?,
+    invitationAccepted: json['invitationAccepted'] as bool);
 
 Map<String, dynamic> _$MemberToJson(Member instance) => <String, dynamic>{
       'id': instance.id,
       'role': instance.role,
-      'voterRemaining': instance.voterRemaining
+      'name': instance.name,
+      'votesUsed': instance.votesUsed,
+      'invitationAccepted': instance.invitationAccepted
     };

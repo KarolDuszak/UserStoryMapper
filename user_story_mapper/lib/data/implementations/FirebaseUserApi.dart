@@ -72,10 +72,12 @@ class FirebaseUserApi extends IUserApi {
   Future<void> acceptBoardInvitation(String userId, String boardId) async {
     User user = await getUser(userId);
     Board board = await FirebaseBoardApi().getBoardObject(boardId);
-
+    var i = board.members.indexWhere((element) => element.id == userId);
+    board.members[i].invitationAccepted = true;
     user.boards.add(BoardData(
         boardId: boardId, name: board.title, description: board.description));
 
+    FirebaseBoardApi().updateBoard(board);
     updateUser(user);
     deleteBoardInvitation(userId, boardId);
   }
@@ -105,5 +107,16 @@ class FirebaseUserApi extends IUserApi {
     user.boards.add(BoardData(
         boardId: board.id, name: board.title, description: board.description));
     return await updateUser(user);
+  }
+
+  @override
+  Future<void> addUserInvitation(BoardInvitation invitation) async {
+    CollectionReference inviteRef =
+        FirebaseFirestore.instance.collection('boardInvitations');
+    return await inviteRef
+        .doc(invitation.reciever)
+        .collection('invitations')
+        .doc(invitation.id)
+        .set(invitation.toJson());
   }
 }

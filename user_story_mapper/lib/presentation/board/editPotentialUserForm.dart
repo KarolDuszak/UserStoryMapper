@@ -23,7 +23,6 @@ class _EditPotentialUser extends State<EditPotentialUser> {
 
   final description = TextEditingController();
   final name = TextEditingController();
-  //Jak z tego zrobić color picker?
   late ColorLabel pickerColor;
 
   _EditPotentialUser(String boardId, PotentialUser potentialUser) {

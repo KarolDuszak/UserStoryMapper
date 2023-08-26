@@ -41,6 +41,9 @@ abstract class IBoardApi {
 
   Future<void> inviteToBoard(BoardInvitation invitation, Member member);
   Future<void> cancelInvitation(String reciever, String boardId);
+
+  Future<void> deleteMember(String boardId, String userId);
+  Future<void> addMember(String boardId, Member member);
 }
 
 class BoardNotFoundException implements Exception {}

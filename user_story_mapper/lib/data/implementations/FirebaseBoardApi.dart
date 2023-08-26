@@ -484,4 +484,18 @@ class FirebaseBoardApi extends IBoardApi {
         )
         .onError((error, stackTrace) => print(error));
   }
+
+  @override
+  Future<void> deleteMember(String boardId, String userId) async {
+    Board board = await getBoardObject(boardId);
+    board.members.removeWhere((element) => element.id == userId);
+    updateBoard(board);
+  }
+
+  @override
+  Future<void> addMember(String boardId, Member member) async {
+    Board board = await getBoardObject(boardId);
+    board.members.add(member);
+    updateBoard(board);
+  }
 }

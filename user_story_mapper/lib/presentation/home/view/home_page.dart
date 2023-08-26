@@ -41,14 +41,11 @@ class _HomePage extends State<HomePage> {
               snapshot.data!.data() as Map<String, dynamic>;
           User user = User.fromJson(data);
 
-          if (user.boards.isNotEmpty) {
-            return Scaffold(
-              drawer: NavMenu(),
-              appBar: AppBar(title: Center(child: Text("User Story Mapper"))),
-              body: buildListView(context, user),
-            );
-          }
-          return const Center(child: Text("Boards not found"));
+          return Scaffold(
+            drawer: NavMenu(),
+            appBar: AppBar(title: Center(child: Text("User Story Mapper"))),
+            body: buildListView(context, user),
+          );
         }
         return Container(
             alignment: Alignment.center,
@@ -58,6 +55,10 @@ class _HomePage extends State<HomePage> {
   }
 
   Widget buildListView(BuildContext context, User user) {
+    if (user.boards.isEmpty) {
+      return const Center(child: Text("Boards not found"));
+    }
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
