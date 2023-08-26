@@ -91,10 +91,10 @@
                 <mxCell id="36" value="Lista boardów" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e51400;fontColor=#130101;strokeColor=#B20000;fontStyle=1" parent="1" vertex="1">
                     <mxGeometry x="2680" y="280" width="180" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="37" value="Użytkownik ma możliwość przejrzeć wszystkie boardy w których uczestniczy" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
+                <mxCell id="37" value="Użytkownik ma możliwość przejrzeć wszystkie boardy w których uczestniczy" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60A917;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
                     <mxGeometry x="2680" y="470" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="38" value="Użytkownik ma możliwość otworzenia boardu w którym uczestniczy" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
+                <mxCell id="38" value="Użytkownik ma możliwość otworzenia boardu w którym uczestniczy" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60A917;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
                     <mxGeometry x="2900" y="470" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="39" value="Użytkownik widzi jakie ma prawa na wskazanym boardzie" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
@@ -103,7 +103,7 @@
                 <mxCell id="45" value="Użytkownik może przeczytać o pułapkach w user story mapping" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#E3C800;fontColor=#000000;strokeColor=#E3C800;fontStyle=1" parent="1" vertex="1">
                     <mxGeometry x="9762" y="2480" width="190" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="46" value="Lista boardów jest pierwszą widoczną stroną po zalogowaniu" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
+                <mxCell id="46" value="Lista boardów jest pierwszą widoczną stroną po zalogowaniu" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#60A917;fontColor=#000000;strokeColor=#B09500;fontStyle=1" parent="1" vertex="1">
                     <mxGeometry x="3118" y="470" width="190" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="47" value="Pułapka płaskiego rejestru" style="rounded=1;whiteSpace=wrap;html=1;fontSize=20;fillColor=#E3C800;fontColor=#000000;strokeColor=#E3C800;fontStyle=1" parent="1" vertex="1">

@@ -70,7 +70,7 @@ class _BoardList extends State<BoardList> {
       ),
       home: Scaffold(
         drawer: NavMenu(),
-        appBar: AppBar(title:const Center(child: Text("User Story Mapper"))),
+        appBar: AppBar(title: const Center(child: Text("User Story Mapper"))),
         floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
         floatingActionButton: PopupMenuButton<String>(
           onSelected: choiceAction,
@@ -218,7 +218,7 @@ class _BoardList extends State<BoardList> {
         Navigator.of(context, rootNavigator: true).pop();
       },
     );
-    Widget deleteButton = ElevatedButton(
+    Widget createButton = ElevatedButton(
       child: Text("Create"),
       style: ElevatedButton.styleFrom(primary: Colors.green[700]),
       onPressed: () {
@@ -254,7 +254,7 @@ class _BoardList extends State<BoardList> {
         ),
       ),
       actions: [
-        deleteButton,
+        createButton,
         cancelButton,
       ],
     );
