@@ -104,7 +104,7 @@ class _EpicList extends State<EpicList> {
             alignment: Alignment.center,
             child: ElevatedButton(
                 onPressed: () {
-                  showAddStoryDialog(context, _epic.features!.length);
+                  showAddStoryDialog(context, _epic.id, _epic.features!.length);
                 },
                 child: Text("Add Story"))),
         children: [],
@@ -123,7 +123,7 @@ class _EpicList extends State<EpicList> {
             alignment: Alignment.center,
             child: ElevatedButton(
                 onPressed: () {
-                  showAddStoryDialog(context, outerIndex);
+                  showAddStoryDialog(context,_epic.id, outerIndex);
                 },
                 child: Text("Add Story"))),
         header: Container(
@@ -192,7 +192,7 @@ class _EpicList extends State<EpicList> {
     return maxLen;
   }
 
-  showAddStoryDialog(BuildContext context, int listIndex) async {
+  showAddStoryDialog(BuildContext context, String epicId, int listIndex) async {
     final description = TextEditingController();
     final title = TextEditingController();
     List<PotentialUser> availableUsers = [];
@@ -224,7 +224,7 @@ class _EpicList extends State<EpicList> {
       onPressed: () {
         FirebaseBoardApi().createStory(
             _boardId,
-            _epic.id,
+            epicId,
             listIndex,
             Story.createStory(title.text, description.text,
                 selected.map((e) => e.id).toList(), _userId));
