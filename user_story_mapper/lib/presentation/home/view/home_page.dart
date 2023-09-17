@@ -97,7 +97,7 @@ class _HomePage extends State<HomePage> {
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) =>
-                        BoardList(boardId: boardData.boardId)));
+                        BoardView(boardId: boardData.boardId)));
               },
               child: const Text("Open board")),
           const SizedBox(width: 8),

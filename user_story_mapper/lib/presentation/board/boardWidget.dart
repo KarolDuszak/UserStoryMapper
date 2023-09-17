@@ -19,19 +19,19 @@ import 'package:user_story_mapper/presentation/app/app.dart';
 import '../app/routes/navMenu.dart';
 import 'potentialUserPanelWidget.dart';
 
-class BoardList extends StatefulWidget {
-  const BoardList({Key? key, required this.boardId}) : super(key: key);
+class BoardView extends StatefulWidget {
+  const BoardView({Key? key, required this.boardId}) : super(key: key);
 
   final String boardId;
 
   static Page<void> page(String boardId) => MaterialPage<void>(
-        child: BoardList(
+        child: BoardView(
           boardId: boardId,
         ),
       );
 
   @override
-  State createState() => _BoardList();
+  State createState() => _BoardView();
 }
 
 class MenuOptions {
@@ -46,7 +46,7 @@ class MenuOptions {
   ];
 }
 
-class _BoardList extends State<BoardList> {
+class _BoardView extends State<BoardView> {
   late Board _board;
   late Stream _boardStream;
   late dynamic user;

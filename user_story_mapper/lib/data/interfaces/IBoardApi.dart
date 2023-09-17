@@ -46,5 +46,3 @@ abstract class IBoardApi {
   Future<void> deleteMember(String boardId, String userId);
   Future<void> addMember(String boardId, Member member);
 }
-
-class BoardNotFoundException implements Exception {}
