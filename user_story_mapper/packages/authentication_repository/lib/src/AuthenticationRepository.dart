@@ -7,8 +7,7 @@ import 'package:cache/cache.dart';
 class AuthenticationRepository {
   AuthenticationRepository({
     CacheClient? cache,
-    firebase_auth.FirebaseAuth? firebaseAuth,
-    GoogleSignIn? googleSignIn,
+    firebase_auth.FirebaseAuth? firebaseAuth
   })  : _cache = cache ?? CacheClient(),
         _firebaseAuth = firebaseAuth ?? firebase_auth.FirebaseAuth.instance;
 
@@ -79,37 +78,6 @@ extension on firebase_auth.User {
 }
 
 class LogOutFailure implements Exception {}
-
-class LogInWithGoogleFailure implements Exception {
-  const LogInWithGoogleFailure(
-      [this.message = 'An unknow exception occurred.']);
-
-  final String message;
-
-  factory LogInWithGoogleFailure.fromCode(String code) {
-    switch (code) {
-      case 'account-exists-with-different-credential':
-        return const LogInWithGoogleFailure(
-            'Account exists with different credentials');
-      case 'invalid-credentail':
-        return const LogInWithGoogleFailure(
-            'The credentail recieved is malformed or has expired');
-      case 'invalid-verification-code':
-        return const LogInWithGoogleFailure('The verification code is invalid');
-      case 'invalid-verification-id':
-        return const LogInWithGoogleFailure(
-            'The credential verification IF received is invalid');
-      case 'wrong-password':
-        return const LogInWithGoogleFailure('Wrong email or password');
-      case 'user-disabled':
-        return const LogInWithGoogleFailure('User disabled');
-      case 'user-not-found':
-        return const LogInWithGoogleFailure('Wrong email or password');
-      default:
-        return const LogInWithGoogleFailure();
-    }
-  }
-}
 
 class LogInWithEmailAndPasswordFailure implements Exception {
   const LogInWithEmailAndPasswordFailure(

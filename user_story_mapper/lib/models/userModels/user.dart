@@ -14,19 +14,16 @@ class User extends Equatable {
       required this.name,
       required this.boards});
 
-  //Informations
+
   final String id;
   final String email;
   final String name;
   final List<BoardData> boards;
 
-  /// Empty user which represents an unauthenticated user.
   static const empty = User(id: '', email: '', name: '', boards: []);
 
-  /// Convenience getter to determine whether the current user is empty.
   bool get isEmpty => this == User.empty;
 
-  /// Convenience getter to determine whether the current user is not empty.
   bool get isNotEmpty => this != User.empty;
 
   set boards(List<BoardData>? boards) {
